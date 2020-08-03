@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
+[ext_resource path="res://player/sword.gltf" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.35
@@ -18,3 +19,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
 fov = 90.0
+
+[node name="Objects" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
+
+[node name="Sword" parent="Objects" instance=ExtResource( 2 )]
+transform = Transform( 0.198267, -0.739942, -0.642788, 0.965926, 0.258819, 0, 0.166366, -0.620885, 0.766044, 0.5, -0.85, -1 )

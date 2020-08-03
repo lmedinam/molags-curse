@@ -22,10 +22,17 @@ func _input(event):
 			camera_angle += change
 
 func _physics_process(delta):
-	var direction = Vector3()
-	
 	var c_basis = $Head/Camera.global_transform.basis
 	var h_basis = $Head.global_transform.basis
+	var o_basis = $Objects.transform.basis
+	
+	var current_rot = Quat($Objects.transform.basis)
+	var target_rot = Quat(c_basis)
+	var smoothrot = current_rot.slerp(target_rot, 0.20)
+	
+	$Objects.transform.basis = Basis(smoothrot)
+	
+	var direction = Vector3()
 	
 	if Input.is_action_pressed("ui_down"):
 		direction += h_basis.z
