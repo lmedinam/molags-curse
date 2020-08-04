@@ -10,6 +10,20 @@ var mouse_sensitivity = 1.5
 var velocity = Vector3()
 
 onready var actioner = $Head/Camera/Actioner
+onready var hit_area = $Head/Camera/HitArea
+onready var head_at = $Head/AnimationTree
+
+var head_st: AnimationNodeStateMachinePlayback
+
+func _ready():
+	head_st = head_at.get("parameters/playback")
+	head_st.start("idle")
+
+func _process(delta):
+	if velocity.length() < SPEED / 4:
+		head_st.travel("idle")
+	else:
+		head_st.travel("walking")
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -28,6 +42,12 @@ func _input(event):
 			var collider = actioner.get_collider()
 			if collider.has_method("actuate"):
 				collider.actuate()
+	
+	if event.is_action_pressed("hit"):
+		var bodies = hit_area.get_overlapping_bodies()
+		for body in bodies:
+			if body.has_method("hit"):
+				body.hit()
 
 func _physics_process(delta):
 	var c_basis = $Head/Camera.global_transform.basis
@@ -69,4 +89,5 @@ func _physics_process(delta):
 	velocity.z = temp_velocity.z
 	
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
+	
 	
