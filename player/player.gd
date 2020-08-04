@@ -9,6 +9,8 @@ var camera_angle = 0
 var mouse_sensitivity = 1.5
 var velocity = Vector3()
 
+onready var actioner = $Head/Camera/Actioner
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		# Horizontal aim
@@ -20,6 +22,12 @@ func _input(event):
 		if next_angle < 90 and next_angle > -90:
 			$Head/Camera.rotate_x(deg2rad(change))
 			camera_angle += change
+	
+	if event.is_action_pressed("action"):
+		if actioner.is_colliding():
+			var collider = actioner.get_collider()
+			if collider.has_method("actuate"):
+				collider.actuate()
 
 func _physics_process(delta):
 	var c_basis = $Head/Camera.global_transform.basis
@@ -61,3 +69,4 @@ func _physics_process(delta):
 	velocity.z = temp_velocity.z
 	
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
+	
