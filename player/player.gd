@@ -16,6 +16,7 @@ onready var head_at = $Head/AnimationTree
 var head_st: AnimationNodeStateMachinePlayback
 
 func _ready():
+	GameManager.player = self
 	head_st = head_at.get("parameters/playback")
 	head_st.start("idle")
 
@@ -47,7 +48,7 @@ func _input(event):
 		var bodies = hit_area.get_overlapping_bodies()
 		for body in bodies:
 			if body.has_method("hit"):
-				body.hit()
+				body.hit(-$Objects.transform.basis.z)
 
 func _physics_process(delta):
 	var c_basis = $Head/Camera.global_transform.basis
