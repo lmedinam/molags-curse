@@ -25,7 +25,7 @@ GameManager="*res://game_manager.gd"
 
 [debug]
 
-settings/fps/force_fps=25
+settings/fps/force_fps=24
 
 [display]
 

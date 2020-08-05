@@ -273,7 +273,9 @@ shape = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
+current = true
 fov = 90.0
+far = 300.0
 
 [node name="Actioner" type="RayCast" parent="Head/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
@@ -295,6 +297,10 @@ tree_root = SubResource( 8 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 9 )
+
+[node name="OmniLight" type="OmniLight" parent="Head"]
+light_color = Color( 0.976471, 1, 0.592157, 1 )
+light_energy = 0.5
 
 [node name="Objects" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.35, 0 )
