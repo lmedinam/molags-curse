@@ -241,27 +241,27 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "attack"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 auto_advance = true
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachine" id=12]
-states/attack/node = SubResource( 14 )
+[sub_resource type="AnimationNodeStateMachine" id=16]
+states/attack/node = SubResource( 12 )
 states/attack/position = Vector2( 515, 103 )
-states/idle/node = SubResource( 15 )
+states/idle/node = SubResource( 13 )
 states/idle/position = Vector2( 245, 103 )
-transitions = [ "idle", "attack", SubResource( 16 ), "attack", "idle", SubResource( 17 ) ]
+transitions = [ "idle", "attack", SubResource( 14 ), "attack", "idle", SubResource( 15 ) ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -298,7 +298,7 @@ active = true
 parameters/playback = SubResource( 9 )
 
 [node name="Objects" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.35, 0 )
 
 [node name="RightHand" type="Spatial" parent="Objects"]
 transform = Transform( 0.198267, -0.739942, -0.642788, 0.965926, 0.258819, 0, 0.166366, -0.620885, 0.766044, 0.5, -0.85, -1 )
@@ -310,7 +310,7 @@ anims/attack = SubResource( 10 )
 anims/idle = SubResource( 11 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Objects/RightHand"]
-tree_root = SubResource( 12 )
+tree_root = SubResource( 16 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 13 )
+parameters/playback = SubResource( 17 )

@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/sword.gltf-c7549c7363fbe8283a8a635649bbcf48.scn"
+path="res://.import/corner.gltf-e7dd5d78f393a987acb0aacdd0e61680.scn"
 
 [deps]
 
-source_file="res://player/sword.gltf"
-dest_files=[ "res://.import/sword.gltf-c7549c7363fbe8283a8a635649bbcf48.scn" ]
+source_file="res://level/models/corner/corner.gltf"
+dest_files=[ "res://.import/corner.gltf-e7dd5d78f393a987acb0aacdd0e61680.scn" ]
 
 [params]
 
