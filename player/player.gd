@@ -62,7 +62,7 @@ func _physics_process(delta):
 	var h_basis = $Head.global_transform.basis
 	var o_basis = $Objects.transform.basis
 	
-	var current_rot = Quat($Objects.transform.basis)
+	var current_rot = Quat($Objects.transform.basis.orthonormalized())
 	var target_rot = Quat(c_basis)
 	var smoothrot = current_rot.slerp(target_rot, 0.20)
 	
