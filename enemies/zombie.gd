@@ -5,22 +5,46 @@ const KNOCKBACK_SPEED = 30
 var knockback = 0
 var knockback_dir = Vector3()
 
-func hit(knockback: Vector3):
+var hp = 20
+var death = false
+
+func _ready():
+	$AnimationPlayer.play("alive")
+
+func hit(knockback: Vector3, hp: int):
 	if self.knockback <= 0:
 		knockback_dir = knockback * 10
+		self.hp -= hp
 		self.knockback = 0.2
+		
+		if self.hp <= 0 and not death:
+			kill()
+
+func kill():
+	death = true
+	$AnimationPlayer.play("death")
+	
+	var qt = Timer.new()
+	add_child(qt)
+	
+	qt.connect("timeout", self, "queue_free")
+	qt.wait_time = 2.0
+	qt.start()
 
 func _physics_process(delta):
-	turn_face(GameManager.player, delta)
+	if not death:
+		turn_face(GameManager.player, delta)
 	
 	var direction = Vector3()
+	
 	direction -= transform.basis.z
 	
 	if knockback > 0:
 		direction += knockback_dir * delta * KNOCKBACK_SPEED
 		knockback -= delta
 	
-	move_and_slide(direction, Vector3(0, 1, 0))
+	if not death:
+		move_and_slide(direction, Vector3(0, 1, 0))
 
 func turn_face(target, delta):
 	var current_rotation = Quat(global_transform.basis)
