@@ -12,13 +12,22 @@ var velocity = Vector3()
 onready var actioner = $Head/Camera/Actioner
 onready var hit_area = $Head/Camera/HitArea
 onready var head_at = $Head/AnimationTree
+onready var right_hand = $Objects/RightHand/AnimationTree
 
 var head_st: AnimationNodeStateMachinePlayback
+var right_hand_st: AnimationNodeStateMachinePlayback
 
 func _ready():
 	GameManager.player = self
+	
 	head_st = head_at.get("parameters/playback")
+	right_hand_st = right_hand.get("parameters/playback")
+	
 	head_st.start("idle")
+	right_hand_st.start("idle")
+	
+	var right_hand_ap = $Objects/RightHand/AnimationPlayer
+	right_hand_ap.connect("animation_finished", self, "_on_animation_finished")
 
 func _process(delta):
 	if velocity.length() < SPEED / 4:
@@ -45,10 +54,8 @@ func _input(event):
 				collider.actuate()
 	
 	if event.is_action_pressed("hit"):
-		var bodies = hit_area.get_overlapping_bodies()
-		for body in bodies:
-			if body.has_method("hit"):
-				body.hit(-$Objects.transform.basis.z, 8)
+		right_hand_st.travel("attack")
+		yield($Objects/RightHand/AnimationPlayer, "animation_finished")
 
 func _physics_process(delta):
 	var c_basis = $Head/Camera.global_transform.basis
@@ -90,5 +97,9 @@ func _physics_process(delta):
 	velocity.z = temp_velocity.z
 	
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
-	
-	
+
+func do_damage():
+	var bodies = hit_area.get_overlapping_bodies()
+	for body in bodies:
+		if body.has_method("hit"):
+			body.hit(-$Objects.transform.basis.z, 8)
