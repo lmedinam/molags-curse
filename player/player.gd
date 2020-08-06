@@ -1,6 +1,6 @@
 extends KinematicBody
 
-const SPEED = 6
+const SPEED = 3
 const ACCEL = 2
 const DEACCEL = 6
 const GRAVITY = -9.8 * 3
@@ -30,7 +30,7 @@ func _ready():
 	right_hand_ap.connect("animation_finished", self, "_on_animation_finished")
 
 func _process(delta):
-	if velocity.length() < SPEED / 4:
+	if velocity.length() < 0.5:
 		head_st.travel("idle")
 	else:
 		head_st.travel("walking")

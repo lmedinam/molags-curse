@@ -1,8 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/sword.gltf" type="PackedScene" id=2]
 [ext_resource path="res://player/player_shape.tres" type="Shape" id=3]
+[ext_resource path="res://player/stepwood_1.wav" type="AudioStream" id=4]
+[ext_resource path="res://player/stepwood_2.wav" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.2
@@ -76,6 +78,24 @@ tracks/2/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
+tracks/3/type = "audio"
+tracks/3/path = NodePath("../AudioStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0, 0.5 )
+}
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "idle"
@@ -84,12 +104,10 @@ animation = "idle"
 animation = "walking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=6]
-switch_mode = 1
-xfade_time = 1.0
+xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=7]
-switch_mode = 1
-xfade_time = 1.0
+xfade_time = 0.5
 
 [sub_resource type="AnimationNodeStateMachine" id=8]
 states/idle/node = SubResource( 4 )
@@ -100,7 +118,7 @@ transitions = [ "walking", "idle", SubResource( 6 ), "idle", "walking", SubResou
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=10]
 resource_name = "attack"
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
@@ -177,7 +195,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=11]
 resource_name = "idle"
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
@@ -240,25 +258,25 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "attack"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 1
 auto_advance = true
 xfade_time = 1.0
 
 [sub_resource type="AnimationNodeStateMachine" id=16]
-states/attack/node = SubResource( 20 )
+states/attack/node = SubResource( 12 )
 states/attack/position = Vector2( 450, 112 )
-states/idle/node = SubResource( 21 )
+states/idle/node = SubResource( 13 )
 states/idle/position = Vector2( 210, 112 )
-transitions = [ "idle", "attack", SubResource( 22 ), "attack", "idle", SubResource( 23 ) ]
+transitions = [ "idle", "attack", SubResource( 14 ), "attack", "idle", SubResource( 15 ) ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
@@ -312,11 +330,14 @@ transform = Transform( 0.198267, -0.739942, -0.642788, 0.965926, 0.258819, 0, 0.
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/RightHand"]
-anims/attack = SubResource( 18 )
-anims/idle = SubResource( 19 )
+anims/attack = SubResource( 10 )
+anims/idle = SubResource( 11 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Objects/RightHand"]
 tree_root = SubResource( 16 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 17 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
