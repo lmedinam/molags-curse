@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/sword.gltf" type="PackedScene" id=2]
@@ -6,12 +6,13 @@
 [ext_resource path="res://player/stepwood_1.wav" type="AudioStream" id=4]
 [ext_resource path="res://player/stepwood_2.wav" type="AudioStream" id=5]
 [ext_resource path="res://player/sword_slash.wav" type="AudioStream" id=6]
+[ext_resource path="res://player/pickup.wav" type="AudioStream" id=7]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=9]
 radius = 0.2
 height = 0.5
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=10]
 resource_name = "idle"
 length = 3.0
 loop = true
@@ -46,7 +47,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=12]
 resource_name = "walking"
 loop = true
 tracks/0/type = "bezier"
@@ -80,7 +81,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 tracks/3/type = "audio"
-tracks/3/path = NodePath("../AudioStreamPlayer3D")
+tracks/3/path = NodePath("../../AudioStreamPlayer3D")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -117,10 +118,26 @@ states/walking/node = SubResource( 5 )
 states/walking/position = Vector2( 429, 53 )
 transitions = [ "walking", "idle", SubResource( 6 ), "idle", "walking", SubResource( 7 ) ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
 
-[sub_resource type="Animation" id=10]
-resource_name = "attack"
+[sub_resource type="Animation" id=25]
+resource_name = "pickup"
+length = 1.6
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:translation:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.48, 0.110277, -0.25, -0.45, 0.00917187, 0.53, 0.00673395, 0, -0.39, 0.120029, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.8, 1.6 )
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "reset"
+
+[sub_resource type="Animation" id=17]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -210,8 +227,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0.5 )
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "idle"
+[sub_resource type="Animation" id=18]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -273,27 +289,27 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "attack"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 switch_mode = 1
 auto_advance = true
 xfade_time = 1.0
 
-[sub_resource type="AnimationNodeStateMachine" id=16]
-states/attack/node = SubResource( 12 )
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/attack/node = SubResource( 19 )
 states/attack/position = Vector2( 450, 112 )
-states/idle/node = SubResource( 13 )
+states/idle/node = SubResource( 20 )
 states/idle/position = Vector2( 210, 112 )
-transitions = [ "idle", "attack", SubResource( 14 ), "attack", "idle", SubResource( 15 ) ]
+transitions = [ "idle", "attack", SubResource( 21 ), "attack", "idle", SubResource( 22 ) ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -302,42 +318,48 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.85, 0 )
 shape = ExtResource( 3 )
 
-[node name="Head" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0 )
+[node name="Offset" type="Spatial" parent="."]
 
-[node name="Camera" type="Camera" parent="Head"]
+[node name="Head" type="Spatial" parent="Offset"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44454, 0 )
+
+[node name="Camera" type="Camera" parent="Offset/Head"]
 current = true
 fov = 90.0
 far = 300.0
 
-[node name="Actioner" type="RayCast" parent="Head/Camera"]
+[node name="Actioner" type="RayCast" parent="Offset/Head/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
 enabled = true
 cast_to = Vector3( 0, 0, -2 )
 collision_mask = 2
 
-[node name="HitArea" type="Area" parent="Head/Camera"]
+[node name="HitArea" type="Area" parent="Offset/Head/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Head/Camera/HitArea"]
-shape = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape" parent="Offset/Head/Camera/HitArea"]
+shape = SubResource( 9 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Head"]
-anims/idle = SubResource( 2 )
-anims/walking = SubResource( 3 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Offset/Head"]
+anims/idle = SubResource( 10 )
+anims/walking = SubResource( 12 )
 
-[node name="AnimationTree" type="AnimationTree" parent="Head"]
+[node name="AnimationTree" type="AnimationTree" parent="Offset/Head"]
 tree_root = SubResource( 8 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource( 16 )
 
-[node name="OmniLight" type="OmniLight" parent="Head"]
+[node name="OmniLight" type="OmniLight" parent="Offset/Head"]
 light_color = Color( 0.976471, 1, 0.627451, 1 )
 light_energy = 0.5
 shadow_enabled = true
 omni_range = 3.0
 omni_attenuation = 2.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Offset"]
+anims/pickup = SubResource( 25 )
+anims/reset = SubResource( 26 )
 
 [node name="Objects" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.35, 0 )
@@ -349,14 +371,19 @@ transform = Transform( 0.198267, -0.739942, -0.642788, 0.965926, 0.258819, 0, 0.
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/RightHand"]
-anims/attack = SubResource( 10 )
-anims/idle = SubResource( 11 )
+anims/attack = SubResource( 17 )
+anims/idle = SubResource( 18 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Objects/RightHand"]
-tree_root = SubResource( 16 )
+tree_root = SubResource( 23 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 17 )
+parameters/playback = SubResource( 24 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
+
+[node name="PickupItemDelay" type="Timer" parent="."]
+wait_time = 1.25
+one_shot = true
+[connection signal="timeout" from="PickupItemDelay" to="." method="_on_pickup_item_delay_timeout"]

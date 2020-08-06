@@ -9,9 +9,9 @@ var camera_angle = 0
 var mouse_sensitivity = 1.5
 var velocity = Vector3()
 
-onready var actioner = $Head/Camera/Actioner
-onready var hit_area = $Head/Camera/HitArea
-onready var head_at = $Head/AnimationTree
+onready var actioner = $Offset/Head/Camera/Actioner
+onready var hit_area = $Offset/Head/Camera/HitArea
+onready var head_at = $Offset/Head/AnimationTree
 onready var right_hand = $Objects/RightHand/AnimationTree
 
 var hp = 100.0
@@ -19,6 +19,8 @@ var gold = 0
 
 var head_st: AnimationNodeStateMachinePlayback
 var right_hand_st: AnimationNodeStateMachinePlayback
+
+var stop_player = false
 
 func _ready():
 	GameManager.player = self
@@ -49,13 +51,13 @@ func _process(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		# Horizontal aim
-		$Head.rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
+		$Offset/Head.rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
 		
 		# Vertical aim
 		var change = -event.relative.y * mouse_sensitivity
 		var next_angle = change + camera_angle
 		if next_angle < 90 and next_angle > -90:
-			$Head/Camera.rotate_x(deg2rad(change))
+			$Offset/Head/Camera.rotate_x(deg2rad(change))
 			camera_angle += change
 	
 	if event.is_action_pressed("action"):
@@ -69,8 +71,8 @@ func _input(event):
 		yield($Objects/RightHand/AnimationPlayer, "animation_finished")
 
 func _physics_process(delta):
-	var c_basis = $Head/Camera.global_transform.basis
-	var h_basis = $Head.global_transform.basis
+	var c_basis = $Offset/Head/Camera.global_transform.basis
+	var h_basis = $Offset/Head.global_transform.basis
 	var o_basis = $Objects.transform.basis
 	
 	var current_rot = Quat($Objects.transform.basis.orthonormalized())
@@ -81,14 +83,15 @@ func _physics_process(delta):
 	
 	var direction = Vector3()
 	
-	if Input.is_action_pressed("ui_down"):
-		direction += h_basis.z
-	if Input.is_action_pressed("ui_up"):
-		direction -= h_basis.z
-	if Input.is_action_pressed("ui_right"):
-		direction += c_basis.x
-	if Input.is_action_pressed("ui_left"):
-		direction -= c_basis.x
+	if not stop_player:
+		if Input.is_action_pressed("ui_down"):
+			direction += h_basis.z
+		if Input.is_action_pressed("ui_up"):
+			direction -= h_basis.z
+		if Input.is_action_pressed("ui_right"):
+			direction += c_basis.x
+		if Input.is_action_pressed("ui_left"):
+			direction -= c_basis.x
 	
 	direction = direction.normalized()
 	velocity.y += GRAVITY * delta
@@ -117,3 +120,11 @@ func do_damage():
 
 func got_hit():
 	hp -= 20
+
+func run_pickup_anim():
+	stop_player = true
+	$Offset/AnimationPlayer.play("pickup")
+	$PickupItemDelay.start()
+
+func _on_pickup_item_delay_timeout():
+	stop_player = false

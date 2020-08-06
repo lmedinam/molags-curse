@@ -1,12 +1,18 @@
 extends StaticBody
 
-func _ready():
-	pass # Replace with function body.
+var taked = false
 
 func actuate():
-	if not $Audio.playing:
-		$Audio.playing = true
+	if not taked:
+		GameManager.player.run_pickup_anim()
+		$AnimationPlayer.play("pickup")
+		taked = true
+
+func taken():
+	set_collision_mask_bit(1, false)
+	$AudioStreamPlayer.playing = true
+	$Coin.visible = false
+	GameManager.player.gold += 20
 
 func _on_audio_finished():
-	GameManager.player.gold += 20
 	call_deferred("queue_free")

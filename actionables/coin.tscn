@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actionables/gold.material" type="Material" id=1]
 [ext_resource path="res://actionables/coin.gd" type="Script" id=2]
@@ -22,6 +22,26 @@ surfaces/0 = {
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.483233, 0.177131, 0.471721 )
 
+[sub_resource type="Animation" id=3]
+resource_name = "empty"
+
+[sub_resource type="Animation" id=4]
+resource_name = "pickup"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "taken"
+} ]
+}
+
 [node name="Coin" type="StaticBody"]
 collision_layer = 2
 collision_mask = 0
@@ -44,7 +64,11 @@ spot_angle_attenuation = 0.25
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.146555, 0 )
 shape = SubResource( 2 )
 
-[node name="Audio" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.160718, 0 )
 stream = ExtResource( 3 )
-[connection signal="finished" from="Audio" to="." method="_on_audio_finished"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/empty = SubResource( 3 )
+anims/pickup = SubResource( 4 )
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_finished"]
