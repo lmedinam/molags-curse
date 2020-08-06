@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://level/game_info/hp_bar.png" type="Texture" id=1]
+[ext_resource path="res://level/game_info/hp_bg.png" type="Texture" id=2]
+[ext_resource path="res://level/game_info/action.png" type="Texture" id=3]
+[ext_resource path="res://level/game_info/game_info.gd" type="Script" id=4]
+
+[node name="GameInfo" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.132431
+margin_right = 0.132446
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_top = 4.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionIcon" type="TextureRect" parent="TopContainer"]
+modulate = Color( 0.564706, 0.556863, 0.360784, 1 )
+margin_left = 238.0
+margin_right = 242.0
+margin_bottom = 7.0
+texture = ExtResource( 3 )
+
+[node name="PlayerHP" type="TextureProgress" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = -6.0
+margin_right = 27.9528
+margin_bottom = -5.12756
+value = 50.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 1 )
+tint_under = Color( 0.564706, 0.556863, 0.360784, 1 )
+tint_progress = Color( 0.67451, 0.501961, 0.501961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

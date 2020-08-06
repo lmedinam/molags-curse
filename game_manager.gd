@@ -2,6 +2,7 @@ extends Node
 
 onready var viewport = get_viewport()
 var player: KinematicBody
+var game_info
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

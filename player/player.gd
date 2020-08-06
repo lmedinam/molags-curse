@@ -14,6 +14,9 @@ onready var hit_area = $Head/Camera/HitArea
 onready var head_at = $Head/AnimationTree
 onready var right_hand = $Objects/RightHand/AnimationTree
 
+var hp = 100.0
+var gold = 0
+
 var head_st: AnimationNodeStateMachinePlayback
 var right_hand_st: AnimationNodeStateMachinePlayback
 
@@ -34,6 +37,14 @@ func _process(delta):
 		head_st.travel("idle")
 	else:
 		head_st.travel("walking")
+	
+	if actioner.is_colliding():
+		var collider = actioner.get_collider()
+		GameManager.game_info.show_action_icon(collider.has_method("actuate"))
+	else:
+		GameManager.game_info.show_action_icon(false)
+	
+	GameManager.game_info.player_hp(hp)
 
 func _input(event):
 	if event is InputEventMouseMotion:
