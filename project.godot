@@ -83,4 +83,5 @@ hit={
 
 [rendering]
 
+quality/shadows/filter_mode=2
 environment/default_environment="res://default_env.tres"
