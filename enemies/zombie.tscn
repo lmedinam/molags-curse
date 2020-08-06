@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://enemies/zombie.gltf" type="PackedScene" id=1]
 [ext_resource path="res://player/player_shape.tres" type="Shape" id=2]
@@ -59,6 +59,22 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0.85, 0 ), Vector3( 0, 0.2, 0 ) ]
 }
 
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 0.25, 0.25, 0.25 )
+direction = Vector3( 0, 0, -1 )
+initial_velocity = 4.0
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.501961, 0.0980392, 0.0980392, 1 )
+
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
+radius = 0.04
+height = 0.04
+radial_segments = 4
+rings = 2
+
 [node name="Zombie" type="KinematicBody"]
 script = ExtResource( 3 )
 
@@ -72,3 +88,13 @@ transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0.85
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/alive = SubResource( 1 )
 anims/death = SubResource( 2 )
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16, 0 )
+emitting = false
+amount = 12
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )

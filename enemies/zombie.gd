@@ -16,6 +16,7 @@ func hit(knockback: Vector3, hp: int):
 		knockback_dir = knockback * 10
 		self.hp -= hp
 		self.knockback = 0.2
+		$Particles.emitting = true
 		
 		if self.hp <= 0 and not death:
 			kill()
