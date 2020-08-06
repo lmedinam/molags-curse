@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/sword.gltf" type="PackedScene" id=2]
 [ext_resource path="res://player/player_shape.tres" type="Shape" id=3]
 [ext_resource path="res://player/stepwood_1.wav" type="AudioStream" id=4]
 [ext_resource path="res://player/stepwood_2.wav" type="AudioStream" id=5]
+[ext_resource path="res://player/sword_slash.wav" type="AudioStream" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.2
@@ -194,6 +195,20 @@ tracks/6/keys = {
 "method": "do_damage"
 } ]
 }
+tracks/7/type = "audio"
+tracks/7/path = NodePath("../../AudioStreamPlayer3D")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0.5 )
+}
 
 [sub_resource type="Animation" id=11]
 resource_name = "idle"
@@ -340,4 +355,4 @@ active = true
 parameters/playback = SubResource( 17 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 6 )
