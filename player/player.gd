@@ -114,3 +114,6 @@ func do_damage():
 	for body in bodies:
 		if body.has_method("hit"):
 			body.hit(-$Objects.transform.basis.z, 8)
+
+func got_hit():
+	hp -= 20

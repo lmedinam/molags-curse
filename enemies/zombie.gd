@@ -8,6 +8,9 @@ var knockback_dir = Vector3()
 var hp = 20
 var death = false
 
+var can_attack = true
+var attacking = false
+
 func _ready():
 	$AnimationPlayer.play("alive")
 
@@ -58,3 +61,8 @@ func turn_face(target, delta):
 	# Interpolate rotation
 	var next_rotation = current_rotation.slerp(target_rotation, delta* 3)
 	global_transform.basis = Basis(next_rotation)
+
+func _on_hit_area_body_entered(body):
+	if body.has_method("got_hit") and can_attack:
+		can_attack = false
+		body.got_hit()
