@@ -1,0 +1,110 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://actionables/door_frame.gltf" type="PackedScene" id=1]
+[ext_resource path="res://actionables/door.gltf" type="PackedScene" id=2]
+[ext_resource path="res://level/walls/door.gd" type="Script" id=3]
+[ext_resource path="res://level/walls/door_container.gd" type="Script" id=4]
+[ext_resource path="res://actionables/doorwood_open.wav" type="AudioStream" id=5]
+[ext_resource path="res://actionables/wood_open.wav" type="AudioStream" id=6]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.618142, 1, 0.0710585 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "close"
+length = 1.4
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Offset:rotation_degrees:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 83.4, -0.25, 0, 0.25, 0, 22.911, -0.25, 0, 0.29, -1.728, 0, -0.28, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.9, 1.4 )
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("DoorAudio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "closed"
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Offset:rotation_degrees:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "open"
+length = 2.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Offset:rotation_degrees:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 45, -0.25, 0, 0.25, 0, 85, -0.39, 26.039, 0.25, -2.96978, 83.4, -0.28, 1.26392, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.2, 2.3, 2.5 )
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("DoorAudio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="Door" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="Offset" type="Spatial" parent="."]
+transform = Transform( 0.852065, 0, 0.523436, 0, 1, 0, -0.523436, 0, 0.852065, -0.5, 0, 0 )
+
+[node name="Container" type="KinematicBody" parent="Offset"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0 )
+collision_layer = 3
+script = ExtResource( 4 )
+
+[node name="WoodDoor" parent="Offset/Container" instance=ExtResource( 2 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="Offset/Container"]
+shape = SubResource( 1 )
+
+[node name="Frame" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/close = SubResource( 4 )
+anims/closed = SubResource( 2 )
+anims/open = SubResource( 3 )
+
+[node name="DoorAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+unit_db = 24.0
+[connection signal="door_triggered" from="Offset/Container" to="." method="_on_container_door_triggered"]

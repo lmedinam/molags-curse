@@ -53,6 +53,7 @@ autostart = true
 
 [node name="OmniLight" type="OmniLight" parent="."]
 light_color = Color( 1, 0.831373, 0.32549, 1 )
+shadow_enabled = true
 shadow_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 omni_range = 4.0
 omni_attenuation = 2.82843
