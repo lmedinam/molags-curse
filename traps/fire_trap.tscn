@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://traps/fire_trap.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+direction = Vector3( 0, 1, 0 )
+spread = 2.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+linear_accel = 1.25
+scale = 0.2
+scale_curve = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+params_blend_mode = 1
+params_cull_mode = 1
+albedo_color = Color( 0.913725, 0.443137, 0.0980392, 1 )
+
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
+radius = 2.0
+height = 2.25
+radial_segments = 4
+rings = 2
+
+[sub_resource type="CylinderShape" id=6]
+radius = 0.4
+
+[node name="FireTrap" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="BallParticles" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.167704, 0 )
+amount = 24
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01936, 0 )
+shape = SubResource( 6 )
+
+[node name="DamageTick" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="OmniLight" type="OmniLight" parent="."]
+light_color = Color( 1, 0.831373, 0.32549, 1 )
+shadow_color = Color( 0.313726, 0.313726, 0.313726, 1 )
+omni_range = 4.0
+omni_attenuation = 2.82843
+[connection signal="timeout" from="DamageTick" to="." method="_on_damage_tick_timeout"]
