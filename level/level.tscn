@@ -13,7 +13,9 @@
 [ext_resource path="res://actionables/potion.tscn" type="PackedScene" id=11]
 [ext_resource path="res://traps/fire_trap.tscn" type="PackedScene" id=12]
 [ext_resource path="res://level/walls/door.tscn" type="PackedScene" id=13]
-[ext_resource path="res://level/walls/sharpening_stone.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actionables/sharpening_stone.tscn" type="PackedScene" id=14]
+
+
 
 [sub_resource type="GIProbeData" id=1]
 bounds = AABB( -10, -3.40512, -13.6582, 20, 6.81025, 27.3164 )

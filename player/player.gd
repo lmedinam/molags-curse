@@ -13,6 +13,7 @@ onready var actioner = $Offset/Head/Camera/Actioner
 onready var hit_area = $Offset/Head/Camera/HitArea
 onready var head_at = $Offset/Head/AnimationTree
 onready var right_hand = $Objects/RightHand/AnimationTree
+onready var offset_ap = $Offset/AnimationPlayer
 
 var hp = 100.0
 var gold = 0
@@ -126,5 +127,13 @@ func run_pickup_anim():
 	$Offset/AnimationPlayer.play("pickup")
 	$PickupItemDelay.start()
 
+func run_sharpening_sword_anim():
+	stop_player = true
+	right_hand_st.travel("sharpening_sword")
+	$SharpeningSwordDelay.start()
+
 func _on_pickup_item_delay_timeout():
+	stop_player = false
+
+func _on_sharpening_sword_delay_timeout():
 	stop_player = false

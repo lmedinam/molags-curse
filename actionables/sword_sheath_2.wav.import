@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sword_sheath_2.wav-6d4f65b7b7c8c8ff69a608affddf17f8.sample"
+
+[deps]
+
+source_file="res://actionables/sword_sheath_2.wav"
+dest_files=[ "res://.import/sword_sheath_2.wav-6d4f65b7b7c8c8ff69a608affddf17f8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
