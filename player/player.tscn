@@ -51,6 +51,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "walking"
+length = 1.4
 loop = true
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
@@ -70,7 +71,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "points": PoolRealArray( 1.4, -0.25, 0, 0.25, 0, 1.5, -0.25, 0, 0.25, 0, 1.4, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.5, 1 )
+"times": PoolRealArray( 0, 0.7, 1.4 )
 }
 tracks/2/type = "bezier"
 tracks/2/path = NodePath(".:translation:z")
@@ -98,7 +99,7 @@ tracks/3/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 5 )
 } ],
-"times": PoolRealArray( 0, 0.5 )
+"times": PoolRealArray( 0, 0.7 )
 }
 
 [sub_resource type="AnimationNodeAnimation" id=4]
@@ -291,7 +292,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=14]
 resource_name = "sharpening_sword"
 length = 5.8
 tracks/0/type = "bezier"
@@ -433,41 +434,41 @@ tracks/12/keys = {
 "times": PoolRealArray( 1.1, 2.4 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "attack"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "sharpening_sword"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 switch_mode = 1
 auto_advance = true
 xfade_time = 1.0
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=18]
-states/attack/node = SubResource( 14 )
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/attack/node = SubResource( 15 )
 states/attack/position = Vector2( 450, 112 )
-states/idle/node = SubResource( 15 )
+states/idle/node = SubResource( 16 )
 states/idle/position = Vector2( 210, 112 )
-states/sharpening_sword/node = SubResource( 21 )
+states/sharpening_sword/node = SubResource( 17 )
 states/sharpening_sword/position = Vector2( 329.667, 223.667 )
-transitions = [ "idle", "attack", SubResource( 16 ), "attack", "idle", SubResource( 17 ), "attack", "sharpening_sword", SubResource( 22 ), "idle", "sharpening_sword", SubResource( 23 ), "sharpening_sword", "idle", SubResource( 24 ) ]
+transitions = [ "idle", "attack", SubResource( 18 ), "attack", "idle", SubResource( 19 ), "attack", "sharpening_sword", SubResource( 20 ), "idle", "sharpening_sword", SubResource( 21 ), "sharpening_sword", "idle", SubResource( 22 ) ]
 graph_offset = Vector2( -55, 33 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -479,7 +480,7 @@ shape = ExtResource( 3 )
 [node name="Offset" type="Spatial" parent="."]
 
 [node name="Head" type="Spatial" parent="Offset"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44454, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0 )
 
 [node name="Camera" type="Camera" parent="Offset/Head"]
 current = true
@@ -534,23 +535,23 @@ transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/RightHand"]
 anims/attack = SubResource( 12 )
 anims/idle = SubResource( 13 )
-anims/sharpening_sword = SubResource( 20 )
+anims/sharpening_sword = SubResource( 14 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Objects/RightHand"]
-tree_root = SubResource( 18 )
+tree_root = SubResource( 23 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 19 )
+parameters/playback = SubResource( 24 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 4 )
 
 [node name="PickupItemDelay" type="Timer" parent="."]
-wait_time = 1.25
+wait_time = 0.85
 one_shot = true
 
 [node name="SharpeningSwordDelay" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 3.6
 one_shot = true
 [connection signal="timeout" from="PickupItemDelay" to="." method="_on_pickup_item_delay_timeout"]
 [connection signal="timeout" from="SharpeningSwordDelay" to="." method="_on_sharpening_sword_delay_timeout"]

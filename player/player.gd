@@ -1,9 +1,10 @@
 extends KinematicBody
 
-const SPEED = 3
+const SPEED = 2
 const ACCEL = 2
-const DEACCEL = 6
+const DEACCEL = 4
 const GRAVITY = -9.8 * 3
+const BASE_DAMAGE = 6
 
 var camera_angle = 0
 var mouse_sensitivity = 1.5
@@ -17,11 +18,13 @@ onready var offset_ap = $Offset/AnimationPlayer
 
 var hp = 100.0
 var gold = 0
+var sharpness = 0
 
 var head_st: AnimationNodeStateMachinePlayback
 var right_hand_st: AnimationNodeStateMachinePlayback
 
 var stop_player = false
+var slow_player = false
 
 func _ready():
 	GameManager.player = self
@@ -100,7 +103,7 @@ func _physics_process(delta):
 	var temp_velocity = velocity
 	temp_velocity.y = 0
 	
-	var target = direction * SPEED
+	var target = direction * (SPEED if not slow_player else 1)
 	
 	var acceleration = DEACCEL
 	if direction.dot(temp_velocity) > 0:
@@ -117,23 +120,27 @@ func do_damage():
 	var bodies = hit_area.get_overlapping_bodies()
 	for body in bodies:
 		if body.has_method("hit"):
-			body.hit(-$Objects.transform.basis.z, 8)
+			body.hit(-$Objects.transform.basis.z, BASE_DAMAGE + sharpness + floor(gold / 20))
 
 func got_hit():
 	hp -= 20
 
 func run_pickup_anim():
 	stop_player = true
+	
 	$Offset/AnimationPlayer.play("pickup")
 	$PickupItemDelay.start()
 
 func run_sharpening_sword_anim():
-	stop_player = true
+	slow_player = true	
+	
 	right_hand_st.travel("sharpening_sword")
+	
 	$SharpeningSwordDelay.start()
+	$PickupItemDelay.start()
 
 func _on_pickup_item_delay_timeout():
 	stop_player = false
 
 func _on_sharpening_sword_delay_timeout():
-	stop_player = false
+	slow_player = false
