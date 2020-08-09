@@ -1,6 +1,6 @@
 extends KinematicBody
 
-const KNOCKBACK_SPEED = 30
+const KNOCKBACK_SPEED = 20
 
 var knockback = 0
 var knockback_dir = Vector3()
@@ -11,8 +11,12 @@ var death = false
 var can_attack = true
 var attacking = false
 
+onready var anim_tree = $AnimationTree
+var anim_sm: AnimationNodeStateMachinePlayback
+
 func _ready():
-	pass
+	anim_sm = anim_tree.get("parameters/playback")
+	anim_sm.start("walking")
 
 func hit(knockback: Vector3, hp: int):
 	if self.knockback <= 0:
@@ -22,15 +26,21 @@ func hit(knockback: Vector3, hp: int):
 		$Particles.emitting = true
 		
 		if self.hp <= 0 and not death:
+			anim_sm.call_deferred("travel", "die")
 			kill()
 
 func kill():
 	death = true
+	set_collision_layer_bit(0, false)
+	set_collision_mask_bit(0, false)
+	
+	# Only map collision
+	set_collision_layer_bit(2, true)
 	
 	var qt = Timer.new()
 	add_child(qt)
 	
-	qt.connect("timeout", self, "queue_free")
+	# qt.connect("timeout", self, "queue_free")
 	qt.wait_time = 2.0
 	qt.start()
 
@@ -40,14 +50,21 @@ func _physics_process(delta):
 	
 	var direction = Vector3()
 	
-	direction -= transform.basis.z
+	if not death and can_attack:
+		direction -= transform.basis.z
 	
 	if knockback > 0:
 		direction += knockback_dir * delta * KNOCKBACK_SPEED
 		knockback -= delta
 	
-	if not death:
-		move_and_slide(direction, Vector3(0, 1, 0))
+	move_and_slide(direction, Vector3(0, 1, 0))
+
+func _process(delta):
+	var bodies = $HitArea.get_overlapping_bodies()
+	for body in bodies:
+		if body.has_method("got_hit") and can_attack and not death:
+			can_attack = false
+			anim_sm.travel("attacking")
 
 func turn_face(target, delta):
 	var current_rotation = Quat(global_transform.basis)
@@ -61,6 +78,15 @@ func turn_face(target, delta):
 	global_transform.basis = Basis(next_rotation)
 
 func _on_hit_area_body_entered(body):
-	if body.has_method("got_hit") and can_attack:
-		can_attack = false
-		body.got_hit()
+	pass
+
+func attack():
+	if not death:
+		anim_sm.travel("walking")
+	
+	var bodies = $HitArea.get_overlapping_bodies()
+	for body in bodies:
+		if body.has_method("got_hit"):
+			body.got_hit()
+	
+	can_attack = true
