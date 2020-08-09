@@ -12,7 +12,7 @@ var can_attack = true
 var attacking = false
 
 func _ready():
-	$AnimationPlayer.play("alive")
+	pass
 
 func hit(knockback: Vector3, hp: int):
 	if self.knockback <= 0:
@@ -20,14 +20,12 @@ func hit(knockback: Vector3, hp: int):
 		self.hp -= hp
 		self.knockback = 0.2
 		$Particles.emitting = true
-		$ZombieHurts.play()
 		
 		if self.hp <= 0 and not death:
 			kill()
 
 func kill():
 	death = true
-	$AnimationPlayer.play("death")
 	
 	var qt = Timer.new()
 	add_child(qt)
