@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/sword.gltf" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://actionables/sword_sheath_2.wav" type="AudioStream" id=7]
 [ext_resource path="res://actionables/sharpening_stone.gltf" type="PackedScene" id=8]
 [ext_resource path="res://actionables/sword_sheath_1.wav" type="AudioStream" id=9]
+[ext_resource path="res://player/hurts.wav" type="AudioStream" id=10]
+[ext_resource path="res://player/die.wav" type="AudioStream" id=11]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.2
@@ -228,6 +230,20 @@ tracks/9/keys = {
 "args": [  ],
 "method": "hide"
 } ]
+}
+tracks/10/type = "audio"
+tracks/10/path = NodePath("../AudioStreamPlayer3D")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Animation" id=10]
@@ -716,7 +732,7 @@ states/idle/position = Vector2( 210, 112 )
 states/sharpening_sword/node = SubResource( 17 )
 states/sharpening_sword/position = Vector2( 329.667, 223.667 )
 transitions = [ "idle", "attack", SubResource( 18 ), "attack", "idle", SubResource( 19 ), "attack", "sharpening_sword", SubResource( 20 ), "idle", "sharpening_sword", SubResource( 21 ), "sharpening_sword", "idle", SubResource( 22 ) ]
-graph_offset = Vector2( -55, 33 )
+graph_offset = Vector2( -40, -9 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
@@ -796,7 +812,7 @@ active = true
 parameters/playback = SubResource( 24 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 11 )
 
 [node name="PickupItemDelay" type="Timer" parent="."]
 wait_time = 0.85
@@ -813,6 +829,9 @@ one_shot = true
 [node name="RefillTick" type="Timer" parent="."]
 wait_time = 0.15
 autostart = true
+
+[node name="HurtSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 10 )
 [connection signal="timeout" from="PickupItemDelay" to="." method="_on_pickup_item_delay_timeout"]
 [connection signal="timeout" from="SharpeningSwordDelay" to="." method="_on_sharpening_sword_delay_timeout"]
 [connection signal="timeout" from="RefillDelay" to="." method="_on_refill_delay_timeout"]

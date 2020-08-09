@@ -127,11 +127,15 @@ func do_damage():
 
 func got_hit():
 	GameManager.game_info.show_ui()
-	hp -= 20
+	
+	if hp > 0:
+		hp -= 20
+		$HurtSound.play()
 	
 	if hp <= 0 and not death:
 		death = true
 		$Offset/AnimationPlayer.play("die")
+		
 
 func run_pickup_anim():
 	stop_player = true
