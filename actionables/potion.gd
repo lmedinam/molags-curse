@@ -16,3 +16,4 @@ func _on_timer_timeout():
 	$Object.visible = false
 	$AudioStreamPlayer3D.play()
 	GameManager.player.hp += 25
+	GameManager.game_info.show_ui()

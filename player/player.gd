@@ -21,6 +21,7 @@ var stamina = 100
 var gold = 0
 var sharpness = 0
 var refilling = true
+var death = false
 
 var head_st: AnimationNodeStateMachinePlayback
 var right_hand_st: AnimationNodeStateMachinePlayback
@@ -56,7 +57,7 @@ func _process(delta):
 	GameManager.game_info.player_stamina(stamina)
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and not death:
 		# Horizontal aim
 		$Offset/Head.rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
 		
@@ -89,7 +90,7 @@ func _physics_process(delta):
 	
 	var direction = Vector3()
 	
-	if not stop_player:
+	if not stop_player and not death:
 		if Input.is_action_pressed("ui_down"):
 			direction += h_basis.z
 		if Input.is_action_pressed("ui_up"):
@@ -125,7 +126,12 @@ func do_damage():
 			body.hit(-$Objects.transform.basis.z, BASE_DAMAGE + sharpness + floor(gold / 20))
 
 func got_hit():
+	GameManager.game_info.show_ui()
 	hp -= 20
+	
+	if hp <= 0 and not death:
+		death = true
+		$Offset/AnimationPlayer.play("die")
 
 func run_pickup_anim():
 	stop_player = true
@@ -145,6 +151,7 @@ func use_stamina(quantity: int):
 	stamina -= quantity
 	refilling = false
 	$RefillDelay.start()
+	GameManager.game_info.show_ui()
 
 func _on_pickup_item_delay_timeout():
 	stop_player = false

@@ -61,3 +61,8 @@ tint_progress = Color( 0.658824, 0.2, 0.2, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HideUITimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+[connection signal="timeout" from="HideUITimer" to="." method="_on_hide_ui_timer_timeout"]
