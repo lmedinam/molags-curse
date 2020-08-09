@@ -17,8 +17,10 @@ onready var right_hand = $Objects/RightHand/AnimationTree
 onready var offset_ap = $Offset/AnimationPlayer
 
 var hp = 100.0
+var stamina = 100
 var gold = 0
 var sharpness = 0
+var refilling = true
 
 var head_st: AnimationNodeStateMachinePlayback
 var right_hand_st: AnimationNodeStateMachinePlayback
@@ -51,6 +53,7 @@ func _process(delta):
 		GameManager.game_info.show_action_icon(false)
 	
 	GameManager.game_info.player_hp(hp)
+	GameManager.game_info.player_stamina(stamina)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -70,9 +73,8 @@ func _input(event):
 			if collider.has_method("actuate"):
 				collider.actuate()
 	
-	if event.is_action_pressed("hit"):
+	if event.is_action_pressed("hit") and stamina > 0:
 		right_hand_st.travel("attack")
-		yield($Objects/RightHand/AnimationPlayer, "animation_finished")
 
 func _physics_process(delta):
 	var c_basis = $Offset/Head/Camera.global_transform.basis
@@ -139,8 +141,22 @@ func run_sharpening_sword_anim():
 	$SharpeningSwordDelay.start()
 	$PickupItemDelay.start()
 
+func use_stamina(quantity: int):
+	stamina -= quantity
+	refilling = false
+	$RefillDelay.start()
+
 func _on_pickup_item_delay_timeout():
 	stop_player = false
 
 func _on_sharpening_sword_delay_timeout():
 	slow_player = false
+
+func _on_refill_tick_timeout():
+	stamina += 2 if refilling else 0
+	
+	if stamina > 100:
+		stamina = 100
+
+func _on_refill_delay_timeout():
+	refilling = true

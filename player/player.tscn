@@ -208,9 +208,12 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.6 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [ 25 ],
+"method": "use_stamina"
+}, {
 "args": [  ],
 "method": "do_damage"
 } ]
@@ -553,5 +556,15 @@ one_shot = true
 [node name="SharpeningSwordDelay" type="Timer" parent="."]
 wait_time = 3.6
 one_shot = true
+
+[node name="RefillDelay" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="RefillTick" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
 [connection signal="timeout" from="PickupItemDelay" to="." method="_on_pickup_item_delay_timeout"]
 [connection signal="timeout" from="SharpeningSwordDelay" to="." method="_on_sharpening_sword_delay_timeout"]
+[connection signal="timeout" from="RefillDelay" to="." method="_on_refill_delay_timeout"]
+[connection signal="timeout" from="RefillTick" to="." method="_on_refill_tick_timeout"]

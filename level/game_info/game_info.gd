@@ -6,6 +6,9 @@ func _ready():
 
 func player_hp(hp: float):
 	$PlayerHP.value = hp
+	
+func player_stamina(stamina: float):
+	$PlayerStamina.value = stamina
 
 func show_action_icon(toggle: bool):
 	$TopContainer.visible = toggle
