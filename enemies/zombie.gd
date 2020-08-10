@@ -60,7 +60,6 @@ func _physics_process(delta):
 	move_and_slide(direction, Vector3(0, 1, 0))
 
 func _process(delta):
-	print_debug(can_attack)
 	var bodies = $HitArea.get_overlapping_bodies()
 	for body in bodies:
 		if body.has_method("got_hit") and can_attack and not death:

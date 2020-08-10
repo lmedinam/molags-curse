@@ -25,6 +25,9 @@ var refilling = true
 var death = false
 var shield_up = false
 
+var has_sword = false
+var has_shield = false
+
 var head_st: AnimationNodeStateMachinePlayback
 var right_hand_st: AnimationNodeStateMachinePlayback
 var left_hand_st: AnimationNodeStateMachinePlayback
@@ -47,6 +50,8 @@ func _ready():
 	right_hand_ap.connect("animation_finished", self, "_on_animation_finished")
 
 func _process(delta):
+	hp = hp if hp <= 100 else 100
+	
 	if velocity.length() < 0.5:
 		head_st.travel("idle")
 	else:
@@ -64,6 +69,9 @@ func _process(delta):
 	if stamina <= 0 and shield_up:
 		shield_up = false
 		left_hand_st.travel("idle")
+	
+	$Objects/RightHand.visible = has_sword
+	$Objects/LeftHand.visible = has_shield
 
 func _input(event):
 	if event is InputEventMouseMotion and not death:
@@ -83,16 +91,18 @@ func _input(event):
 			if collider.has_method("actuate"):
 				collider.actuate()
 	
-	if event.is_action_pressed("hit") and stamina > 0:
-		right_hand_st.travel("attack")
+	if has_sword:
+		if event.is_action_pressed("hit") and stamina > 0:
+			right_hand_st.travel("attack")
 	
-	if event.is_action_pressed("shield") and stamina > 0:
-		shield_up = true
-		left_hand_st.travel("defend")
-	
-	if event.is_action_released("shield"):
-		shield_up = false
-		left_hand_st.travel("idle")
+	if has_shield:
+		if event.is_action_pressed("shield") and stamina > 0:
+			shield_up = true
+			left_hand_st.travel("defend")
+		
+		if event.is_action_released("shield"):
+			shield_up = false
+			left_hand_st.travel("idle")
 
 func _physics_process(delta):
 	var c_basis = $Offset/Head/Camera.global_transform.basis

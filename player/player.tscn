@@ -13,11 +13,11 @@
 [ext_resource path="res://player/die.wav" type="AudioStream" id=11]
 [ext_resource path="res://player/shield.gltf" type="PackedScene" id=12]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=25]
 radius = 0.2
 height = 0.5
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=26]
 resource_name = "idle"
 length = 3.0
 loop = true
@@ -52,7 +52,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=27]
 resource_name = "walking"
 length = 1.4
 loop = true
@@ -105,28 +105,28 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.7 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=28]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=29]
 animation = "walking"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/idle/node = SubResource( 4 )
+[sub_resource type="AnimationNodeStateMachine" id=32]
+states/idle/node = SubResource( 28 )
 states/idle/position = Vector2( 206, 53 )
-states/walking/node = SubResource( 5 )
+states/walking/node = SubResource( 29 )
 states/walking/position = Vector2( 429, 53 )
-transitions = [ "walking", "idle", SubResource( 6 ), "idle", "walking", SubResource( 7 ) ]
+transitions = [ "walking", "idle", SubResource( 30 ), "idle", "walking", SubResource( 31 ) ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=34]
 resource_name = "die"
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
@@ -247,7 +247,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=35]
 length = 1.6
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:y")
@@ -310,7 +310,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=36]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -402,7 +402,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=37]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -495,7 +495,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0.5 )
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=38]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -558,7 +558,7 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=15]
-length = 5.8
+length = 6.8
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -567,7 +567,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "points": PoolRealArray( 0.08, -0.25, 0, 0.25, 0, 0.0539528, -0.25, 0, 0.25, 0, 0.0539528, -0.25, 0, 0.25, 0, 0.000800297, -0.25, 0, 0.25, 0, 0.0539528, -0.25, 0, 0.25, 0, 0.000800297, -0.25, 0, 0.25, 0, 0.0957628, -0.25, 0, 0.25, 0, 0.0957628, -0.25, 0, 0.25, 0, 0.08, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.8, 1.1, 1.7, 2.4, 2.9, 3.7, 4.7, 5.8 )
+"times": PoolRealArray( 0.8, 1.6, 1.9, 2.5, 3.2, 3.7, 4.5, 5.5, 6.6 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath(".:translation:y")
@@ -577,7 +577,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "points": PoolRealArray( -0.122, -0.25, 0, 0.25, 0, -0.0888846, -0.25, 0, 0.25, 0, -0.0888846, -0.25, 0, 0.25, 0, -0.0621812, -0.25, 0, 0.25, 0, -0.0888846, -0.25, 0, 0.25, 0, -0.0621812, -0.25, 0, 0.25, 0, 0.042434, -0.3, 0.0493206, 0.27, -0.021379, 0.042434, -0.28, -0.0165032, 0.29, 0.0249414, -0.122, -0.39, -0.0397889, 0.25, 0.0577278 ),
-"times": PoolRealArray( 0, 0.8, 1.1, 1.7, 2.4, 2.9, 3.7, 4.7, 5.8 )
+"times": PoolRealArray( 0.8, 1.6, 1.9, 2.5, 3.2, 3.7, 4.5, 5.5, 6.6 )
 }
 tracks/2/type = "bezier"
 tracks/2/path = NodePath(".:translation:z")
@@ -587,7 +587,7 @@ tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
 "points": PoolRealArray( -0.25, -0.25, 0, 0.25, 0, -0.332299, -0.25, 0, 0.25, 0, -0.332299, -0.25, 0, 0.25, 0, -0.332299, -0.25, 0, 0.25, 0, -0.332299, -0.25, 0, 0.25, 0, -0.332299, -0.25, 0, 0.25, 0, -0.195757, -0.25, 0, 0.25, 0, -0.232413, -0.25, 0, 0.25, 0, -0.25, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.8, 1.1, 1.7, 2.4, 2.9, 3.7, 4.7, 5.8 )
+"times": PoolRealArray( 0.8, 1.6, 1.9, 2.5, 3.2, 3.7, 4.5, 5.5, 6.6 )
 }
 tracks/3/type = "bezier"
 tracks/3/path = NodePath(".:rotation_degrees:x")
@@ -597,7 +597,7 @@ tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -46.9614, -0.25, 0, 0.25, 0, -46.9614, -0.25, 0, 0.25, 0, -54.1896, -0.25, 0, 0.25, 0, -46.9614, -0.25, 0, 0.25, 0, -54.1896, -0.25, 0, 0.25, 0, -6.06614, -0.25, 0, 0.25, 0, -19.9856, -0.25, 0, 0.25, 0, 0, -0.49, 6.04951, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.8, 1.1, 1.7, 2.4, 2.9, 3.7, 4.7, 5.8 )
+"times": PoolRealArray( 0.8, 1.6, 1.9, 2.5, 3.2, 3.7, 4.5, 5.5, 6.6 )
 }
 tracks/4/type = "bezier"
 tracks/4/path = NodePath(".:rotation_degrees:y")
@@ -607,7 +607,7 @@ tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
 "points": PoolRealArray( -40, -0.25, 0, 0.25, 0, -18.5326, -0.25, 0, 0.25, 0, -18.5326, -0.25, 0, 0.25, 0, -27.8865, -0.25, 0, 0.25, 0, -18.5326, -0.25, 0, 0.25, 0, -27.8865, -0.25, 0, 0.25, 0, -21.0886, -0.25, 0, 0.25, 0, -15.7088, -0.23, 3.26601, 0.25, 0, -40, -0.57, -9.7977, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.8, 1.1, 1.7, 2.4, 2.9, 3.7, 4.7, 5.8 )
+"times": PoolRealArray( 0.8, 1.6, 1.9, 2.5, 3.2, 3.7, 4.5, 5.5, 6.6 )
 }
 tracks/5/type = "bezier"
 tracks/5/path = NodePath(".:rotation_degrees:z")
@@ -617,7 +617,7 @@ tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
 "points": PoolRealArray( 75, -0.25, 0, 0.25, 0, 138.775, -0.56, 17.1088, 0.26, -3.30493, 138.976, -0.18, -0.141479, 0.32, 1.42139, 144.461, -0.3, 2.9641, 0.25, -1.88107, 138.976, -0.46, -3.52892, 0.32, -3.79808, 144.461, -0.27, 4.17538, 0.26, -4.03448, 165.184, -0.25, 0, 0.25, 0, 167.919, -0.23, 17.1886, 0.17, -7.92879, 75, -1.21, -23.1469, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.8, 1.1, 1.7, 2.4, 2.9, 3.7, 4.7, 5.8 )
+"times": PoolRealArray( 0.8, 1.6, 1.9, 2.5, 3.2, 3.7, 4.5, 5.5, 6.6 )
 }
 tracks/6/type = "bezier"
 tracks/6/path = NodePath("../SharpeningStone:translation:x")
@@ -627,7 +627,7 @@ tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
 "points": PoolRealArray( 0.0252327, -0.25, 0, 0.25, 0, -0.127996, -0.25, -0.087427, 0.2, 0.0759135, -0.0530746, -0.28, 0.0229333, 0.21, -0.00388376, -0.174814, -0.34, -0.0186675, 0.33, 0.0447184, -0.0530746, -0.36, 0.0131816, 0.32, -0.0477662, -0.174814, -0.34, 0.0934768, 0.26, -0.0113536, -0.371677, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.4, 1.1, 1.7, 2.4, 2.9, 3.4 )
+"times": PoolRealArray( 0.8, 1.2, 1.9, 2.5, 3.2, 3.7, 4.2 )
 }
 tracks/7/type = "bezier"
 tracks/7/path = NodePath("../SharpeningStone:translation:y")
@@ -637,7 +637,7 @@ tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
 "points": PoolRealArray( -0.18137, -0.25, 0, 0.25, 0, -0.073, -0.25, -0.0351546, 0.25, 0.035545, -0.073, -0.27, 0.0184796, 0.3, -0.00589957, 0.0524487, -0.26, -0.0289557, 0.26, 0.0344301, -0.073, -0.25, 0, 0.25, 0, 0.0524487, -0.25, 0, 0.25, 0, 0.0524487, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.4, 1.1, 1.7, 2.4, 2.9, 3.4 )
+"times": PoolRealArray( 0.8, 1.2, 1.9, 2.5, 3.2, 3.7, 4.2 )
 }
 tracks/8/type = "bezier"
 tracks/8/path = NodePath("../SharpeningStone:translation:z")
@@ -647,7 +647,7 @@ tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -0.274743, -0.25, 0, 0.22, -0.0333204, -0.39063, -0.24, 0.0435598, 0.29, -0.049081, -0.56235, -0.28, -0.033388, 0.23, 0.0299979, -0.39063, -0.26, -0.0295777, 0.25, 0.0411219, -0.56235, -0.25, 0, 0.25, 0, -0.142421, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.4, 1.1, 1.7, 2.4, 2.9, 3.4 )
+"times": PoolRealArray( 0.8, 1.2, 1.9, 2.5, 3.2, 3.7, 4.2 )
 }
 tracks/9/type = "bezier"
 tracks/9/path = NodePath("../SharpeningStone:rotation_degrees:x")
@@ -657,7 +657,7 @@ tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
 "points": PoolRealArray( 27.8077, -0.25, 0, 0.25, 0, -40.5702, -0.25, 0, 0.25, 0, -40.5702, -0.25, 0, 0.25, 0, -40.5702, -0.25, 0, 0.25, 0, -40.5702, -0.25, 0, 0.25, 0, -40.5702, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0.4, 1.1, 1.7, 2.4, 2.9, 3.4 )
+"times": PoolRealArray( 1.2, 1.9, 2.5, 3.2, 3.7, 4.2 )
 }
 tracks/10/type = "bezier"
 tracks/10/path = NodePath("../SharpeningStone:rotation_degrees:y")
@@ -667,7 +667,7 @@ tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
 "points": PoolRealArray( -40.8456, -0.25, 0, 0.25, 0, -160.709, -0.25, 0, 0.25, 0, -160.709, -0.25, 0, 0.25, 0, -160.709, -0.25, 0, 0.25, 0, -160.709, -0.25, 0, 0.25, 0, -105.59, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0.4, 1.1, 1.7, 2.4, 2.9, 3.4 )
+"times": PoolRealArray( 1.2, 1.9, 2.5, 3.2, 3.7, 4.2 )
 }
 tracks/11/type = "bezier"
 tracks/11/path = NodePath("../SharpeningStone:rotation_degrees:z")
@@ -677,7 +677,7 @@ tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
 "points": PoolRealArray( -8.5434, -0.25, 0, 0.25, 0, 135.089, -0.25, 0, 0.25, 0, 135.089, -0.25, 0, 0.25, 0, 135.089, -0.25, 0, 0.25, 0, 135.089, -0.25, 0, 0.25, 0, 135.089, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0.4, 1.1, 1.7, 2.4, 2.9, 3.4 )
+"times": PoolRealArray( 1.2, 1.9, 2.5, 3.2, 3.7, 4.2 )
 }
 tracks/12/type = "audio"
 tracks/12/path = NodePath("../../AudioStreamPlayer3D")
@@ -695,7 +695,67 @@ tracks/12/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 7 )
 } ],
-"times": PoolRealArray( 1.1, 2.4 )
+"times": PoolRealArray( 1.9, 3.2 )
+}
+tracks/13/type = "bezier"
+tracks/13/path = NodePath("../LeftHand:translation:x")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"points": PoolRealArray( -0.3, -0.25, 0, 0.25, 0, -0.333, -0.25, -0.0152965, 0.21, 0.0246771, -0.270313, -0.28, 0.019599, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 0.8 )
+}
+tracks/14/type = "bezier"
+tracks/14/path = NodePath("../LeftHand:translation:y")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"points": PoolRealArray( -0.24, -0.25, 0, 0.59, -0.0237373, -0.153, -0.44, 0.0196686, 0.25, 0, -0.153, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 0.8 )
+}
+tracks/15/type = "bezier"
+tracks/15/path = NodePath("../LeftHand:translation:z")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"points": PoolRealArray( -0.2, -0.25, 0, 0.25, 0, -0.2, -0.23, -0.00362027, 0.22, 0.00381674, 0.0399613, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 0.8 )
+}
+tracks/16/type = "bezier"
+tracks/16/path = NodePath("../LeftHand:rotation_degrees:x")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 0.8 )
+}
+tracks/17/type = "bezier"
+tracks/17/path = NodePath("../LeftHand:rotation_degrees:y")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"points": PoolRealArray( 112, -0.25, 0, 0.25, 0, 126.181, -0.25, 0, 0.25, 0, 80, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 0.8 )
+}
+tracks/18/type = "bezier"
+tracks/18/path = NodePath("../LeftHand:rotation_degrees:z")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 0.8 )
 }
 
 [sub_resource type="AnimationNodeAnimation" id=16]
@@ -730,12 +790,11 @@ states/idle/position = Vector2( 210, 112 )
 states/sharpening_sword/node = SubResource( 18 )
 states/sharpening_sword/position = Vector2( 329.667, 223.667 )
 transitions = [ "idle", "attack", SubResource( 19 ), "attack", "idle", SubResource( 20 ), "attack", "sharpening_sword", SubResource( 21 ), "idle", "sharpening_sword", SubResource( 22 ), "sharpening_sword", "idle", SubResource( 23 ) ]
-graph_offset = Vector2( -40, -9 )
+graph_offset = Vector2( -77, 34 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 
-[sub_resource type="Animation" id=26]
-resource_name = "defend"
+[sub_resource type="Animation" id=40]
 length = 0.5
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
@@ -798,8 +857,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=27]
-resource_name = "idle"
+[sub_resource type="Animation" id=41]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -861,26 +919,26 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=42]
 animation = "defend"
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeAnimation" id=43]
 animation = "idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachine" id=32]
-states/defend/node = SubResource( 28 )
+[sub_resource type="AnimationNodeStateMachine" id=46]
+states/defend/node = SubResource( 42 )
 states/defend/position = Vector2( 626, 68.4445 )
-states/idle/node = SubResource( 29 )
+states/idle/node = SubResource( 43 )
 states/idle/position = Vector2( 434, 69.3333 )
-transitions = [ "idle", "defend", SubResource( 30 ), "defend", "idle", SubResource( 31 ) ]
+transitions = [ "idle", "defend", SubResource( 44 ), "defend", "idle", SubResource( 45 ) ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=47]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -909,17 +967,17 @@ collision_mask = 2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Offset/Head/Camera/HitArea"]
-shape = SubResource( 1 )
+shape = SubResource( 25 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Offset/Head"]
-anims/idle = SubResource( 2 )
-anims/walking = SubResource( 3 )
+anims/idle = SubResource( 26 )
+anims/walking = SubResource( 27 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Offset/Head"]
-tree_root = SubResource( 8 )
+tree_root = SubResource( 32 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource( 33 )
 
 [node name="OmniLight" type="OmniLight" parent="Offset/Head"]
 light_color = Color( 0.976471, 1, 0.627451, 1 )
@@ -929,9 +987,9 @@ omni_range = 3.0
 omni_attenuation = 2.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Offset"]
-anims/die = SubResource( 10 )
-anims/pickup = SubResource( 11 )
-anims/reset = SubResource( 12 )
+anims/die = SubResource( 34 )
+anims/pickup = SubResource( 35 )
+anims/reset = SubResource( 36 )
 
 [node name="Objects" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.35, 0 )
@@ -946,15 +1004,15 @@ transform = Transform( 0.198267, -0.739942, -0.642788, 0.965926, 0.258819, 0, 0.
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/RightHand"]
-anims/attack = SubResource( 13 )
-anims/idle = SubResource( 14 )
+anims/attack = SubResource( 37 )
+anims/idle = SubResource( 38 )
 anims/sharpening_sword = SubResource( 15 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Objects/RightHand"]
 tree_root = SubResource( 24 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 25 )
+parameters/playback = SubResource( 39 )
 
 [node name="LeftHand" type="Spatial" parent="Objects"]
 transform = Transform( -0.374607, 0, 0.927184, 0, 1, 0, -0.927184, 0, -0.374607, -0.3, -0.24, -0.2 )
@@ -963,14 +1021,14 @@ transform = Transform( -0.374607, 0, 0.927184, 0, 1, 0, -0.927184, 0, -0.374607,
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/LeftHand"]
-anims/defend = SubResource( 26 )
-anims/idle = SubResource( 27 )
+anims/defend = SubResource( 40 )
+anims/idle = SubResource( 41 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Objects/LeftHand"]
-tree_root = SubResource( 32 )
+tree_root = SubResource( 46 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 33 )
+parameters/playback = SubResource( 47 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 11 )
