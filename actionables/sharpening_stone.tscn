@@ -4,7 +4,7 @@
 [ext_resource path="res://actionables/sharpening_stone.gd" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.477, 0.25, 0.806 )
+extents = Vector3( 0.230281, 0.192408, 0.327299 )
 
 [node name="SharpeningStone" type="StaticBody"]
 collision_layer = 2
@@ -12,7 +12,7 @@ collision_mask = 2147483648
 script = ExtResource( 2 )
 
 [node name="Model" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.14, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )

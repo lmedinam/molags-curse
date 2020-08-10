@@ -3,7 +3,7 @@ extends StaticBody
 var taked = false
 
 func actuate():
-	if not taked:
+	if not taked and GameManager.player.has_sword:
 		set_collision_layer_bit(1, false)
 		GameManager.player.offset_ap.play("pickup")
 		GameManager.player.stop_player = true

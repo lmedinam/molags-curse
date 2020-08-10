@@ -6,11 +6,13 @@
 [node name="LevelBase" type="Spatial"]
 
 [node name="WallGrid" parent="." instance=ExtResource( 1 )]
+cell_octant_size = 256
 data = {
 "cells": PoolIntArray(  )
 }
 
 [node name="FloorGrid" parent="." instance=ExtResource( 2 )]
+cell_octant_size = 256
 data = {
 "cells": PoolIntArray(  )
 }

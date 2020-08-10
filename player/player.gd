@@ -25,8 +25,8 @@ var refilling = true
 var death = false
 var shield_up = false
 
-var has_sword = false
-var has_shield = false
+var has_sword = true
+var has_shield = true
 
 var head_st: AnimationNodeStateMachinePlayback
 var right_hand_st: AnimationNodeStateMachinePlayback
