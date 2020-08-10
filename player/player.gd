@@ -23,6 +23,7 @@ var gold = 0
 var sharpness = 0
 var refilling = true
 var death = false
+var shield_up = false
 
 var head_st: AnimationNodeStateMachinePlayback
 var right_hand_st: AnimationNodeStateMachinePlayback
@@ -59,6 +60,10 @@ func _process(delta):
 	
 	GameManager.game_info.player_hp(hp)
 	GameManager.game_info.player_stamina(stamina)
+	
+	if stamina <= 0 and shield_up:
+		shield_up = false
+		left_hand_st.travel("idle")
 
 func _input(event):
 	if event is InputEventMouseMotion and not death:
@@ -81,10 +86,12 @@ func _input(event):
 	if event.is_action_pressed("hit") and stamina > 0:
 		right_hand_st.travel("attack")
 	
-	if event.is_action_pressed("shield"):
+	if event.is_action_pressed("shield") and stamina > 0:
+		shield_up = true
 		left_hand_st.travel("defend")
 	
 	if event.is_action_released("shield"):
+		shield_up = false
 		left_hand_st.travel("idle")
 
 func _physics_process(delta):
@@ -138,7 +145,9 @@ func do_damage():
 func got_hit():
 	GameManager.game_info.show_ui()
 	
-	if hp > 0:
+	if shield_up and hp > 0:
+		use_stamina(20)
+	elif hp > 0:
 		hp -= 20
 		$HurtSound.play()
 	
@@ -174,10 +183,16 @@ func _on_sharpening_sword_delay_timeout():
 	slow_player = false
 
 func _on_refill_tick_timeout():
-	stamina += 2 if refilling else 0
+	stamina += 2 if (refilling and not shield_up) else 0
 	
 	if stamina > 100:
 		stamina = 100
+	else:
+		GameManager.game_info.show_ui()
 
 func _on_refill_delay_timeout():
 	refilling = true
+
+func _on_shield_up_timer_timeout():
+	if shield_up:
+		use_stamina(2)

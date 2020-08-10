@@ -126,7 +126,7 @@ transitions = [ "walking", "idle", SubResource( 6 ), "idle", "walking", SubResou
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=10]
 resource_name = "die"
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
@@ -247,8 +247,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "pickup"
+[sub_resource type="Animation" id=11]
 length = 1.6
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:y")
@@ -311,8 +310,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "reset"
+[sub_resource type="Animation" id=12]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -404,7 +402,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -497,7 +495,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0.5 )
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=14]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -559,8 +557,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=14]
-resource_name = "sharpening_sword"
+[sub_resource type="Animation" id=15]
 length = 5.8
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
@@ -701,41 +698,41 @@ tracks/12/keys = {
 "times": PoolRealArray( 1.1, 2.4 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "attack"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "sharpening_sword"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 switch_mode = 1
 auto_advance = true
 xfade_time = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=23]
-states/attack/node = SubResource( 15 )
+[sub_resource type="AnimationNodeStateMachine" id=24]
+states/attack/node = SubResource( 16 )
 states/attack/position = Vector2( 450, 112 )
-states/idle/node = SubResource( 16 )
+states/idle/node = SubResource( 17 )
 states/idle/position = Vector2( 210, 112 )
-states/sharpening_sword/node = SubResource( 17 )
+states/sharpening_sword/node = SubResource( 18 )
 states/sharpening_sword/position = Vector2( 329.667, 223.667 )
-transitions = [ "idle", "attack", SubResource( 18 ), "attack", "idle", SubResource( 19 ), "attack", "sharpening_sword", SubResource( 20 ), "idle", "sharpening_sword", SubResource( 21 ), "sharpening_sword", "idle", SubResource( 22 ) ]
+transitions = [ "idle", "attack", SubResource( 19 ), "attack", "idle", SubResource( 20 ), "attack", "sharpening_sword", SubResource( 21 ), "idle", "sharpening_sword", SubResource( 22 ), "sharpening_sword", "idle", SubResource( 23 ) ]
 graph_offset = Vector2( -40, -9 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
 
 [sub_resource type="Animation" id=26]
 resource_name = "defend"
@@ -893,7 +890,6 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.85
 shape = ExtResource( 3 )
 
 [node name="Offset" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Head" type="Spatial" parent="Offset"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0 )
@@ -933,9 +929,9 @@ omni_range = 3.0
 omni_attenuation = 2.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Offset"]
-anims/die = SubResource( 25 )
-anims/pickup = SubResource( 10 )
-anims/reset = SubResource( 11 )
+anims/die = SubResource( 10 )
+anims/pickup = SubResource( 11 )
+anims/reset = SubResource( 12 )
 
 [node name="Objects" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.35, 0 )
@@ -950,15 +946,15 @@ transform = Transform( 0.198267, -0.739942, -0.642788, 0.965926, 0.258819, 0, 0.
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/RightHand"]
-anims/attack = SubResource( 12 )
-anims/idle = SubResource( 13 )
-anims/sharpening_sword = SubResource( 14 )
+anims/attack = SubResource( 13 )
+anims/idle = SubResource( 14 )
+anims/sharpening_sword = SubResource( 15 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Objects/RightHand"]
-tree_root = SubResource( 23 )
+tree_root = SubResource( 24 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 24 )
+parameters/playback = SubResource( 25 )
 
 [node name="LeftHand" type="Spatial" parent="Objects"]
 transform = Transform( -0.374607, 0, 0.927184, 0, 1, 0, -0.927184, 0, -0.374607, -0.3, -0.24, -0.2 )
@@ -997,7 +993,12 @@ one_shot = true
 [node name="RefillTick" type="Timer" parent="."]
 wait_time = 0.15
 autostart = true
+
+[node name="ShieldUpTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
 [connection signal="timeout" from="PickupItemDelay" to="." method="_on_pickup_item_delay_timeout"]
 [connection signal="timeout" from="SharpeningSwordDelay" to="." method="_on_sharpening_sword_delay_timeout"]
 [connection signal="timeout" from="RefillDelay" to="." method="_on_refill_delay_timeout"]
 [connection signal="timeout" from="RefillTick" to="." method="_on_refill_tick_timeout"]
+[connection signal="timeout" from="ShieldUpTimer" to="." method="_on_shield_up_timer_timeout"]
