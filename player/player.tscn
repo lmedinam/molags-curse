@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/sword.gltf" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://actionables/sword_sheath_1.wav" type="AudioStream" id=9]
 [ext_resource path="res://player/hurts.wav" type="AudioStream" id=10]
 [ext_resource path="res://player/die.wav" type="AudioStream" id=11]
+[ext_resource path="res://player/shield.gltf" type="PackedScene" id=12]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.2
@@ -736,6 +737,154 @@ graph_offset = Vector2( -40, -9 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
+[sub_resource type="Animation" id=26]
+resource_name = "defend"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -0.3, -0.25, 0, 0.25, 0, -0.19831, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -0.24, -0.25, 0, 0.25, 0, -0.148348, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -0.2, -0.25, 0, 0.25, 0, -0.317179, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath(".:rotation_degrees:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath(".:rotation_degrees:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 112, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath(".:rotation_degrees:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "idle"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -0.3, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -0.24, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -0.2, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath(".:rotation_degrees:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath(".:rotation_degrees:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 112, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath(".:rotation_degrees:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "defend"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachine" id=32]
+states/defend/node = SubResource( 28 )
+states/defend/position = Vector2( 626, 68.4445 )
+states/idle/node = SubResource( 29 )
+states/idle/position = Vector2( 434, 69.3333 )
+transitions = [ "idle", "defend", SubResource( 30 ), "defend", "idle", SubResource( 31 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
+
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
 
@@ -811,8 +960,27 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 24 )
 
+[node name="LeftHand" type="Spatial" parent="Objects"]
+transform = Transform( -0.374607, 0, 0.927184, 0, 1, 0, -0.927184, 0, -0.374607, -0.3, -0.24, -0.2 )
+
+[node name="shield" parent="Objects/LeftHand" instance=ExtResource( 12 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/LeftHand"]
+anims/defend = SubResource( 26 )
+anims/idle = SubResource( 27 )
+
+[node name="AnimationTree" type="AnimationTree" parent="Objects/LeftHand"]
+tree_root = SubResource( 32 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 33 )
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 11 )
+
+[node name="HurtSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 10 )
 
 [node name="PickupItemDelay" type="Timer" parent="."]
 wait_time = 0.85
@@ -829,9 +997,6 @@ one_shot = true
 [node name="RefillTick" type="Timer" parent="."]
 wait_time = 0.15
 autostart = true
-
-[node name="HurtSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 10 )
 [connection signal="timeout" from="PickupItemDelay" to="." method="_on_pickup_item_delay_timeout"]
 [connection signal="timeout" from="SharpeningSwordDelay" to="." method="_on_sharpening_sword_delay_timeout"]
 [connection signal="timeout" from="RefillDelay" to="." method="_on_refill_delay_timeout"]

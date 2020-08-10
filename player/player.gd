@@ -13,6 +13,7 @@ var velocity = Vector3()
 onready var actioner = $Offset/Head/Camera/Actioner
 onready var hit_area = $Offset/Head/Camera/HitArea
 onready var head_at = $Offset/Head/AnimationTree
+onready var left_hand_at = $Objects/LeftHand/AnimationTree
 onready var right_hand = $Objects/RightHand/AnimationTree
 onready var offset_ap = $Offset/AnimationPlayer
 
@@ -25,6 +26,7 @@ var death = false
 
 var head_st: AnimationNodeStateMachinePlayback
 var right_hand_st: AnimationNodeStateMachinePlayback
+var left_hand_st: AnimationNodeStateMachinePlayback
 
 var stop_player = false
 var slow_player = false
@@ -34,9 +36,11 @@ func _ready():
 	
 	head_st = head_at.get("parameters/playback")
 	right_hand_st = right_hand.get("parameters/playback")
+	left_hand_st = left_hand_at.get("parameters/playback")
 	
 	head_st.start("idle")
 	right_hand_st.start("idle")
+	left_hand_st.start("idle")
 	
 	var right_hand_ap = $Objects/RightHand/AnimationPlayer
 	right_hand_ap.connect("animation_finished", self, "_on_animation_finished")
@@ -76,6 +80,12 @@ func _input(event):
 	
 	if event.is_action_pressed("hit") and stamina > 0:
 		right_hand_st.travel("attack")
+	
+	if event.is_action_pressed("shield"):
+		left_hand_st.travel("defend")
+	
+	if event.is_action_released("shield"):
+		left_hand_st.travel("idle")
 
 func _physics_process(delta):
 	var c_basis = $Offset/Head/Camera.global_transform.basis
