@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/corridor_corner.gltf-adb4d3a60979b014538bc0fcb7c969a5.scn"
+path="res://.import/column.gltf-439e84d1a3c58568ef428b30a3c8eeff.scn"
 
 [deps]
 
-source_file="res://level/walls/corridor_corner.gltf"
-dest_files=[ "res://.import/corridor_corner.gltf-adb4d3a60979b014538bc0fcb7c969a5.scn" ]
+source_file="res://level/furniture/column.gltf"
+dest_files=[ "res://.import/column.gltf-439e84d1a3c58568ef428b30a3c8eeff.scn" ]
 
 [params]
 
@@ -22,7 +22,7 @@ materials/keep_on_reimport=true
 meshes/compress=true
 meshes/ensure_tangents=true
 meshes/storage=0
-meshes/light_baking=1
+meshes/light_baking=0
 meshes/lightmap_texel_size=0.1
 skins/use_named_skins=true
 external_files/store_in_subdir=false

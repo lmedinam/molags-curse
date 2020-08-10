@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/corridor_corner.gltf-adb4d3a60979b014538bc0fcb7c969a5.scn"
+path="res://.import/wall_corridor.gltf-9de8d094324e0094ca24db6eff056f28.scn"
 
 [deps]
 
-source_file="res://level/walls/corridor_corner.gltf"
-dest_files=[ "res://.import/corridor_corner.gltf-adb4d3a60979b014538bc0fcb7c969a5.scn" ]
+source_file="res://level/walls/wall_corridor.gltf"
+dest_files=[ "res://.import/wall_corridor.gltf-9de8d094324e0094ca24db6eff056f28.scn" ]
 
 [params]
 

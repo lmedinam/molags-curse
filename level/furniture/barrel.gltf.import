@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/corridor_corner.gltf-adb4d3a60979b014538bc0fcb7c969a5.scn"
+path="res://.import/barrel.gltf-66d54f15fa3db4f377652776dc5b4732.scn"
 
 [deps]
 
-source_file="res://level/walls/corridor_corner.gltf"
-dest_files=[ "res://.import/corridor_corner.gltf-adb4d3a60979b014538bc0fcb7c969a5.scn" ]
+source_file="res://level/furniture/barrel.gltf"
+dest_files=[ "res://.import/barrel.gltf-66d54f15fa3db4f377652776dc5b4732.scn" ]
 
 [params]
 
@@ -22,7 +22,7 @@ materials/keep_on_reimport=true
 meshes/compress=true
 meshes/ensure_tangents=true
 meshes/storage=0
-meshes/light_baking=1
+meshes/light_baking=0
 meshes/lightmap_texel_size=0.1
 skins/use_named_skins=true
 external_files/store_in_subdir=false
