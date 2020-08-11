@@ -13,11 +13,11 @@
 [ext_resource path="res://player/die.wav" type="AudioStream" id=11]
 [ext_resource path="res://player/shield.gltf" type="PackedScene" id=12]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=33]
 radius = 0.2
 height = 0.5
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=34]
 resource_name = "idle"
 length = 3.0
 loop = true
@@ -52,7 +52,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=35]
 resource_name = "walking"
 length = 1.4
 loop = true
@@ -105,28 +105,28 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.7 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=36]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=37]
 animation = "walking"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
 xfade_time = 0.5
 
-[sub_resource type="AnimationNodeStateMachine" id=8]
-states/idle/node = SubResource( 4 )
+[sub_resource type="AnimationNodeStateMachine" id=40]
+states/idle/node = SubResource( 36 )
 states/idle/position = Vector2( 206, 53 )
-states/walking/node = SubResource( 5 )
+states/walking/node = SubResource( 37 )
 states/walking/position = Vector2( 429, 53 )
-transitions = [ "walking", "idle", SubResource( 6 ), "idle", "walking", SubResource( 7 ) ]
+transitions = [ "walking", "idle", SubResource( 38 ), "idle", "walking", SubResource( 39 ) ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=42]
 resource_name = "die"
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
@@ -247,7 +247,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=43]
 length = 1.6
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:y")
@@ -310,7 +310,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=44]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -402,7 +402,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=45]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -507,7 +507,7 @@ tracks/8/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=46]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -581,7 +581,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=47]
 length = 6.8
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
@@ -794,43 +794,43 @@ tracks/19/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=48]
 animation = "attack"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=49]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=50]
 animation = "sharpening_sword"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
 switch_mode = 1
 auto_advance = true
 xfade_time = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=24]
-states/attack/node = SubResource( 16 )
+[sub_resource type="AnimationNodeStateMachine" id=56]
+states/attack/node = SubResource( 48 )
 states/attack/position = Vector2( 450, 112 )
-states/idle/node = SubResource( 17 )
+states/idle/node = SubResource( 49 )
 states/idle/position = Vector2( 210, 112 )
-states/sharpening_sword/node = SubResource( 18 )
+states/sharpening_sword/node = SubResource( 50 )
 states/sharpening_sword/position = Vector2( 329.667, 223.667 )
-transitions = [ "idle", "attack", SubResource( 19 ), "attack", "idle", SubResource( 20 ), "attack", "sharpening_sword", SubResource( 21 ), "idle", "sharpening_sword", SubResource( 22 ), "sharpening_sword", "idle", SubResource( 23 ) ]
+transitions = [ "idle", "attack", SubResource( 51 ), "attack", "idle", SubResource( 52 ), "attack", "sharpening_sword", SubResource( 53 ), "idle", "sharpening_sword", SubResource( 54 ), "sharpening_sword", "idle", SubResource( 55 ) ]
 graph_offset = Vector2( -77, 34 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=57]
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=58]
 length = 0.5
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
@@ -893,7 +893,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=59]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:translation:x")
 tracks/0/interp = 1
@@ -974,7 +974,7 @@ states/idle/node = SubResource( 29 )
 states/idle/position = Vector2( 434, 69.3333 )
 transitions = [ "idle", "defend", SubResource( 30 ), "defend", "idle", SubResource( 31 ) ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=60]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -995,7 +995,7 @@ fov = 90.0
 far = 16.0
 
 [node name="Actioner" type="RayCast" parent="Offset/Head/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.045304 )
 enabled = true
 cast_to = Vector3( 0, 0, -2 )
 collision_mask = 2
@@ -1004,17 +1004,17 @@ collision_mask = 2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Offset/Head/Camera/HitArea"]
-shape = SubResource( 1 )
+shape = SubResource( 33 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Offset/Head"]
-anims/idle = SubResource( 2 )
-anims/walking = SubResource( 3 )
+anims/idle = SubResource( 34 )
+anims/walking = SubResource( 35 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Offset/Head"]
-tree_root = SubResource( 8 )
+tree_root = SubResource( 40 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 9 )
+parameters/playback = SubResource( 41 )
 
 [node name="OmniLight" type="OmniLight" parent="Offset/Head"]
 light_color = Color( 0.976471, 1, 0.627451, 1 )
@@ -1024,9 +1024,9 @@ omni_range = 3.0
 omni_attenuation = 2.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Offset"]
-anims/die = SubResource( 10 )
-anims/pickup = SubResource( 11 )
-anims/reset = SubResource( 12 )
+anims/die = SubResource( 42 )
+anims/pickup = SubResource( 43 )
+anims/reset = SubResource( 44 )
 
 [node name="Objects" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.35, 0 )
@@ -1042,15 +1042,15 @@ transform = Transform( 0.198267, -0.739942, -0.642788, 0.965926, 0.258819, 0, 0.
 transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/RightHand"]
-anims/attack = SubResource( 13 )
-anims/idle = SubResource( 14 )
-anims/sharpening_sword = SubResource( 15 )
+anims/attack = SubResource( 45 )
+anims/idle = SubResource( 46 )
+anims/sharpening_sword = SubResource( 47 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Objects/RightHand"]
-tree_root = SubResource( 24 )
+tree_root = SubResource( 56 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 25 )
+parameters/playback = SubResource( 57 )
 
 [node name="LeftHand" type="Spatial" parent="Objects"]
 transform = Transform( 0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, -0.270313, -0.153, 0.0399613 )
@@ -1059,14 +1059,14 @@ transform = Transform( 0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, -
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/LeftHand"]
-anims/defend = SubResource( 26 )
-anims/idle = SubResource( 27 )
+anims/defend = SubResource( 58 )
+anims/idle = SubResource( 59 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Objects/LeftHand"]
 tree_root = SubResource( 32 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 33 )
+parameters/playback = SubResource( 60 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 11 )

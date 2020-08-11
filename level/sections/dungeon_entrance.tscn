@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://level/level_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://level/furniture/torch_floor/torch_floor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://level/furniture/column.tscn" type="PackedScene" id=3]
+[ext_resource path="res://level/furniture/torch_wall/torch_wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actionables/door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://level/furniture/table_2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://level/furniture/paper.gltf" type="PackedScene" id=7]
+[ext_resource path="res://actionables/chair.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actionables/lever.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actionables/potion.tscn" type="PackedScene" id=10]
+[ext_resource path="res://actionables/chest_gold.tscn" type="PackedScene" id=11]
+[ext_resource path="res://level/sections/dungeon_entrance.gd" type="Script" id=12]
+
+[node name="DungeonEntrance" instance=ExtResource( 1 )]
+script = ExtResource( 12 )
+
+[node name="WallGrid" parent="." index="0"]
+data = {
+"cells": PoolIntArray( 65524, 6, 536870912, 65525, 6, 1, 65527, 6, 536870912, 65529, 6, 1441792, 65524, 7, -1609564160, 65525, 7, -1609170941, 65526, 7, 537919491, 65530, 7, 1441795, 65531, 7, 1441796, 65532, 7, 1441796, 65533, 7, 1075183618, 65527, 8, 1048576, 65529, 8, 537526272, 65533, 8, -1609957372, 65528, 9, -1609957373, 65533, 9, 3, 65534, 9, 537526273, 65535, 9, 1441792, 65533, 10, 1, 65534, 10, 1048582, 65535, 10, 537526273, 65533, 11, -1073086461, 65534, 11, 655361, 65535, 11, 655360, 65533, 12, 655364 )
+}
+
+[node name="FloorGrid" parent="." index="1"]
+data = {
+"cells": PoolIntArray( 65524, 6, 1073741824, 65527, 6, 1048576, 65528, 6, -1609564160, 65529, 6, 1048576, 65524, 7, 0, 65525, 7, 536870912, 65526, 7, 0, 65527, 7, -1609564160, 65528, 7, 1048576, 65529, 7, 1048576, 65530, 7, 655360, 65531, 7, -1609957376, 65532, 7, 655360, 65533, 7, 655360, 65527, 8, 1074790400, 65528, 8, 1048576, 65529, 8, 1048576, 65533, 8, 655360, 65528, 9, 655360, 65533, 9, -1609957376, 65535, 9, -1609957376, 65533, 10, 655360, 65534, 10, 655360, 65535, 10, 655360, 65533, 11, 655360, 65535, 11, 655360, 65533, 12, 655360 )
+}
+
+[node name="TorchFloor" parent="Lights" index="0" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9847, 0, 14.9328 )
+
+[node name="TorchFloor2" parent="Lights" index="1" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.78626, 0, 21.1105 )
+
+[node name="TorchFloor3" parent="Lights" index="2" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.518793, 0, 18.1297 )
+
+[node name="TorchFloor4" parent="Lights" index="3" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3439, 0, 12.2835 )
+
+[node name="TorchWall" parent="Lights" index="4" instance=ExtResource( 4 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -4.60608, 1.6, 14.6241 )
+
+[node name="Column" parent="." index="3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0953, 0, 13.9233 )
+
+[node name="Column2" parent="." index="4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7988, 0, 13.9233 )
+
+[node name="Column3" parent="." index="5" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7988, 0, 15.9642 )
+
+[node name="Column4" parent="." index="6" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0508, 0, 15.9642 )
+
+[node name="Door" parent="." index="7" instance=ExtResource( 5 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -10.9524, 0, 15.0151 )
+
+[node name="SecretDoor" parent="." index="8" instance=ExtResource( 5 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -19.1387, 0, 15.0151 )
+is_lock = true
+is_iron = true
+
+[node name="table_2" parent="." index="9" instance=ExtResource( 6 )]
+transform = Transform( 0.296375, 0, -0.955072, 0, 1, 0, 0.955072, 0, 0.296375, -1.11992, 0, 18.9472 )
+
+[node name="paper" parent="." index="10" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84294, 0.917908, 18.8002 )
+
+[node name="paper2" parent="." index="11" instance=ExtResource( 7 )]
+transform = Transform( 0.84946, 0, 0.527653, 0, 1, 0, -0.527653, 0, 0.84946, -0.991245, 0.921312, 18.8002 )
+
+[node name="Chair" parent="." index="12" instance=ExtResource( 8 )]
+transform = Transform( -0.197435, 0, -0.980316, 0, 1, 0, 0.980316, 0, -0.197435, -1.16626, 0, 20.021 )
+
+[node name="Lever" parent="." index="13" instance=ExtResource( 9 )]
+transform = Transform( -1.62921e-07, -1, 1.62921e-07, 0, -1.62921e-07, -1, 1, -1.62921e-07, 2.65431e-14, 0.0307892, 1.47697, 21.6757 )
+
+[node name="ChestGold" parent="." index="14" instance=ExtResource( 11 )]
+transform = Transform( 0.948185, 0, 0.317718, 0, 1, 0, -0.317718, 0, 0.948185, -23.1319, 0, 12.857 )
+
+[node name="Potion" parent="." index="15" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47561, 0.868164, 19.1278 )
+[connection signal="triggered" from="Lever" to="." method="_on_lever_triggered"]
