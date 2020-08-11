@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/sections/prison.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://level/world.tres" type="Environment" id=7]
 [ext_resource path="res://level/sections/dungeon_entrance.tscn" type="PackedScene" id=8]
 [ext_resource path="res://level/sections/dungeon_kitchen.tscn" type="PackedScene" id=9]
+[ext_resource path="res://level/sections/library.tscn" type="PackedScene" id=10]
 
 [sub_resource type="GIProbeData" id=1]
 bounds = AABB( -38.81, -3.1638, -36.4813, 77.6199, 6.3276, 72.9627 )
@@ -40,6 +41,8 @@ script = ExtResource( 4 )
 
 [node name="DungeonKitchen" parent="Sections" instance=ExtResource( 9 )]
 
+[node name="Library" parent="Sections" instance=ExtResource( 10 )]
+
 [node name="GIProbe" type="GIProbe" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.88433, 2.52506, 8.71611 )
 extents = Vector3( 38.81, 3.1638, 36.4813 )
@@ -52,4 +55,4 @@ data = SubResource( 1 )
 environment = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2565, 0.0121201, 7.89901 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7783, 0.0121201, 27.195 )
