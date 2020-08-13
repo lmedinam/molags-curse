@@ -37,6 +37,7 @@ var slow_player = false
 
 func _ready():
 	GameManager.player = self
+	$Transition.fade_in()
 	
 	head_st = head_at.get("parameters/playback")
 	right_hand_st = right_hand.get("parameters/playback")
