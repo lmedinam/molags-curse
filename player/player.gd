@@ -180,6 +180,9 @@ func run_sharpening_sword_anim():
 	
 	$SharpeningSwordDelay.start()
 	$PickupItemDelay.start()
+	
+func make_player_current_camera():
+	$Offset/Head/Camera.make_current()
 
 func use_stamina(quantity: int):
 	stamina -= quantity

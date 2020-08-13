@@ -1,5 +1,10 @@
 extends Spatial
 
+var molag_anim = false
+
+func _ready():
+	pass
+
 func _on_trap_lever_triggered(status):
 	$TrapZone1/Fireball.active = status
 	$TrapZone1/Fireball2.active = status
@@ -21,5 +26,23 @@ func _on_boss_gate_lever_triggered(status):
 	$BossDoor2.is_lock = status
 
 func _on_boss_trigger_body_entered(body):
-	$MainBossDoor._on_container_door_triggered()
-	$MainBossDoor.is_lock = true
+	if body.has_method("use_stamina"):
+		$MainBossDoor._on_container_door_triggered()
+		$MainBossDoor.is_lock = true
+		
+		GameManager.player.stop_player = true
+		$PlayerTransition.fade_out()
+
+func end_animation():
+	$CameraTransition.fade_out()
+
+func _on_player_transition_fade_out():
+	$PlayerTransition.fade_in()
+	$AnimationPlayer.play("molag_camera")
+
+func _on_camera_transition_fade_out():
+	GameManager.player.make_player_current_camera()
+	GameManager.player.stop_player = false
+	$Molag.start()
+	
+	$CameraTransition.fade_in()

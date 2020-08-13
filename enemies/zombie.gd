@@ -10,12 +10,27 @@ var death = false
 
 var can_attack = true
 var attacking = false
+export var fireball: bool
 
 onready var anim_tree = $AnimationTree
 var anim_sm: AnimationNodeStateMachinePlayback
 
+var fireball_projectile = preload("res://traps/fireball_projectile.tscn")
+
+export var started: bool = true
+
 func _ready():
 	anim_sm = anim_tree.get("parameters/playback")
+	
+	if fireball:
+		$Mesh/Body/ArmL/Staff.visible = true
+		$Mesh/Body/ArmL/Sword.visible = false
+	else:
+		$Mesh/Body/ArmL/Staff.visible = false
+		$Mesh/Body/ArmL/Sword.visible = true
+
+func start():
+	started = true
 	anim_sm.start("walking")
 
 func hit(knockback: Vector3, hp: int):
@@ -50,7 +65,7 @@ func _physics_process(delta):
 	
 	var direction = Vector3()
 	
-	if not death and can_attack:
+	if not death and can_attack and started:
 		direction -= transform.basis.z
 	
 	if knockback > 0:
@@ -59,23 +74,29 @@ func _physics_process(delta):
 	
 	move_and_slide(direction, Vector3(0, 1, 0))
 
-func _process(delta):
-	var bodies = $HitArea.get_overlapping_bodies()
+func _process(_delta):
+	var bodies
+	if fireball:
+		bodies = $FarHitArea.get_overlapping_bodies()
+	else:
+		bodies = $HitArea.get_overlapping_bodies()
+	
 	for body in bodies:
-		if body.has_method("got_hit") and can_attack and not death:
+		if body.has_method("got_hit") and can_attack and not death and started:
 			can_attack = false
 			anim_sm.travel("attacking")
 
 func turn_face(target, delta):
-	var current_rotation = Quat(global_transform.basis)
+	if started:
+		var current_rotation = Quat(global_transform.basis)
 	
-	# Let's this function do all the work for us
-	look_at(target.global_transform.origin, Vector3.UP)
-	var target_rotation = Quat(global_transform.basis)
-	
-	# Interpolate rotation
-	var next_rotation = current_rotation.slerp(target_rotation, delta* 3)
-	global_transform.basis = Basis(next_rotation)
+		# Let's this function do all the work for us
+		look_at(target.global_transform.origin, Vector3.UP)
+		var target_rotation = Quat(global_transform.basis)
+		
+		# Interpolate rotation
+		var next_rotation = current_rotation.slerp(target_rotation, delta* 3)
+		global_transform.basis = Basis(next_rotation)
 
 func _on_hit_area_body_entered(body):
 	pass
@@ -84,10 +105,19 @@ func attack():
 	if not death:
 		anim_sm.travel("walking")
 	
-	var bodies = $HitArea.get_overlapping_bodies()
-	for body in bodies:
-		if body.has_method("got_hit"):
-			body.got_hit()
+	if fireball:
+		var p_instance = fireball_projectile.instance()
+		
+		p_instance.direction = global_transform.basis.z
+		p_instance.speed = -3
+		p_instance.transform.origin = $FiraballSpawn.transform.origin
+		
+		add_child(p_instance)
+	else:
+		var bodies = $HitArea.get_overlapping_bodies()
+		for body in bodies:
+			if body.has_method("got_hit"):
+				body.got_hit()
 
 func set_can_attack(value: bool):
 	can_attack = true

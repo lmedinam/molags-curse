@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://enemies/leather.material" type="Material" id=1]
 [ext_resource path="res://player/player_shape.tres" type="Shape" id=2]
@@ -194,9 +194,13 @@ rings = 2
 radius = 0.35
 height = 0.2
 
+[sub_resource type="CapsuleShape" id=34]
+radius = 0.35
+height = 3.40298
+
 [sub_resource type="Animation" id=13]
 resource_name = "attacking"
-length = 1.4
+length = 1.8
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Mesh/Body:rotation_degrees:x")
 tracks/0/interp = 1
@@ -358,7 +362,7 @@ tracks/15/loop_wrap = true
 tracks/15/imported = false
 tracks/15/enabled = true
 tracks/15/keys = {
-"times": PoolRealArray( 1.4 ),
+"times": PoolRealArray( 1.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ true ],
@@ -1257,7 +1261,7 @@ shape = ExtResource( 2 )
 transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 1, 0 )
 
 [node name="Body" type="MeshInstance" parent="Mesh"]
-transform = Transform( 0.10327, -0.0138032, -0.0362576, 0, 0.100326, -0.0522396, 0.0335545, 0.0424819, 0.111589, 0, 0, 0 )
+transform = Transform( 0.10327, -0.0138032, -0.0362575, 0, 0.100326, -0.0522395, 0.0335545, 0.0424818, 0.111589, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -1267,7 +1271,7 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="ArmL" type="MeshInstance" parent="Mesh/Body"]
-transform = Transform( 0.389091, 0.0583971, -0.31099, -0.0431976, 0.594618, 0.0199797, 0.23983, 0.01236, 0.508135, 1.57621, 3.94181, -0.063566 )
+transform = Transform( 0.389091, 0.0583971, -0.310989, -0.0431976, 0.594618, 0.0199797, 0.23983, 0.01236, 0.508135, 1.57621, 3.94181, -0.063566 )
 mesh = SubResource( 3 )
 material/0 = null
 
@@ -1297,7 +1301,7 @@ mesh = SubResource( 7 )
 material/0 = null
 
 [node name="LegR" type="MeshInstance" parent="Mesh/Pelvis"]
-transform = Transform( 0.322095, 0, -1.20181e-14, 0, 0.320242, 0, 1.41702e-14, 0, 0.273178, -0.76127, -0.291426, 0.0121205 )
+transform = Transform( 0.322095, 0, -1.20182e-14, 0, 0.320242, 0, 1.41702e-14, 0, 0.273178, -0.76127, -0.291426, 0.0121205 )
 mesh = SubResource( 8 )
 material/0 = null
 
@@ -1317,6 +1321,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22321, -0.644138 )
 [node name="CollisionShape" type="CollisionShape" parent="HitArea"]
 shape = SubResource( 12 )
 
+[node name="FarHitArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22321, -2.5095 )
+
+[node name="CollisionShape" type="CollisionShape" parent="FarHitArea"]
+shape = SubResource( 34 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attacking = SubResource( 13 )
 anims/die = SubResource( 14 )
@@ -1328,4 +1338,7 @@ tree_root = SubResource( 32 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 33 )
+
+[node name="FiraballSpawn" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16863, -1.15801 )
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

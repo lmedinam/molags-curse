@@ -58,5 +58,5 @@ data = SubResource( 1 )
 environment = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.955, 0.0121201, 42.9281 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1439, 0.0121201, 54.9691 )
 [connection signal="open_boss_section" from="Sections/Library" to="." method="_on_library_open_boss_section"]
