@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="The Resurrection of Molag"
-run/main_scene="res://init/credits.tscn"
+run/main_scene="res://level/level.tscn"
 config/icon="res://icon.png"
 
 [autoload]

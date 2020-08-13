@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://traps/fire_trap.gd" type="Script" id=1]
+[ext_resource path="res://traps/fire_trap.gltf" type="PackedScene" id=2]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -52,9 +53,20 @@ wait_time = 0.5
 autostart = true
 
 [node name="OmniLight" type="OmniLight" parent="."]
+visible = false
 light_color = Color( 1, 0.831373, 0.32549, 1 )
 shadow_enabled = true
 shadow_color = Color( 0.313726, 0.313726, 0.313726, 1 )
 omni_range = 4.0
 omni_attenuation = 2.82843
+
+[node name="Base" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255466, 0 )
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="IntervalTimer" type="Timer" parent="."]
 [connection signal="timeout" from="DamageTick" to="." method="_on_damage_tick_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="IntervalTimer" to="." method="_on_interval_timer_timeout"]

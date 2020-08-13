@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/fire_trap_wall.gltf-58ada4f078ef4a53d2e44720f6f25882.scn"
+path="res://.import/fire_trap.gltf-2a0d82f849ec8d54b419e038d9a4dee5.scn"
 
 [deps]
 
-source_file="res://level/furniture/fire_trap_wall.gltf"
-dest_files=[ "res://.import/fire_trap_wall.gltf-58ada4f078ef4a53d2e44720f6f25882.scn" ]
+source_file="res://traps/fire_trap.gltf"
+dest_files=[ "res://.import/fire_trap.gltf-2a0d82f849ec8d54b419e038d9a4dee5.scn" ]
 
 [params]
 
