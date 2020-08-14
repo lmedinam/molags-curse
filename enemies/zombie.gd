@@ -1,6 +1,6 @@
 extends KinematicBody
 
-signal death
+signal killed
 
 const KNOCKBACK_SPEED = 20
 
@@ -20,6 +20,7 @@ var anim_sm: AnimationNodeStateMachinePlayback
 var fireball_projectile = preload("res://traps/fireball_projectile.tscn")
 
 export var started: bool = false
+export var at_see_player: bool = true
 
 func _ready():
 	anim_sm = anim_tree.get("parameters/playback")
@@ -64,7 +65,7 @@ func kill():
 	qt.wait_time = 2.0
 	qt.start()
 	
-	emit_signal("death")
+	emit_signal("killed")
 
 func _physics_process(delta):
 	if not death:
@@ -75,8 +76,9 @@ func _physics_process(delta):
 		var e_position = global_transform.origin
 		var r_result = space_state.intersect_ray(e_position, p_position)
 		
-		if r_result.collider.has_method("use_stamina") and not started:
-			start()
+		if r_result and at_see_player:
+			if r_result.collider.has_method("use_stamina") and not started:
+				start()
 	
 	var direction = Vector3()
 	

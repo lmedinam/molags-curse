@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://level/furniture/torch_floor/torch_floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/level_base.tscn" type="PackedScene" id=2]
@@ -18,35 +18,34 @@
 [ext_resource path="res://actionables/sharpening_stone.tscn" type="PackedScene" id=16]
 [ext_resource path="res://level/furniture/library.tscn" type="PackedScene" id=17]
 [ext_resource path="res://actionables/potion.tscn" type="PackedScene" id=18]
+[ext_resource path="res://enemies/skeleton.tscn" type="PackedScene" id=19]
 
 [node name="DungeonKitchen" instance=ExtResource( 2 )]
 script = ExtResource( 8 )
 
 [node name="WallGrid" parent="." index="0"]
 data = {
-"cells": PoolIntArray( 65528, 10, 655364, 65528, 11, 3, 65521, 12, 0, 65522, 12, 1441793, 65523, 12, 1441797, 65524, 12, 1441793, 65525, 12, 1441793, 65526, 12, 1441793, 65527, 12, 1441793, 65528, 12, 655361, 65521, 13, 1048576, 65522, 13, 655360, 65524, 13, 1048576, 65525, 13, 1048577, 65527, 13, 1048577, 65528, 13, 655360, 65533, 13, 3, 65526, 14, 655365, 65532, 14, 0, 65533, 14, 655361, 65521, 15, 2, 65522, 15, 1048580, 65523, 15, 1048580, 65524, 15, 1048580, 65525, 15, 1048579, 65527, 15, 1441795, 65528, 15, 1441796, 65529, 15, 1441796, 65530, 15, 1441796, 65531, 15, -1609564157, 65532, 15, -1609564159, 65533, 15, 655360, 65526, 16, 655365, 65525, 17, -1610612736, 65527, 17, 1441792, 65525, 18, 1441793, 65526, 18, 1441793, 65527, 18, 1441793 )
+"cells": PoolIntArray( 65528, 10, 655364, 65528, 11, 3, 65521, 12, 536870912, 65522, 12, 1441793, 65523, 12, 1441797, 65524, 12, 1441793, 65525, 12, 1441793, 65526, 12, 1441793, 65527, 12, 1441793, 65528, 12, 655361, 65521, 13, 1048576, 65522, 13, 655360, 65524, 13, 1048576, 65525, 13, 1048577, 65527, 13, -1609564159, 65528, 13, 655360, 65533, 13, 3, 65526, 14, 655365, 65532, 14, 0, 65533, 14, 655361, 65521, 15, 2, 65522, 15, 1048580, 65523, 15, 1048580, 65524, 15, 1048580, 65525, 15, 1048579, 65527, 15, 1441795, 65528, 15, 1441796, 65529, 15, 1441796, 65530, 15, 1441796, 65531, 15, 1048579, 65532, 15, 1048577, 65533, 15, -1609957376, 65526, 16, -1609957371, 65525, 17, 0, 65527, 17, 1441792, 65525, 18, 1441793, 65526, 18, 1441793, 65527, 18, 1441793 )
 }
 
 [node name="WallGrid2" type="GridMap" parent="." index="1"]
 mesh_library = ExtResource( 5 )
 data = {
-"cells": PoolIntArray( 65521, 16, 655364, 65521, 17, 655364, 65521, 18, 655364, 65521, 19, 3, 65519, 20, 0, 65520, 20, 1441793, 65522, 20, 1441793, 65523, 20, 1441792, 65519, 21, -1609170939, 65523, 21, 1441797, 65519, 22, 1048576, 65520, 22, 1048577, 65521, 22, 1048577, 65522, 22, 1048577, 65523, 22, -1609957376 )
+"cells": PoolIntArray( 65521, 16, 655364, 65521, 17, 655364, 65521, 18, 655364, 65521, 19, 3, 65519, 20, 0, 65520, 20, 1441793, 65522, 20, 1441793, 65523, 20, 1441792, 65519, 21, 1441797, 65523, 21, 1441797, 65519, 22, 1048576, 65520, 22, 1048577, 65521, 22, -1609564159, 65522, 22, 1048577, 65523, 22, 655360 )
 }
 __meta__ = {
 "_editor_clip_": 0
 }
 
 [node name="FloorGrid" parent="." index="2"]
-visible = false
 data = {
-"cells": PoolIntArray( 65528, 10, 1048576, 65528, 11, 1048576, 65521, 12, 1048576, 65522, 12, 1048576, 65523, 12, 537919488, 65524, 12, 1048576, 65525, 12, 1048576, 65526, 12, 1048576, 65527, 12, 1074790400, 65528, 12, 1048576, 65521, 13, -1609564160, 65522, 13, 1048576, 65524, 13, 1048576, 65525, 13, 1048576, 65526, 13, 1048576, 65527, 13, -1609564160, 65528, 13, 1048576, 65533, 13, 1048576, 65525, 14, 537919488, 65526, 14, 1048576, 65527, 14, 1048576, 65532, 14, 1048576, 65533, 14, 1048576, 65521, 15, -1609170944, 65522, 15, 1441792, 65523, 15, 1441792, 65524, 15, 1441792, 65525, 15, 1048576, 65526, 15, -1609564160, 65527, 15, 1048576, 65528, 15, 1048576, 65529, 15, 1048576, 65530, 15, 1048576, 65531, 15, 1048576, 65532, 15, 1048576, 65533, 15, 1048576, 65526, 16, 1048576 )
+"cells": PoolIntArray( 65528, 10, 1048576, 65528, 11, 1048576, 65521, 12, 1048576, 65522, 12, 537919488, 65523, 12, 1048576, 65524, 12, 1048576, 65525, 12, 1048576, 65526, 12, 1048576, 65527, 12, 1048576, 65528, 12, 1048576, 65521, 13, -1609564160, 65522, 13, 1048576, 65524, 13, 1048576, 65525, 13, 1048576, 65526, 13, 1048576, 65527, 13, 1048576, 65528, 13, 1048576, 65533, 13, 1048576, 65525, 14, 1048576, 65526, 14, 537919488, 65527, 14, 1048576, 65532, 14, 1048576, 65533, 14, 1048576, 65521, 15, 1441792, 65522, 15, 1441792, 65523, 15, 1441792, 65524, 15, 1441792, 65525, 15, 1048576, 65526, 15, 1048576, 65527, 15, 1048576, 65528, 15, -1609564160, 65529, 15, 1048576, 65530, 15, -1609564160, 65531, 15, 1048576, 65532, 15, 1048576, 65533, 15, 1048576, 65526, 16, 1048576 )
 }
 
 [node name="FloorGrid2" type="GridMap" parent="." index="3"]
-visible = false
 mesh_library = ExtResource( 6 )
 data = {
-"cells": PoolIntArray( 65521, 16, 0, 65521, 17, -1610612736, 65525, 17, 0, 65526, 17, 536870912, 65527, 17, 0, 65521, 18, 0, 65521, 19, 0, 65519, 20, 0, 65520, 20, 0, 65521, 20, 0, 65522, 20, 0, 65523, 20, 0, 65519, 21, -1610612736, 65520, 21, 0, 65521, 21, 0, 65522, 21, 536870912, 65523, 21, 0, 65519, 22, 0, 65520, 22, 0, 65521, 22, 0, 65522, 22, 0, 65523, 22, 0 )
+"cells": PoolIntArray( 65521, 16, 0, 65521, 17, 0, 65525, 17, -1610612736, 65526, 17, 0, 65527, 17, 0, 65521, 18, 0, 65521, 19, 0, 65519, 20, 0, 65520, 20, 0, 65521, 20, 0, 65522, 20, 0, 65523, 20, 0, 65519, 21, 0, 65520, 21, 0, 65521, 21, 0, 65522, 21, 0, 65523, 21, 0, 65519, 22, 0, 65520, 22, 0, 65521, 22, 0, 65522, 22, 0, 65523, 22, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -102,77 +101,86 @@ transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -10.083
 is_lock = true
 is_iron = true
 
-[node name="Chair" parent="." index="13" instance=ExtResource( 15 )]
+[node name="ShieldDoorExit2" parent="." index="13" instance=ExtResource( 9 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -25.3599, 0, 24.9684 )
+
+[node name="ShieldDoorExit3" parent="." index="14" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9942, 0, 29.1518 )
+
+[node name="Chair" parent="." index="15" instance=ExtResource( 15 )]
 transform = Transform( 0.0402189, 0, 0.999191, 0, 1, 0, -0.999191, 0, 0.0402189, -16.6795, 0, 25.2526 )
 
-[node name="Chair2" parent="." index="14" instance=ExtResource( 15 )]
+[node name="Chair2" parent="." index="16" instance=ExtResource( 15 )]
 transform = Transform( -0.034324, 0, 0.999411, 0, 1, 0, -0.999411, 0, -0.034324, -17.574, 0, 25.3251 )
 
-[node name="Chair8" parent="." index="15" instance=ExtResource( 15 )]
+[node name="Chair8" parent="." index="17" instance=ExtResource( 15 )]
 transform = Transform( -0.0964191, 0, 0.995341, 0, 1, 0, -0.995341, 0, -0.0964191, -21.191, 0, 25.5024 )
 
-[node name="Chair3" parent="." index="16" instance=ExtResource( 15 )]
+[node name="Chair3" parent="." index="18" instance=ExtResource( 15 )]
 transform = Transform( 0.0331727, 0, -0.99945, 0, 1, 0, 0.99945, 0, 0.0331727, -17.7113, 0, 26.638 )
 
-[node name="Chair4" parent="." index="17" instance=ExtResource( 15 )]
+[node name="Chair4" parent="." index="19" instance=ExtResource( 15 )]
 transform = Transform( 0.107531, 0, -0.994202, 0, 1, 0, 0.994202, 0, 0.107531, -16.4645, 0, 26.6123 )
 
-[node name="Chair5" parent="." index="18" instance=ExtResource( 15 )]
+[node name="Chair5" parent="." index="20" instance=ExtResource( 15 )]
 transform = Transform( 0.0402189, 0, 0.999191, 0, 1, 0, -0.999191, 0, 0.0402189, -20.1737, 0, 25.38 )
 
-[node name="Chair6" parent="." index="19" instance=ExtResource( 15 )]
+[node name="Chair6" parent="." index="21" instance=ExtResource( 15 )]
 transform = Transform( 0.0331727, 0, -0.99945, 0, 1, 0, 0.99945, 0, 0.0331727, -21.2748, 0, 26.5893 )
 
-[node name="Chair7" parent="." index="20" instance=ExtResource( 15 )]
+[node name="Chair7" parent="." index="22" instance=ExtResource( 15 )]
 transform = Transform( 0.107531, 0, -0.994202, 0, 1, 0, 0.994202, 0, 0.107531, -20.129, 0, 26.6107 )
 
-[node name="Chair9" parent="." index="21" instance=ExtResource( 15 )]
+[node name="Chair9" parent="." index="23" instance=ExtResource( 15 )]
 transform = Transform( -0.996112, 0, -0.0880945, 0, 1, 0, 0.0880945, 0, -0.996112, -17.36, 0, 35.1419 )
 
-[node name="ChestGold" parent="." index="22" instance=ExtResource( 13 )]
+[node name="ChestGold" parent="." index="24" instance=ExtResource( 13 )]
 transform = Transform( -0.940264, 0, -0.340445, 0, 1, 0, 0.340445, 0, -0.940264, -26.7795, 0, 27.0793 )
 
-[node name="Table" parent="." index="23" instance=ExtResource( 14 )]
+[node name="Table" parent="." index="25" instance=ExtResource( 14 )]
 transform = Transform( 0.993142, 0, -0.116913, 0, 1, 0, 0.116913, 0, 0.993142, -29.3742, 0, 25.3519 )
 
-[node name="Table2" parent="." index="24" instance=ExtResource( 14 )]
+[node name="Table2" parent="." index="26" instance=ExtResource( 14 )]
 transform = Transform( -0.0126883, 0, 0.999919, 0, 1, 0, -0.999919, 0, -0.0126883, -17.1157, 0, 25.9706 )
 
-[node name="Table3" parent="." index="25" instance=ExtResource( 14 )]
+[node name="Table3" parent="." index="27" instance=ExtResource( 14 )]
 transform = Transform( -0.0126883, 0, 0.999919, 0, 1, 0, -0.999919, 0, -0.0126883, -20.7069, 0, 26.0275 )
 
-[node name="Barrel" parent="." index="26" instance=ExtResource( 10 )]
+[node name="Barrel" parent="." index="28" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6472, 0.497634, 27.3974 )
 
-[node name="Barrel2" parent="." index="27" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.016, 0.498, 26.662 )
-
-[node name="table_2" parent="." index="28" instance=ExtResource( 12 )]
+[node name="table_2" parent="." index="29" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6547, 0, 35.0739 )
 
-[node name="library" parent="." index="29" instance=ExtResource( 17 )]
+[node name="library" parent="." index="30" instance=ExtResource( 17 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -19.3015, 0, 35.793 )
 
-[node name="Barrel3" parent="." index="30" instance=ExtResource( 10 )]
+[node name="Barrel3" parent="." index="31" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.21073, 0.497634, 28.4091 )
 
-[node name="Barrel4" parent="." index="31" instance=ExtResource( 10 )]
+[node name="Barrel4" parent="." index="32" instance=ExtResource( 10 )]
 transform = Transform( 0.842198, 0, 0.539168, 0, 1, 0, -0.539168, 0, 0.842198, -7.27655, 0.497634, 29.5208 )
 
-[node name="Barrel5" parent="." index="32" instance=ExtResource( 10 )]
+[node name="Barrel5" parent="." index="33" instance=ExtResource( 10 )]
 transform = Transform( 0.842198, 0, 0.539168, 0, 1, 0, -0.539168, 0, 0.842198, -6.3607, 0.497634, 29.0056 )
 
-[node name="Shield" parent="." index="33" instance=ExtResource( 11 )]
+[node name="Shield" parent="." index="34" instance=ExtResource( 11 )]
 transform = Transform( -0.125057, -0.13797, 0.982509, 0.238847, 0.956973, 0.164785, -0.962971, 0.255277, -0.0867223, -5.55824, 0.521348, 31.867 )
 
-[node name="ChestGold2" parent="." index="34" instance=ExtResource( 13 )]
+[node name="ChestGold2" parent="." index="35" instance=ExtResource( 13 )]
 transform = Transform( 0.128813, 0, -0.991669, 0, 1, 0, 0.991669, 0, 0.128813, -25.1538, 0, 40.9293 )
 
-[node name="SharpeningStone" parent="." index="35" instance=ExtResource( 16 )]
+[node name="SharpeningStone" parent="." index="36" instance=ExtResource( 16 )]
 transform = Transform( 0.810921, 0, -0.585156, 0, 1, 0, 0.585156, 0, 0.810921, -33.3146, 0, 40.8468 )
 
-[node name="Potion" parent="." index="36" instance=ExtResource( 18 )]
+[node name="Potion" parent="." index="37" instance=ExtResource( 18 )]
 transform = Transform( 0.913418, 0, 0.407024, 0, 1, 0, -0.407024, 0, 0.913418, -33.2268, 0, 41.874 )
+
+[node name="Skeleton" parent="." index="38" instance=ExtResource( 19 )]
+transform = Transform( 0.357618, 0, -0.933868, 0, 1, 0, 0.933868, 0, 0.357618, -27.8917, 0, 25.6505 )
+
+[node name="Skeleton2" parent="." index="39" instance=ExtResource( 19 )]
+transform = Transform( 0.614464, 0, -0.788945, 0, 1, 0, 0.788945, 0, 0.614464, -7.54408, 0, 30.9093 )
 [connection signal="triggered" from="TrapLever" to="." method="_on_trap_lever_triggered"]
 [connection signal="triggered" from="ShieldDoorLever" to="." method="_on_shield_door_lever_triggered"]
 [connection signal="triggered" from="ShieldDoorExitLever" to="." method="_on_shield_door_exit_lever_triggered"]

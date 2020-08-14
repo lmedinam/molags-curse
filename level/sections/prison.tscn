@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://level/level_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/furniture/torch_wall/torch_wall.tscn" type="PackedScene" id=2]
@@ -11,11 +11,14 @@
 [ext_resource path="res://actionables/coin.tscn" type="PackedScene" id=9]
 [ext_resource path="res://level/grid_objects.meshlib" type="MeshLibrary" id=10]
 [ext_resource path="res://enemies/skeleton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=12]
 
 [node name="Prison" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
 
 [node name="WallGrid" parent="." index="0"]
+collision_layer = 5
+collision_mask = 5
 data = {
 "cells": PoolIntArray( 65529, 0, 0, 65531, 0, 655365, 65530, 1, 0, 65531, 1, 655360, 65533, 1, 0, 65530, 2, 1441793, 65533, 2, 1441793, 65530, 65532, 1048577, 65533, 65532, 655365, 65530, 65533, 1048576, 65531, 65533, 1441792, 65533, 65533, 1048576, 65529, 65534, 1048576, 65531, 65534, 655365, 65530, 65535, 1048581, 65532, 65535, 1048582, 65533, 65535, 1048582 )
 }
@@ -28,7 +31,7 @@ data = {
 [node name="WallGrid2" type="GridMap" parent="." index="2"]
 mesh_library = ExtResource( 10 )
 data = {
-"cells": PoolIntArray( 0, 0, 1048577, 1, 0, 5, 65534, 0, -1610612731, 0, 1, 1048576, 1, 1, -1609957376, 65534, 1, 655360, 0, 65533, 0, 1, 65533, 1441792, 65534, 65533, 1441792, 0, 65534, 1441793, 1, 65534, 5, 65534, 65534, 5, 0, 65535, 1048582, 1, 65535, 655361, 65535, 65535, 1048582 )
+"cells": PoolIntArray( 0, 0, 1048577, 1, 0, -1610612731, 65534, 0, 5, 0, 1, 1048576, 1, 1, 655360, 65534, 1, 655360, 0, 65533, 0, 1, 65533, 1441792, 65534, 65533, 1441792, 0, 65534, 1441793, 1, 65534, 5, 65534, 65534, 5, 0, 65535, 1048582, 1, 65535, 655361, 65535, 65535, 1048582 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -39,7 +42,7 @@ mesh_library = ExtResource( 6 )
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PoolIntArray( 1, 0, -1610612736, 65534, 0, 0, 0, 1, 0, 1, 1, 0, 65534, 1, 0, 0, 65533, 0, 1, 65533, 0, 65534, 65533, 0, 1, 65534, 0, 65534, 65534, 0, 0, 65535, 0, 1, 65535, 0, 65534, 65535, 0, 65535, 65535, 0 )
+"cells": PoolIntArray( 1, 0, 0, 65534, 0, 0, 0, 1, 0, 1, 1, 0, 65534, 1, 0, 0, 65533, 0, 1, 65533, 0, 65534, 65533, 0, 1, 65534, 0, 65534, 65534, 0, 0, 65535, 0, 1, 65535, 0, 65534, 65535, 0, 65535, 65535, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -120,12 +123,15 @@ transform = Transform( 0.0388198, -0.339328, 0.939867, 0.997215, 0.0730961, -0.0
 
 [node name="SectionLever" parent="." index="7" instance=ExtResource( 4 )]
 transform = Transform( -1, 1.19209e-07, 1.41093e-07, -1.41093e-07, -8.14603e-08, -1, -1.19209e-07, -1, 8.14603e-08, -12.8906, 1.28672, 0 )
+closed = true
 
 [node name="PrisonLeverL" parent="." index="8" instance=ExtResource( 4 )]
 transform = Transform( -1.62921e-07, -1, 1.62921e-07, 0, -1.62921e-07, -1, 1, -1.62921e-07, 2.65431e-14, 4.01643, 1.28672, -1.58005 )
+closed = true
 
 [node name="PrisonLeverR" parent="." index="9" instance=ExtResource( 4 )]
 transform = Transform( -1.62921e-07, -1, 1.62921e-07, 0, -1.62921e-07, -1, 1, -1.62921e-07, 2.65431e-14, 4.01643, 1.28672, -0.340407 )
+closed = true
 
 [node name="PickUps" type="Spatial" parent="." index="10"]
 
@@ -136,7 +142,10 @@ transform = Transform( 0.822581, 0, 0.568648, 0, 1, 0, -0.568648, 0, 0.822581, -
 transform = Transform( 0.838623, 0, 0.544712, 0, 1, 0, -0.544712, 0, 0.838623, 3.2394, 0, -4.86621 )
 
 [node name="Skeleton" parent="." index="11" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76896, 0, 3.15031 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94756, 0, 3.39692 )
+
+[node name="Player" parent="." index="12" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.10565, 0, -3.82694 )
 [connection signal="triggered" from="SectionLever" to="." method="_on_section_lever_triggered"]
 [connection signal="triggered" from="PrisonLeverL" to="." method="_on_prison_lever_l_triggered"]
 [connection signal="triggered" from="PrisonLeverR" to="." method="_on_prison_lever_r_triggered"]

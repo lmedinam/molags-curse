@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://level/level_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/grid_objects.meshlib" type="MeshLibrary" id=2]
@@ -15,6 +15,15 @@
 [ext_resource path="res://level/furniture/torch_wall/torch_wall.tscn" type="PackedScene" id=13]
 [ext_resource path="res://init/transition.tscn" type="PackedScene" id=14]
 [ext_resource path="res://level/sections/boss_spawn_particles.tscn" type="PackedScene" id=15]
+[ext_resource path="res://level/furniture/library_2.tscn" type="PackedScene" id=16]
+[ext_resource path="res://actionables/potion.tscn" type="PackedScene" id=17]
+[ext_resource path="res://level/furniture/table_2.tscn" type="PackedScene" id=18]
+[ext_resource path="res://actionables/chest_gold.tscn" type="PackedScene" id=19]
+[ext_resource path="res://actionables/barrel.tscn" type="PackedScene" id=20]
+[ext_resource path="res://actionables/sharpening_stone.tscn" type="PackedScene" id=21]
+[ext_resource path="res://actionables/bed.tscn" type="PackedScene" id=22]
+[ext_resource path="res://level/furniture/library.tscn" type="PackedScene" id=23]
+[ext_resource path="res://actionables/chair.tscn" type="PackedScene" id=24]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.105981, 2.08713, 0.644717 )
@@ -146,7 +155,7 @@ script = ExtResource( 7 )
 
 [node name="WallGrid" parent="." index="0"]
 data = {
-"cells": PoolIntArray( 65526, 20, -1610612736, 65527, 20, 1, 65524, 21, 1048582, 65525, 21, 1441793, 65527, 21, 1, 65525, 22, 1441792, 65527, 22, 1, 65526, 23, 655366, 65526, 24, 655366, 65526, 25, 655365, 65525, 26, 0, 65527, 26, 1441792, 65522, 27, 0, 65523, 27, 1441793, 65524, 27, 1048581, 65528, 27, 1441797, 65522, 28, 1, 65523, 28, 655361, 65525, 28, 1048576, 65527, 28, 655360, 65522, 29, 1, 65523, 29, 655361, 65526, 29, 5, 65522, 30, 1048576, 65523, 30, 655360, 65525, 30, 0, 65527, 30, 1441792, 65525, 31, 1048576, 65526, 31, 1048577, 65527, 31, 655360 )
+"cells": PoolIntArray( 65526, 20, 0, 65527, 20, 1, 65524, 21, 1048582, 65525, 21, 1441793, 65527, 21, 1, 65525, 22, 1441792, 65527, 22, 1, 65526, 23, 655366, 65526, 24, 655366, 65526, 25, 655365, 65525, 26, 0, 65527, 26, 1441792, 65522, 27, 0, 65523, 27, 1441793, 65524, 27, 1048581, 65528, 27, 1441797, 65522, 28, 1, 65523, 28, 655361, 65525, 28, 1048576, 65527, 28, 655360, 65522, 29, 1, 65523, 29, 655361, 65526, 29, 5, 65522, 30, 1048576, 65523, 30, 655360, 65525, 30, 0, 65527, 30, 1441792, 65525, 31, 1048576, 65526, 31, 1048577, 65527, 31, 655360 )
 }
 
 [node name="FloorGrid" parent="." index="1"]
@@ -157,10 +166,46 @@ data = {
 [node name="TorchFloor" parent="Lights" index="0" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7007, 0, 54.9501 )
 
-[node name="TorchWall" parent="Lights" index="1" instance=ExtResource( 13 )]
+[node name="TorchFloor2" parent="Lights" index="1" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4867, 0, 40.5928 )
+
+[node name="TorchFloor3" parent="Lights" index="2" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.6062, 0, 57.114 )
+
+[node name="TorchFloor4" parent="Lights" index="3" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2533, 0, 55.1161 )
+
+[node name="TorchFloor5" parent="Lights" index="4" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9168, 0, 55.1161 )
+
+[node name="TorchFloor8" parent="Lights" index="5" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.63465, 0, 41.8074 )
+
+[node name="TorchFloor6" parent="Lights" index="6" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9126, 0, 57.7143 )
+
+[node name="TorchFloor7" parent="Lights" index="7" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9126, 0, 52.2195 )
+
+[node name="TorchWall" parent="Lights" index="8" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.7685, 1.6, 52.6552 )
 
-[node name="TorchWall2" parent="Lights" index="2" instance=ExtResource( 13 )]
+[node name="TorchWall3" parent="Lights" index="9" instance=ExtResource( 13 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -18.9633, 1.6, 54.7349 )
+
+[node name="TorchWall4" parent="Lights" index="10" instance=ExtResource( 13 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -17.4207, 1.6, 63.9888 )
+
+[node name="TorchWall6" parent="Lights" index="11" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.53099, 1.6, 38.0173 )
+
+[node name="TorchWall7" parent="Lights" index="12" instance=ExtResource( 13 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 6.53099, 1.6, 43.9663 )
+
+[node name="TorchWall5" parent="Lights" index="13" instance=ExtResource( 13 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -20.6485, 1.6, 63.9888 )
+
+[node name="TorchWall2" parent="Lights" index="14" instance=ExtResource( 13 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 26.7685, 1.6, 57.9889 )
 
 [node name="TrapZone2" type="Spatial" parent="." index="3"]
@@ -190,7 +235,7 @@ __meta__ = {
 [node name="WallGrid" type="GridMap" parent="TrapZone3" index="0"]
 mesh_library = ExtResource( 2 )
 data = {
-"cells": PoolIntArray( 65531, 30, 655364, 65531, 31, 655364, 65531, 32, 3, 65532, 32, 1048577, 65531, 33, 1048576, 65532, 33, 655360 )
+"cells": PoolIntArray( 65531, 30, 655364, 65531, 31, 537526276, 65531, 32, 3, 65532, 32, 1048577, 65531, 33, 1048576, 65532, 33, 655360 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -208,12 +253,12 @@ __meta__ = {
 }
 
 [node name="FireTrap4" parent="TrapZone3" index="2" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08027, 0, 61.6371 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08027, 0, 64.4193 )
 interval = 2.0
 turn_on = true
 
 [node name="FireTrap5" parent="TrapZone3" index="3" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.05263, 0, 62.716 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.05263, 0, 65.4982 )
 start_delay = 1.0
 interval = 2.0
 turn_on = true
@@ -223,7 +268,7 @@ turn_on = true
 [node name="WallGrid" type="GridMap" parent="PuzzleBoss" index="0"]
 mesh_library = ExtResource( 2 )
 data = {
-"cells": PoolIntArray( 6, 25, 1048577, 5, 26, 0, 7, 26, 1441792, 1, 27, 1441796, 2, 27, 1441796, 3, 27, 1441796, 4, 27, 1048579, 8, 27, 1441795, 9, 27, 1441796, 5, 28, 1048576, 7, 28, 655360, 6, 29, 1441793 )
+"cells": PoolIntArray( 6, 25, 537919489, 5, 26, 0, 7, 26, 1441792, 1, 27, 1441796, 2, 27, 1441796, 3, 27, 1441796, 4, 27, 537919491, 8, 27, 1441795, 9, 27, 1441796, 5, 28, 1048576, 7, 28, 655360, 6, 29, 1441793 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -245,7 +290,7 @@ __meta__ = {
 [node name="WallGrid" type="GridMap" parent="BossFight" index="0"]
 mesh_library = ExtResource( 2 )
 data = {
-"cells": PoolIntArray( 12, 25, 0, 13, 25, 1441793, 14, 25, 1441793, 15, 25, 1441793, 16, 25, 1441793, 17, 25, 1441792, 12, 26, 1, 18, 26, 1, 10, 27, 1441796, 11, 27, 1048579, 18, 27, 1, 12, 28, 1, 18, 28, 1, 12, 29, 1048576, 13, 29, 1048577, 14, 29, 1048577, 15, 29, 1048577, 16, 29, 1048577, 17, 29, 655360 )
+"cells": PoolIntArray( 12, 25, 0, 13, 25, 1441793, 14, 25, 1441793, 15, 25, 1441793, 16, 25, 1441793, 17, 25, 538312704, 12, 26, 1, 18, 26, 1, 10, 27, 1441796, 11, 27, 1048579, 18, 27, 1, 12, 28, 1, 18, 28, 1, 12, 29, 1048576, 13, 29, 1048577, 14, 29, 537919489, 15, 29, 1048577, 16, 29, 1048577, 17, 29, 655360 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -256,7 +301,7 @@ mesh_library = ExtResource( 3 )
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PoolIntArray( 12, 25, 0, 13, 25, 0, 14, 25, 0, 15, 25, 0, 16, 25, 0, 17, 25, 0, 5, 26, 0, 6, 26, 0, 7, 26, 0, 11, 26, 0, 12, 26, 0, 13, 26, 0, 14, 26, 0, 15, 26, 0, 16, 26, 0, 17, 26, 0, 1, 27, 0, 2, 27, 0, 3, 27, 0, 4, 27, 0, 5, 27, 0, 6, 27, 0, 7, 27, 0, 8, 27, 0, 9, 27, 0, 10, 27, 0, 11, 27, 0, 12, 27, 0, 13, 27, 0, 14, 27, 0, 15, 27, 0, 16, 27, 0, 17, 27, 0, 5, 28, 0, 6, 28, 0, 7, 28, 0, 11, 28, 0, 12, 28, 0, 13, 28, 0, 14, 28, 0, 15, 28, 0, 16, 28, 0, 17, 28, 0, 12, 29, 0, 13, 29, 0, 14, 29, 0, 15, 29, 0, 16, 29, 0, 17, 29, 0 )
+"cells": PoolIntArray( 12, 25, 0, 13, 25, 0, 14, 25, 0, 15, 25, 536870912, 16, 25, 0, 17, 25, 0, 5, 26, 0, 6, 26, 536870912, 7, 26, 0, 11, 26, 0, 12, 26, 0, 13, 26, 0, 14, 26, 536870912, 15, 26, 0, 16, 26, 0, 17, 26, 0, 1, 27, 0, 2, 27, 0, 3, 27, 0, 4, 27, 0, 5, 27, 0, 6, 27, 0, 7, 27, 0, 8, 27, 0, 9, 27, 0, 10, 27, 0, 11, 27, 0, 12, 27, 0, 13, 27, 0, 14, 27, 0, 15, 27, 0, 16, 27, 0, 17, 27, 0, 5, 28, 0, 6, 28, 0, 7, 28, 0, 11, 28, 0, 12, 28, 0, 13, 28, 0, 14, 28, 0, 15, 28, 0, 16, 28, 0, 17, 28, 0, 12, 29, 0, 13, 29, 0, 14, 29, 0, 15, 29, 0, 16, 29, 0, 17, 29, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -278,7 +323,7 @@ mesh_library = ExtResource( 3 )
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PoolIntArray( 65532, 20, 0, 65533, 20, 0, 65534, 20, 0, 65532, 21, 0, 65533, 21, 0, 65534, 21, 0, 65532, 22, 655360, 65533, 22, 0, 65534, 22, 655360, 65532, 23, 655360, 65533, 23, 0, 65534, 23, 655360, 65532, 24, 655360, 65533, 24, 0, 65534, 24, 655360 )
+"cells": PoolIntArray( 65532, 20, 0, 65533, 20, 0, 65534, 20, 0, 65532, 21, 0, 65533, 21, 0, 65534, 21, 0, 65532, 22, 655360, 65533, 22, 536870912, 65534, 22, 655360, 65532, 23, 655360, 65533, 23, 536870912, 65534, 23, 655360, 65532, 24, 655360, 65533, 24, 0, 65534, 24, 655360 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -324,7 +369,7 @@ turn_on = true
 [node name="WallGrid" type="GridMap" parent="Entrrance" index="0"]
 mesh_library = ExtResource( 2 )
 data = {
-"cells": PoolIntArray( 65533, 25, 655365, 65529, 26, 0, 65530, 26, 1441793, 65531, 26, 1441793, 65532, 26, 1441793, 65534, 26, 1441793, 65535, 26, 1441792, 0, 27, 1441795, 65529, 28, 1048576, 65530, 28, 1048577, 65532, 28, 1048577, 65533, 28, 1048577, 65534, 28, 1048577, 65535, 28, 655360, 65531, 29, 655365 )
+"cells": PoolIntArray( 65533, 25, 655365, 65529, 26, 0, 65530, 26, 1441793, 65531, 26, 1441793, 65532, 26, 1441793, 65534, 26, 1441793, 65535, 26, 1441792, 0, 27, 1441795, 65529, 28, 1048576, 65530, 28, 1048577, 65532, 28, 1048577, 65533, 28, 1048577, 65534, 28, 1048577, 65535, 28, 655360, 65531, 29, 655363 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -335,7 +380,7 @@ mesh_library = ExtResource( 3 )
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PoolIntArray( 65533, 25, 0, 65529, 26, 0, 65530, 26, 0, 65531, 26, 0, 65532, 26, 0, 65533, 26, 0, 65534, 26, 0, 65535, 26, 0, 0, 27, 536870912, 65529, 27, 0, 65530, 27, 0, 65531, 27, 1073741824, 65532, 27, 0, 65533, 27, 536870912, 65534, 27, 0, 65535, 27, 0, 65529, 28, 0, 65530, 28, 0, 65531, 28, 0, 65532, 28, 0, 65533, 28, 0, 65534, 28, 0, 65535, 28, 0, 65531, 29, 0 )
+"cells": PoolIntArray( 65533, 25, 0, 65529, 26, 0, 65530, 26, 536870912, 65531, 26, 0, 65532, 26, 536870912, 65533, 26, 536870912, 65534, 26, 0, 65535, 26, 536870912, 0, 27, 0, 65529, 27, 0, 65530, 27, 0, 65531, 27, 536870912, 65532, 27, 0, 65533, 27, 0, 65534, 27, 0, 65535, 27, 0, 65529, 28, 0, 65530, 28, 0, 65531, 28, 0, 65532, 28, 0, 65533, 28, 0, 65534, 28, 0, 65535, 28, 0, 65531, 29, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -343,29 +388,39 @@ __meta__ = {
 
 [node name="TrapLever" parent="." index="9" instance=ExtResource( 6 )]
 transform = Transform( -1.62921e-07, 1, 1.62921e-07, 0, -1.62921e-07, 1, 1, 1.62921e-07, 2.65431e-14, -8.00377, 1.4, 41.2359 )
+closed = true
 
 [node name="TrapLever2" parent="." index="10" instance=ExtResource( 6 )]
 transform = Transform( -1.62921e-07, -1, -1.62921e-07, 0, -1.62921e-07, 1, -1, 1.62921e-07, 2.65431e-14, 8.02674, 1.4, 42.944 )
+closed = true
 
 [node name="TrapLever3" parent="." index="11" instance=ExtResource( 6 )]
 transform = Transform( -1.62921e-07, -1, -1.62921e-07, 0, -1.62921e-07, 1, -1, 1.62921e-07, 2.65431e-14, -5.98814, 1.4, 66.4135 )
+closed = true
 
 [node name="BossGateLever" parent="." index="12" instance=ExtResource( 6 )]
 transform = Transform( -1.62921e-07, -1, -1.62921e-07, 0, -1.62921e-07, 1, -1, 1.62921e-07, 2.65431e-14, 8.02674, 1.4, 39.2724 )
+closed = true
 
 [node name="BossGateLever2" parent="." index="13" instance=ExtResource( 6 )]
 transform = Transform( -1.62921e-07, -1, -1.62921e-07, 0, -1.62921e-07, 1, -1, 1.62921e-07, 2.65431e-14, -5.97912, 1.4, 67.1092 )
+closed = true
 
 [node name="BossDoor1" parent="." index="14" instance=ExtResource( 8 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 2.12711, 0, 55.0133 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 2.12711, 0, 55.0133 )
+initial_open = false
 is_lock = true
 is_iron = true
 
 [node name="MainBossDoor" parent="." index="15" instance=ExtResource( 8 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 16.9074, 0, 55.0133 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 16.9074, 0, 55.0133 )
+initial_open = false
+is_lock = false
+is_iron = false
 
 [node name="BossDoor2" parent="." index="16" instance=ExtResource( 8 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 7.87943, 0, 55.0133 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 7.87943, 0, 55.0133 )
+initial_open = false
 is_lock = true
 is_iron = true
 
@@ -379,6 +434,7 @@ shape = SubResource( 1 )
 [node name="Molag" parent="." index="18" instance=ExtResource( 9 )]
 transform = Transform( -0.020611, 0, 0.999788, 0, 1, 0, -0.999788, 0, -0.020611, 33.1076, -1.19209e-07, 55.086 )
 fireball = true
+at_see_player = false
 
 [node name="Spawns" type="Spatial" parent="." index="19"]
 
@@ -387,17 +443,28 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0.023, 55.036 )
 
 [node name="Particles" parent="Spawns/MolagSpawner" index="1" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.215, 0 )
+emitting = false
 
 [node name="SkeletonSpawnerR" parent="Spawns" index="1" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.016, 52.368 )
 
 [node name="Particles" parent="Spawns/SkeletonSpawnerR" index="1" instance=ExtResource( 15 )]
+emitting = false
 
 [node name="SkeletonSpawnerL" parent="Spawns" index="2" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.0161973, 58.3276 )
 
 [node name="Particles" parent="Spawns/SkeletonSpawnerL" index="1" instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.222, 0 )
+emitting = false
+
+[node name="SkeletonsDelay" type="Timer" parent="Spawns" index="3"]
+wait_time = 5.0
+one_shot = true
+
+[node name="MolagDelay" type="Timer" parent="Spawns" index="4"]
+wait_time = 5.0
+one_shot = true
 
 [node name="Column" parent="." index="20" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.7282, 0, 52.3582 )
@@ -412,10 +479,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34.2543, 0, 54.9989 )
 anims/molag_camera = SubResource( 2 )
 
 [node name="Spatial" type="Spatial" parent="." index="24"]
-transform = Transform( 0.995884, -0.0696389, 0.0580171, 0.0697564, 0.997564, 0, -0.0578757, 0.00404706, 0.998316, 33.0116, 1.3156, 55.0317 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0116, 1.3156, 55.0317 )
 
 [node name="Camera" type="Camera" parent="Spatial" index="0"]
-transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -3.25373, 0, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.10031, 0, 0 )
 
 [node name="OmniLight" type="OmniLight" parent="Spatial/Camera" index="0"]
 light_color = Color( 0.968627, 1, 0.513726, 1 )
@@ -425,14 +492,199 @@ omni_range = 4.0
 omni_attenuation = 2.5
 
 [node name="PlayerTransition" parent="." index="25" instance=ExtResource( 14 )]
+visible = false
 
 [node name="CameraTransition" parent="." index="26" instance=ExtResource( 14 )]
+visible = false
+
+[node name="Furniture" type="Spatial" parent="." index="27"]
+
+[node name="table_2" parent="Furniture" index="0" instance=ExtResource( 18 )]
+transform = Transform( 0.283011, 0, 0.959117, 0, 1, 0, -0.959117, 0, 0.283011, -19.05, 0, 42.1116 )
+
+[node name="Chair" parent="Furniture" index="1" instance=ExtResource( 24 )]
+transform = Transform( 0.135231, 0, 0.990814, 0, 1, 0, -0.990814, 0, 0.135231, -18.8574, 0, 41.4377 )
+
+[node name="table_3" parent="Furniture" index="2" instance=ExtResource( 18 )]
+transform = Transform( 0.99351, 0, -0.113741, 0, 1, 0, 0.113741, 0, 0.99351, -27.5226, 0, 55.5621 )
+
+[node name="Chair2" parent="Furniture" index="3" instance=ExtResource( 24 )]
+transform = Transform( 0.999304, 0, 0.0372891, 0, 1, 0, -0.0372891, 0, 0.999304, -26.8255, 0, 55.6359 )
+
+[node name="table_4" parent="Furniture" index="4" instance=ExtResource( 18 )]
+transform = Transform( 0.00376986, 0, 0.999993, 0, 1, 0, -0.999993, 0, 0.00376986, -12.7274, 0, 57.5134 )
+
+[node name="Chair3" parent="Furniture" index="5" instance=ExtResource( 24 )]
+transform = Transform( -0.146981, 0, 0.989139, 0, 1, 0, -0.989139, 0, -0.146981, -12.7308, 0, 56.8125 )
+
+[node name="Column" parent="Furniture" index="6" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9227, 0, 55.0243 )
+
+[node name="Column2" parent="Furniture" index="7" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1594, 0, 55.0243 )
+
+[node name="Column3" parent="Furniture" index="8" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.83751, 0, 55.0243 )
+
+[node name="Column4" parent="Furniture" index="9" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97257, 0, 55.0243 )
+
+[node name="Bed" parent="Furniture" index="10" instance=ExtResource( 22 )]
+transform = Transform( -0.135059, 0, 0.990838, 0, 1, 0, -0.990838, 0, -0.135059, -26.8079, 0.363204, 61.1717 )
+
+[node name="Bed2" parent="Furniture" index="11" instance=ExtResource( 22 )]
+transform = Transform( -0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -26.8079, 0.363204, 58.3788 )
+
+[node name="library" parent="Furniture" index="12" instance=ExtResource( 23 )]
+transform = Transform( 0.997163, 0, -0.0752746, 0, 1, 0, 0.0752746, 0, 0.997163, -25.4325, 0, 54.213 )
+
+[node name="table_5" parent="Furniture" index="13" instance=ExtResource( 18 )]
+transform = Transform( 0.00376986, 0, 0.999993, 0, 1, 0, -0.999993, 0, 0.00376986, 14.4771, 0, 57.5134 )
+
+[node name="Chair4" parent="Furniture" index="14" instance=ExtResource( 24 )]
+transform = Transform( -0.146981, 0, 0.989139, 0, 1, 0, -0.989139, 0, -0.146981, 14.4737, 0, 56.8125 )
+
+[node name="table_6" parent="Furniture" index="15" instance=ExtResource( 18 )]
+transform = Transform( -0.0891548, 0, -0.996018, 0, 1, 0, 0.996018, 0, -0.0891548, 14.6832, 0, 52.6457 )
+
+[node name="Chair5" parent="Furniture" index="16" instance=ExtResource( 24 )]
+transform = Transform( 0.0619721, 0, -0.998078, 0, 1, 0, 0.998078, 0, 0.0619721, 14.6267, 0, 53.3443 )
+
+[node name="Potion" parent="." index="28" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3692, 0.941483, 41.9434 )
+
+[node name="Potion2" parent="." index="29" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.3713, 0.941483, 55.2917 )
+
+[node name="Potion3" parent="." index="30" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.22, 0.99642, 57.4107 )
+
+[node name="ChestGold" parent="." index="31" instance=ExtResource( 19 )]
+transform = Transform( -0.953628, 0, -0.300989, 0, 1, 0, 0.300989, 0, -0.953628, -24.7605, 0, 60.916 )
+
+[node name="Barrel" parent="." index="32" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.1871, 0.497634, 63.1651 )
+
+[node name="Barrel2" parent="." index="33" instance=ExtResource( 20 )]
+transform = Transform( 0.939256, 0, -0.343217, 0, 1, 0, 0.343217, 0, 0.939256, -20.9609, 0.497634, 61.7701 )
+
+[node name="Barrel3" parent="." index="34" instance=ExtResource( 20 )]
+transform = Transform( 0.939256, 0, -0.343217, 0, 1, 0, 0.343217, 0, 0.939256, -19.9707, 0.497634, 62.5946 )
+
+[node name="Barrel7" parent="." index="35" instance=ExtResource( 20 )]
+transform = Transform( 0.744615, 0, 0.667495, 0, 1, 0, -0.667495, 0, 0.744615, -1.88055, 0.497634, 57.4019 )
+
+[node name="Barrel8" parent="." index="36" instance=ExtResource( 20 )]
+transform = Transform( 0.744615, 0, 0.667495, 0, 1, 0, -0.667495, 0, 0.744615, -0.687233, 0.497634, 56.9158 )
+
+[node name="Barrel11" parent="." index="37" instance=ExtResource( 20 )]
+transform = Transform( 0.744615, 0, 0.667495, 0, 1, 0, -0.667495, 0, 0.744615, -7.17654, 0.497634, 40.5163 )
+
+[node name="Barrel4" parent="." index="38" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4934, 0.497634, 61.6441 )
+
+[node name="Barrel5" parent="." index="39" instance=ExtResource( 20 )]
+transform = Transform( 0.939256, 0, -0.343217, 0, 1, 0, 0.343217, 0, 0.939256, -17.4047, 0.497634, 60.6012 )
+
+[node name="Barrel6" parent="." index="40" instance=ExtResource( 20 )]
+transform = Transform( 0.939256, 0, -0.343217, 0, 1, 0, 0.343217, 0, 0.939256, -16.4144, 0.497634, 61.4257 )
+
+[node name="Barrel9" parent="." index="41" instance=ExtResource( 20 )]
+transform = Transform( 0.939256, 0, -0.343217, 0, 1, 0, 0.343217, 0, 0.939256, 5.10512, 0.497634, 38.4014 )
+
+[node name="Barrel10" parent="." index="42" instance=ExtResource( 20 )]
+transform = Transform( 0.939256, 0, -0.343217, 0, 1, 0, 0.343217, 0, 0.939256, 4.68114, 0.497634, 39.4525 )
+
+[node name="Door" parent="." index="43" instance=ExtResource( 8 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -18.9976, 0, 50.7557 )
+initial_open = false
+is_lock = false
+is_iron = false
+
+[node name="Door2" parent="." index="44" instance=ExtResource( 8 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -23.0106, 0, 54.9949 )
+initial_open = false
+is_lock = false
+is_iron = false
+
+[node name="Door3" parent="." index="45" instance=ExtResource( 8 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -18.9922, 0, 59.0408 )
+initial_open = false
+is_lock = false
+is_iron = false
+
+[node name="Door4" parent="." index="46" instance=ExtResource( 8 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -14.9701, 0, 55.0134 )
+initial_open = false
+is_lock = false
+is_iron = false
+
+[node name="library_2" parent="." index="47" instance=ExtResource( 16 )]
+transform = Transform( 0.998914, 0, 0.0466009, 0, 1, 0, -0.0466009, 0, 0.998914, -12.3051, 0, 52.3606 )
+
+[node name="library_7" parent="." index="48" instance=ExtResource( 16 )]
+transform = Transform( -0.987927, 0, 0.154917, 0, 1, 0, -0.154917, 0, -0.987927, 11.198, 0, 57.686 )
+
+[node name="library_3" parent="." index="49" instance=ExtResource( 16 )]
+transform = Transform( 0.99828, 0, -0.0586269, 0, 1, 0, 0.0586269, 0, 0.99828, -10.2581, 0, 52.3606 )
+
+[node name="library_5" parent="." index="50" instance=ExtResource( 16 )]
+transform = Transform( -0.999988, 0, 0.00481731, 0, 1, 0, -0.00481731, 0, -0.999988, -4.07254, 0, 57.4841 )
+
+[node name="library_6" parent="." index="51" instance=ExtResource( 16 )]
+transform = Transform( -0.999988, 0, 0.00481731, 0, 1, 0, -0.00481731, 0, -0.999988, -6.53547, 0, 57.4841 )
+
+[node name="library_4" parent="." index="52" instance=ExtResource( 16 )]
+transform = Transform( 0.99973, 0, -0.0232457, 0, 1, 0, 0.0232457, 0, 0.99973, -8.00069, 0, 52.3606 )
+
+[node name="library_8" parent="." index="53" instance=ExtResource( 16 )]
+transform = Transform( -0.179094, 0, -0.983832, 0, 1, 0, 0.983832, 0, -0.179094, 7.80128, 0, 40.7858 )
+
+[node name="library_9" parent="." index="54" instance=ExtResource( 16 )]
+transform = Transform( 0.166046, 0, -0.986118, 0, 1, 0, 0.986118, 0, 0.166046, 7.78068, 0, 41.9497 )
+
+[node name="ChestGold2" parent="." index="55" instance=ExtResource( 19 )]
+transform = Transform( 0.944657, 0, 0.328059, 0, 1, 0, -0.328059, 0, 0.944657, 10.7714, 0, 52.9245 )
+
+[node name="SharpeningStone" parent="." index="56" instance=ExtResource( 21 )]
+transform = Transform( 0.959102, 0, 0.283061, 0, 1, 0, -0.283061, 0, 0.959102, 15.0344, 0.823529, 52.6629 )
+
+[node name="SharpeningStone2" parent="." index="57" instance=ExtResource( 21 )]
+transform = Transform( 0.913169, 0, 0.407582, 0, 1, 0, -0.407582, 0, 0.913169, -17.1011, 0, 63.0165 )
+
+[node name="Chair" parent="." index="58" instance=ExtResource( 24 )]
+transform = Transform( 0.184377, 0.282546, -0.941368, 0.773405, -0.632746, -0.0384348, -0.606506, -0.720972, -0.335186, 5.59128, 0.597823, 42.2337 )
+
+[node name="Skeleton" parent="." index="59" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.1011, 0, 56.8811 )
+
+[node name="Skeleton2" parent="." index="60" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19109, 0, 54.8941 )
+
+[node name="Skeleton3" parent="." index="61" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.10195, 0, 54.8941 )
+
+[node name="Skeleton4" parent="." index="62" instance=ExtResource( 9 )]
+transform = Transform( 0.99935, 0, 0.0360507, 0, 1, 0, -0.0360507, 0, 0.99935, 4.45799, 0, 42.9167 )
+
+[node name="Potion4" parent="." index="63" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8334, 0, 52.2387 )
+
+[node name="Potion5" parent="." index="64" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8334, 0, 58.3048 )
+
+[node name="PlayerWins" type="Timer" parent="." index="65"]
+wait_time = 3.0
+one_shot = true
 [connection signal="triggered" from="TrapLever" to="." method="_on_trap_lever_triggered"]
 [connection signal="triggered" from="TrapLever2" to="." method="_on_trap_lever_2_triggered"]
 [connection signal="triggered" from="TrapLever3" to="." method="_on_trap_lever_3_triggered"]
 [connection signal="triggered" from="BossGateLever" to="." method="_on_boss_gate_lever_triggered"]
 [connection signal="triggered" from="BossGateLever2" to="." method="_on_boss_gate_lever_2_triggered"]
 [connection signal="body_entered" from="BossTrigger" to="." method="_on_boss_trigger_body_entered"]
-[connection signal="death" from="Molag" to="." method="_on_molag_death"]
+[connection signal="killed" from="Molag" to="." method="_on_molag_death"]
+[connection signal="timeout" from="Spawns/SkeletonsDelay" to="." method="_on_skeletons_delay_timeout"]
+[connection signal="timeout" from="Spawns/MolagDelay" to="." method="_on_molag_delay_timeout"]
 [connection signal="fade_out" from="PlayerTransition" to="." method="_on_player_transition_fade_out"]
 [connection signal="fade_out" from="CameraTransition" to="." method="_on_camera_transition_fade_out"]
+[connection signal="timeout" from="PlayerWins" to="." method="_on_player_wins_timeout"]

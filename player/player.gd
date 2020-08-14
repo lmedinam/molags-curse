@@ -4,7 +4,7 @@ const SPEED = 2
 const ACCEL = 2
 const DEACCEL = 4
 const GRAVITY = -9.8 * 3
-const BASE_DAMAGE = 6
+const BASE_DAMAGE = 4
 
 var camera_angle = 0
 var mouse_sensitivity = 1.5
@@ -25,8 +25,8 @@ var refilling = true
 var death = false
 var shield_up = false
 
-var has_sword = true
-var has_shield = true
+var has_sword = false
+var has_shield = false
 
 var head_st: AnimationNodeStateMachinePlayback
 var right_hand_st: AnimationNodeStateMachinePlayback
@@ -34,6 +34,7 @@ var left_hand_st: AnimationNodeStateMachinePlayback
 
 var stop_player = false
 var slow_player = false
+var molag_is_death = false
 
 func _ready():
 	GameManager.player = self
@@ -165,6 +166,7 @@ func got_hit():
 	if hp <= 0 and not death:
 		death = true
 		$Offset/AnimationPlayer.play("die")
+		$DieTImer.start()
 		
 
 func run_pickup_anim():
@@ -210,3 +212,16 @@ func _on_refill_delay_timeout():
 func _on_shield_up_timer_timeout():
 	if shield_up:
 		use_stamina(2)
+
+func _on_die_tImer_timeout():
+	$Transition.fade_out()
+
+func wins():
+	molag_is_death = true
+	$Transition.fade_out()
+
+func _on_transition_fade_out():
+	if molag_is_death:
+		get_tree().change_scene("res://end/you_win.tscn")
+	else:
+		get_tree().change_scene("res://end/you_die.tscn")

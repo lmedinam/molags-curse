@@ -28,10 +28,13 @@ func _on_boss_trigger_body_entered(body):
 		$MainBossDoor._on_container_door_triggered()
 		$MainBossDoor.is_lock = true
 		
+		$PlayerTransition.visible = true
+		
 		GameManager.player.stop_player = true
 		$PlayerTransition.fade_out()
 
 func end_animation():
+	$CameraTransition.visible = true
 	$CameraTransition.fade_out()
 
 func _on_player_transition_fade_out():
@@ -46,28 +49,35 @@ func _on_camera_transition_fade_out():
 	$CameraTransition.fade_in()
 
 func _on_molag_death():
-	if molag_stage >= 3:
-		pass
+	if molag_stage >= 2:
+		$PlayerWins.start()
 	else:
 		molag_stage += 1
-		spawn_skeletons()
+		$Spawns/SkeletonsDelay.start()
+		skeleton_spawn_emitting(true)
 
 func spawn_skeleton(var node: Spatial):
 	var skeleton_i = skeleton.instance()
-	skeleton_i.connect("death", self, "_on_kill_skeleton")
+	skeleton_i.connect("killed", self, "_on_kill_skeleton")
 	node.add_child(skeleton_i)
 
 func spawn_skeletons():
 	spawn_skeleton($Spawns/SkeletonSpawnerL)
 	spawn_skeleton($Spawns/SkeletonSpawnerR)
 
+func skeleton_spawn_emitting(state: bool):
+	$Spawns/SkeletonSpawnerL/Particles.emitting = state
+	$Spawns/SkeletonSpawnerR/Particles.emitting = state
+
 func some_skeleton_alive():
+	var deaths = []
+	
 	for child in $Spawns/SkeletonSpawnerL.get_children():
 		if child.has_method("kill"):
 			if not child.death:
 				return true
 	
-	for child in $Spawns/SkeletonSpawnerL.get_children():
+	for child in $Spawns/SkeletonSpawnerR.get_children():
 		if child.has_method("kill"):
 			if not child.death:
 				return true
@@ -76,10 +86,22 @@ func some_skeleton_alive():
 
 func respawn_molag():
 	var molag = skeleton.instance()
-	molag.connect("death", self, "_on_molag_death")
+	molag.connect("killed", self, "_on_molag_death")
 	molag.fireball = true
 	$Spawns/MolagSpawner.add_child(molag)
 
 func _on_kill_skeleton():
 	if not some_skeleton_alive():
-		respawn_molag()
+		$Spawns/MolagSpawner/Particles.emitting = true
+		$Spawns/MolagDelay.start()
+
+func _on_skeletons_delay_timeout():
+	spawn_skeletons()
+	skeleton_spawn_emitting(false)
+
+func _on_molag_delay_timeout():
+	respawn_molag()
+	$Spawns/MolagSpawner/Particles.emitting = false
+
+func _on_player_wins_timeout():
+	GameManager.player.wins()

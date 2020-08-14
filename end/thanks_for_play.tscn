@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://font_8.tres" type="DynamicFont" id=1]
+[ext_resource path="res://init/black.jpg" type="Texture" id=2]
+[ext_resource path="res://end/thanks_for_play.gd" type="Script" id=3]
+[ext_resource path="res://init/transition.tscn" type="PackedScene" id=4]
+
+[node name="ThanksForPlay" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 218.0
+margin_right = 261.0
+margin_bottom = 480.0
+alignment = 1
+
+[node name="ThanksFor" type="Label" parent="HBoxContainer/VBoxContainer"]
+margin_top = 235.0
+margin_right = 43.0
+margin_bottom = 238.0
+custom_fonts/font = ExtResource( 1 )
+text = "Thanks for"
+align = 1
+
+[node name="Play" type="Label" parent="HBoxContainer/VBoxContainer"]
+margin_top = 242.0
+margin_right = 43.0
+margin_bottom = 245.0
+custom_fonts/font = ExtResource( 1 )
+text = "Play"
+align = 1
+
+[node name="Transition" parent="." instance=ExtResource( 4 )]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+[connection signal="fade_in" from="Transition" to="." method="_on_transition_fade_in"]
+[connection signal="fade_out" from="Transition" to="." method="_on_transition_fade_out"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

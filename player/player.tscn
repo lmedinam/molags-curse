@@ -1095,9 +1095,15 @@ autostart = true
 wait_time = 0.25
 autostart = true
 
+[node name="DieTImer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
 [node name="Transition" parent="." instance=ExtResource( 13 )]
 [connection signal="timeout" from="PickupItemDelay" to="." method="_on_pickup_item_delay_timeout"]
 [connection signal="timeout" from="SharpeningSwordDelay" to="." method="_on_sharpening_sword_delay_timeout"]
 [connection signal="timeout" from="RefillDelay" to="." method="_on_refill_delay_timeout"]
 [connection signal="timeout" from="RefillTick" to="." method="_on_refill_tick_timeout"]
 [connection signal="timeout" from="ShieldUpTimer" to="." method="_on_shield_up_timer_timeout"]
+[connection signal="timeout" from="DieTImer" to="." method="_on_die_tImer_timeout"]
+[connection signal="fade_out" from="Transition" to="." method="_on_transition_fade_out"]
