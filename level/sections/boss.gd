@@ -58,7 +58,7 @@ func _on_molag_death():
 
 func spawn_skeleton(var node: Spatial):
 	var skeleton_i = skeleton.instance()
-	skeleton_i.hp = 24
+	skeleton_i.hp = 26
 	skeleton_i.connect("killed", self, "_on_kill_skeleton")
 	node.add_child(skeleton_i)
 
@@ -88,7 +88,7 @@ func some_skeleton_alive():
 func respawn_molag():
 	var molag = skeleton.instance()
 	molag.connect("killed", self, "_on_molag_death")
-	molag.hp = 30
+	molag.hp = 36
 	molag.fireball = true
 	$Spawns/MolagSpawner.add_child(molag)
 

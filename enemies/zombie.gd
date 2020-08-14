@@ -47,7 +47,8 @@ func hit(knockback: Vector3, hp: int):
 		$Particles.emitting = true
 		
 		if self.hp <= 0 and not death:
-			anim_sm.call_deferred("travel", "die")
+			$AnimationTree.active = false
+			$AnimationPlayer.call_deferred("play", "die")
 			kill()
 
 func kill():

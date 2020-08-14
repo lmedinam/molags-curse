@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Molag's Curse"
-config/description="An adventure and action game where you will need to explore and fight agains evil skeletons controlled by Molag."
+config/description="An adventure and action game where you will need to explore and fight agains evil skeletons controlled by Molag"
 run/main_scene="res://init/credits.tscn"
 config/icon="res://icon.png"
 
