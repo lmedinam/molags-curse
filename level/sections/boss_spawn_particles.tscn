@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 0.35, 1, 0.35 )
+gravity = Vector3( 0, 0, 0 )
+radial_accel = -4.0
+tangential_accel = 1.4
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 0.52549, 0.0901961, 0.0901961, 1 )
+emission_energy = 2.31
+emission_operator = 1
+emission_on_uv2 = false
+rim_enabled = true
+rim = 0.08
+rim_tint = 1.0
+
+[sub_resource type="SphereMesh" id=6]
+material = SubResource( 5 )
+radius = 0.315
+height = 1.315
+radial_segments = 4
+rings = 1
+
+[node name="Particles" type="Particles"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22244, 0 )
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 6 )

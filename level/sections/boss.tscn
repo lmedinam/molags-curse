@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://level/level_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/grid_objects.meshlib" type="MeshLibrary" id=2]
@@ -14,8 +14,9 @@
 [ext_resource path="res://level/furniture/spawner.gltf" type="PackedScene" id=12]
 [ext_resource path="res://level/furniture/torch_wall/torch_wall.tscn" type="PackedScene" id=13]
 [ext_resource path="res://init/transition.tscn" type="PackedScene" id=14]
+[ext_resource path="res://level/sections/boss_spawn_particles.tscn" type="PackedScene" id=15]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape" id=3]
 extents = Vector3( 0.105981, 2.08713, 0.644717 )
 
 [sub_resource type="Animation" id=2]
@@ -145,12 +146,12 @@ script = ExtResource( 7 )
 
 [node name="WallGrid" parent="." index="0"]
 data = {
-"cells": PoolIntArray( 65526, 20, 0, 65527, 20, 1, 65524, 21, 1048582, 65525, 21, 1441793, 65527, 21, 1, 65525, 22, 1441792, 65527, 22, 1, 65526, 23, 655366, 65526, 24, 655366, 65526, 25, 655365, 65525, 26, 536870912, 65527, 26, -1609170944, 65522, 27, 0, 65523, 27, 1441793, 65524, 27, 1048581, 65528, 27, 1441797, 65522, 28, 1, 65523, 28, 655361, 65525, 28, 1048576, 65527, 28, 655360, 65522, 29, 536870913, 65523, 29, 655361, 65526, 29, 5, 65522, 30, 1048576, 65523, 30, 655360, 65525, 30, 0, 65527, 30, 1441792, 65525, 31, 1048576, 65526, 31, 1048577, 65527, 31, 655360 )
+"cells": PoolIntArray( 65526, 20, 0, 65527, 20, -1610612735, 65524, 21, 1048582, 65525, 21, 1441793, 65527, 21, 1, 65525, 22, 1441792, 65527, 22, 1, 65526, 23, 655366, 65526, 24, 655366, 65526, 25, 655365, 65525, 26, 0, 65527, 26, 1441792, 65522, 27, 0, 65523, 27, 1441793, 65524, 27, 1048581, 65528, 27, 1441797, 65522, 28, 1, 65523, 28, 655361, 65525, 28, 1048576, 65527, 28, 655360, 65522, 29, 1, 65523, 29, 655361, 65526, 29, 5, 65522, 30, 1048576, 65523, 30, 655360, 65525, 30, 0, 65527, 30, 1441792, 65525, 31, 1048576, 65526, 31, 1048577, 65527, 31, 655360 )
 }
 
 [node name="FloorGrid" parent="." index="1"]
 data = {
-"cells": PoolIntArray( 65526, 20, 0, 65524, 21, 0, 65525, 21, 0, 65526, 21, 0, 65525, 22, 0, 65526, 22, 0, 65526, 23, 0, 65526, 24, 536870912, 65526, 25, 0, 65525, 26, 0, 65526, 26, 0, 65527, 26, -1610612736, 65522, 27, 0, 65523, 27, 0, 65524, 27, 0, 65525, 27, 0, 65526, 27, 0, 65527, 27, 0, 65528, 27, 0, 65522, 28, 0, 65523, 28, 0, 65524, 28, 0, 65525, 28, 0, 65526, 28, 0, 65527, 28, 0, 65522, 29, 0, 65523, 29, 536870912, 65526, 29, 0, 65522, 30, 0, 65523, 30, 536870912, 65525, 30, 0, 65526, 30, 0, 65527, 30, 0, 65525, 31, 0, 65526, 31, 0, 65527, 31, 0 )
+"cells": PoolIntArray( 65526, 20, 0, 65524, 21, 0, 65525, 21, 0, 65526, 21, 0, 65525, 22, 0, 65526, 22, 0, 65526, 23, 0, 65526, 24, 0, 65526, 25, 0, 65525, 26, 0, 65526, 26, 0, 65527, 26, 0, 65522, 27, 0, 65523, 27, 0, 65524, 27, 0, 65525, 27, 0, 65526, 27, 0, 65527, 27, 0, 65528, 27, 0, 65522, 28, 0, 65523, 28, 0, 65524, 28, 0, 65525, 28, 0, 65526, 28, 0, 65527, 28, 0, 65522, 29, 0, 65523, 29, 0, 65526, 29, 0, 65522, 30, 0, 65523, 30, 0, 65525, 30, 0, 65526, 30, 0, 65527, 30, 0, 65525, 31, 0, 65526, 31, 0, 65527, 31, 0 )
 }
 
 [node name="TorchFloor" parent="Lights" index="0" instance=ExtResource( 11 )]
@@ -167,7 +168,7 @@ transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 26.7685
 [node name="WallGrid" type="GridMap" parent="TrapZone2" index="0"]
 mesh_library = ExtResource( 2 )
 data = {
-"cells": PoolIntArray( 2, 19, 0, 3, 19, 1441792, 0, 20, 1441798, 1, 20, 1441797, 3, 20, 537526273, 65535, 20, 1441798, 2, 21, 1048576, 3, 21, 655360 )
+"cells": PoolIntArray( 2, 19, 0, 3, 19, 1441792, 0, 20, 1441798, 1, 20, 1441797, 3, 20, 655361, 65535, 20, 1441798, 2, 21, 1048576, 3, 21, 655360 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -178,7 +179,7 @@ mesh_library = ExtResource( 3 )
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PoolIntArray( 2, 19, 0, 3, 19, 536870912, 0, 20, 0, 1, 20, 0, 2, 20, 0, 3, 20, -1610612736, 65535, 20, 0, 2, 21, 0, 3, 21, 0 )
+"cells": PoolIntArray( 2, 19, 0, 3, 19, 0, 0, 20, 0, 1, 20, 0, 2, 20, 0, 3, 20, 0, 65535, 20, 0, 2, 21, 0, 3, 21, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -255,7 +256,7 @@ mesh_library = ExtResource( 3 )
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PoolIntArray( 12, 25, 0, 13, 25, 0, 14, 25, 0, 15, 25, 0, 16, 25, 0, 17, 25, 0, 5, 26, 0, 6, 26, 0, 7, 26, 0, 11, 26, 0, 12, 26, 0, 13, 26, 0, 14, 26, 0, 15, 26, 0, 16, 26, 0, 17, 26, 536870912, 1, 27, 0, 2, 27, 0, 3, 27, 536870912, 4, 27, 536870912, 5, 27, 0, 6, 27, 0, 7, 27, 0, 8, 27, 0, 9, 27, 0, 10, 27, 0, 11, 27, 0, 12, 27, 0, 13, 27, 0, 14, 27, 0, 15, 27, 0, 16, 27, 0, 17, 27, 0, 5, 28, 0, 6, 28, 0, 7, 28, 536870912, 11, 28, 0, 12, 28, 0, 13, 28, 0, 14, 28, 0, 15, 28, 0, 16, 28, 0, 17, 28, 0, 12, 29, 0, 13, 29, 0, 14, 29, 0, 15, 29, 0, 16, 29, 0, 17, 29, 0 )
+"cells": PoolIntArray( 12, 25, 0, 13, 25, 0, 14, 25, 0, 15, 25, 0, 16, 25, 0, 17, 25, 0, 5, 26, 0, 6, 26, 0, 7, 26, 0, 11, 26, 0, 12, 26, 0, 13, 26, 0, 14, 26, 0, 15, 26, 0, 16, 26, 0, 17, 26, 0, 1, 27, 0, 2, 27, 0, 3, 27, 0, 4, 27, 0, 5, 27, 0, 6, 27, 0, 7, 27, 0, 8, 27, 0, 9, 27, 0, 10, 27, 0, 11, 27, 0, 12, 27, 0, 13, 27, 0, 14, 27, 0, 15, 27, 0, 16, 27, 0, 17, 27, 0, 5, 28, 0, 6, 28, 0, 7, 28, 0, 11, 28, 0, 12, 28, 0, 13, 28, 0, 14, 28, 0, 15, 28, 0, 16, 28, 0, 17, 28, 0, 12, 29, 0, 13, 29, 0, 14, 29, 0, 15, 29, 0, 16, 29, 0, 17, 29, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -277,7 +278,7 @@ mesh_library = ExtResource( 3 )
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PoolIntArray( 65532, 20, 0, 65533, 20, 536870912, 65534, 20, -1073741824, 65532, 21, 0, 65533, 21, 0, 65534, 21, 0, 65532, 22, 655360, 65533, 22, 0, 65534, 22, 655360, 65532, 23, 655360, 65533, 23, 536870912, 65534, 23, 655360, 65532, 24, 655360, 65533, 24, 0, 65534, 24, 655360 )
+"cells": PoolIntArray( 65532, 20, 0, 65533, 20, 0, 65534, 20, 0, 65532, 21, 0, 65533, 21, 0, 65534, 21, 0, 65532, 22, 655360, 65533, 22, 0, 65534, 22, 655360, 65532, 23, 655360, 65533, 23, 0, 65534, 23, 655360, 65532, 24, 655360, 65533, 24, 0, 65534, 24, 655360 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -334,7 +335,7 @@ mesh_library = ExtResource( 3 )
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PoolIntArray( 65533, 25, 0, 65529, 26, 0, 65530, 26, 0, 65531, 26, 0, 65532, 26, 0, 65533, 26, 0, 65534, 26, 0, 65535, 26, 0, 0, 27, 0, 65529, 27, 0, 65530, 27, 0, 65531, 27, 0, 65532, 27, 0, 65533, 27, 0, 65534, 27, 0, 65535, 27, 0, 65529, 28, 0, 65530, 28, 0, 65531, 28, 0, 65532, 28, 0, 65533, 28, 0, 65534, 28, 0, 65535, 28, 0, 65531, 29, 0 )
+"cells": PoolIntArray( 65533, 25, 1073741824, 65529, 26, 536870912, 65530, 26, 0, 65531, 26, 0, 65532, 26, 0, 65533, 26, 0, 65534, 26, 0, 65535, 26, 0, 0, 27, 0, 65529, 27, 0, 65530, 27, 536870912, 65531, 27, 0, 65532, 27, 0, 65533, 27, 0, 65534, 27, 0, 65535, 27, 0, 65529, 28, 0, 65530, 28, 0, 65531, 28, 0, 65532, 28, 0, 65533, 28, 0, 65534, 28, 0, 65535, 28, 0, 65531, 29, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -372,8 +373,8 @@ is_iron = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.042, 0, 53.287 )
 
 [node name="CollisionShape" type="CollisionShape" parent="BossTrigger" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.43571, 0, 1.71671 )
-shape = SubResource( 1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.43571, 1.21394, 1.71671 )
+shape = SubResource( 3 )
 
 [node name="Molag" parent="." index="18" instance=ExtResource( 9 )]
 transform = Transform( -0.020611, 0, 0.999788, 0, 1, 0, -0.999788, 0, -0.020611, 33.1076, -1.19209e-07, 55.086 )
@@ -382,14 +383,22 @@ started = false
 
 [node name="Spawns" type="Spatial" parent="." index="19"]
 
-[node name="spawner" parent="Spawns" index="0" instance=ExtResource( 12 )]
+[node name="MolagSpawner" parent="Spawns" index="0" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0.023, 55.036 )
 
-[node name="spawner2" parent="Spawns" index="1" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.0231055, 52.3683 )
+[node name="Particles" parent="Spawns/MolagSpawner" index="1" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.215, 0 )
 
-[node name="spawner3" parent="Spawns" index="2" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.0231055, 58.3276 )
+[node name="SkeletonSpawnerR" parent="Spawns" index="1" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.016, 52.368 )
+
+[node name="Particles" parent="Spawns/SkeletonSpawnerR" index="1" instance=ExtResource( 15 )]
+
+[node name="SkeletonSpawnerL" parent="Spawns" index="2" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.0161973, 58.3276 )
+
+[node name="Particles" parent="Spawns/SkeletonSpawnerL" index="1" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.222, 0 )
 
 [node name="Column" parent="." index="20" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.7282, 0, 52.3582 )
@@ -425,5 +434,6 @@ omni_attenuation = 2.5
 [connection signal="triggered" from="BossGateLever" to="." method="_on_boss_gate_lever_triggered"]
 [connection signal="triggered" from="BossGateLever2" to="." method="_on_boss_gate_lever_2_triggered"]
 [connection signal="body_entered" from="BossTrigger" to="." method="_on_boss_trigger_body_entered"]
+[connection signal="death" from="Molag" to="." method="_on_molag_death"]
 [connection signal="fade_out" from="PlayerTransition" to="." method="_on_player_transition_fade_out"]
 [connection signal="fade_out" from="CameraTransition" to="." method="_on_camera_transition_fade_out"]

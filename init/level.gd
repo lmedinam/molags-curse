@@ -8,7 +8,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey and not event.is_action("fullscreen"):
-		if can_start:
+		if not event.is_action("take_screenshot") and can_start:
 			$AnimationPlayer.play("start")
 
 func _on_animation_player_animation_finished(anim_name):

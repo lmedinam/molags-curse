@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://level/level_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/grid_objects.meshlib" type="MeshLibrary" id=2]
@@ -13,18 +13,26 @@
 [ext_resource path="res://traps/fireball.tscn" type="PackedScene" id=11]
 [ext_resource path="res://level/furniture/library_2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://level/furniture/column.tscn" type="PackedScene" id=13]
+[ext_resource path="res://enemies/skeleton.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actionables/chest_gold.tscn" type="PackedScene" id=15]
+[ext_resource path="res://level/furniture/table_2.tscn" type="PackedScene" id=16]
+[ext_resource path="res://level/furniture/table.tscn" type="PackedScene" id=17]
+[ext_resource path="res://actionables/chair.tscn" type="PackedScene" id=18]
+[ext_resource path="res://actionables/sharpening_stone.tscn" type="PackedScene" id=19]
+[ext_resource path="res://actionables/potion.tscn" type="PackedScene" id=20]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=21]
 
 [node name="Library" instance=ExtResource( 1 )]
 script = ExtResource( 10 )
 
 [node name="WallGrid" parent="." index="0"]
 data = {
-"cells": PoolIntArray( 65509, 18, 536870917, 65514, 18, 0, 65515, 18, 1441793, 65516, 18, 1441792, 65509, 19, 6, 65514, 19, 537919488, 65516, 19, 655360, 65509, 20, 1, 65510, 20, 1048576, 65515, 20, 5, 65509, 21, 1048576, 65510, 21, 1048577, 65511, 21, 1441793, 65512, 21, 1441798, 65513, 21, 1441798, 65514, 21, 1441798, 65516, 21, 1441798, 65517, 21, 1441798, 65518, 21, 1441798, 65511, 22, 655363, 65515, 22, 5, 65514, 23, 0, 65516, 23, 1441792, 65514, 24, 1048576, 65515, 24, 1048577, 65516, 24, 655360 )
+"cells": PoolIntArray( 65509, 18, 5, 65514, 18, 0, 65515, 18, 1441793, 65516, 18, 1441792, 65509, 19, 6, 65514, 19, 1048576, 65516, 19, 655360, 65509, 20, 1, 65510, 20, 1048576, 65515, 20, 5, 65509, 21, 1048576, 65510, 21, 1048577, 65511, 21, 1441793, 65512, 21, 1441798, 65513, 21, 1441798, 65514, 21, 1441798, 65516, 21, 1441798, 65517, 21, 1441798, 65518, 21, 1441798, 65511, 22, 655363, 65515, 22, 5, 65514, 23, 0, 65516, 23, 1441792, 65514, 24, 1048576, 65515, 24, 1048577, 65516, 24, 655360 )
 }
 
 [node name="FloorGrid" parent="." index="1"]
 data = {
-"cells": PoolIntArray( 65509, 18, 655360, 65514, 18, 655360, 65515, 18, 655360, 65516, 18, 537526272, 65509, 19, 655360, 65514, 19, 655360, 65515, 19, 655360, 65516, 19, 655360, 65509, 20, 655360, 65510, 20, 0, 65515, 20, 655360, 65509, 21, -1609957376, 65510, 21, 1074397184, 65511, 21, 655360, 65512, 21, -1609957376, 65513, 21, 655360, 65514, 21, -1609957376, 65515, 21, 655360, 65516, 21, 537526272, 65517, 21, 655360, 65518, 21, 655360, 65511, 22, 537526272, 65515, 22, 655360, 65514, 23, 655360, 65515, 23, 655360, 65516, 23, 655360, 65514, 24, 655360, 65515, 24, 655360, 65516, 24, 655360 )
+"cells": PoolIntArray( 65509, 18, 1074397184, 65514, 18, -1609957376, 65515, 18, 655360, 65516, 18, 655360, 65509, 19, -1609957376, 65514, 19, 537526272, 65515, 19, 655360, 65516, 19, -1609957376, 65509, 20, 655360, 65510, 20, 0, 65515, 20, 537526272, 65509, 21, 655360, 65510, 21, 655360, 65511, 21, 655360, 65512, 21, 655360, 65513, 21, 655360, 65514, 21, 655360, 65515, 21, 655360, 65516, 21, 655360, 65517, 21, 655360, 65518, 21, 655360, 65511, 22, 537526272, 65515, 22, 655360, 65514, 23, 655360, 65515, 23, 655360, 65516, 23, 655360, 65514, 24, 655360, 65515, 24, 655360, 65516, 24, 655360 )
 }
 
 [node name="TorchWall" parent="Lights" index="0" instance=ExtResource( 6 )]
@@ -66,51 +74,60 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46.4611, 0, 18.4421 )
 [node name="TorchFloor3" parent="Lights" index="12" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -51.6031, 0, 54.4891 )
 
-[node name="TorchFloor2" parent="Lights" index="13" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40.4023, 0, 36.4727 )
+[node name="TorchFloor9" parent="Lights" index="13" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -51.6104, -0.547554, 64.0643 )
 
-[node name="CrossFloorGrid" type="GridMap" parent="." index="3"]
+[node name="TorchFloor10" parent="Lights" index="14" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46.4091, 0, 63.6075 )
+
+[node name="TorchFloor2" parent="Lights" index="15" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40.7017, 0, 36.4727 )
+
+[node name="library7" parent="." index="3" instance=ExtResource( 8 )]
+transform = Transform( -0.996578, 0, -0.0826514, 0, 1, 0, 0.0826514, 0, -0.996578, -67.2684, -4.76837e-07, 25.6334 )
+
+[node name="CrossFloorGrid" type="GridMap" parent="." index="4"]
 mesh_library = ExtResource( 3 )
 data = {
-"cells": PoolIntArray( 65511, 23, 0, 65511, 24, 0, 65511, 25, 0, 65511, 26, -1610612736, 65510, 27, 0, 65511, 27, 0, 65512, 27, 0, 65509, 28, 0, 65510, 28, 0, 65511, 28, 0, 65512, 28, 0, 65513, 28, 0, 65508, 29, 0, 65509, 29, 0, 65510, 29, 0, 65511, 29, 0, 65512, 29, 0, 65513, 29, 0, 65514, 29, 0, 65508, 30, 0, 65509, 30, 0, 65510, 30, 0, 65511, 30, 0, 65512, 30, 0, 65513, 30, 0, 65514, 30, 0, 65508, 31, 0, 65509, 31, 0, 65510, 31, 0, 65511, 31, 0, 65512, 31, 0, 65513, 31, 0, 65514, 31, 0, 65509, 32, 0, 65510, 32, 0, 65511, 32, 0, 65512, 32, 0, 65513, 32, 0, 65510, 33, 0, 65511, 33, 0, 65512, 33, 0 )
+"cells": PoolIntArray( 65511, 23, 0, 65511, 24, 0, 65511, 25, 0, 65511, 26, 0, 65510, 27, 0, 65511, 27, 0, 65512, 27, 0, 65509, 28, 0, 65510, 28, 0, 65511, 28, 0, 65512, 28, 0, 65513, 28, 0, 65508, 29, 0, 65509, 29, 0, 65510, 29, 0, 65511, 29, 0, 65512, 29, 0, 65513, 29, 0, 65514, 29, 0, 65508, 30, 0, 65509, 30, 0, 65510, 30, 0, 65511, 30, 0, 65512, 30, 0, 65513, 30, 0, 65514, 30, 0, 65508, 31, 0, 65509, 31, 0, 65510, 31, 0, 65511, 31, 0, 65512, 31, 0, 65513, 31, 0, 65514, 31, 0, 65509, 32, 0, 65510, 32, 0, 65511, 32, 0, 65512, 32, 0, 65513, 32, 0, 65510, 33, 0, 65511, 33, 0, 65512, 33, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0
 }
 
-[node name="CrossWallGrid" type="GridMap" parent="." index="4"]
+[node name="CrossWallGrid" type="GridMap" parent="." index="5"]
 mesh_library = ExtResource( 2 )
 data = {
-"cells": PoolIntArray( 65511, 23, 655364, 65511, 24, 655364, 65511, 25, 655364, 65511, 26, 3, 65510, 27, 0, 65512, 27, 1441792, 65509, 28, 655360, 65513, 28, -1609564160, 65508, 29, 0, 65514, 29, -1072300032, 65508, 30, 1, 65514, 30, 655361, 65508, 31, 1048576, 65514, 31, 655360, 65509, 32, 1441792, 65513, 32, 0, 65510, 33, 1048576, 65511, 33, 1048577, 65512, 33, 655360 )
+"cells": PoolIntArray( 65511, 23, 655364, 65511, 24, 655364, 65511, 25, 655364, 65511, 26, 3, 65510, 27, 0, 65512, 27, 1441792, 65509, 28, 655360, 65513, 28, 1048576, 65508, 29, 0, 65514, 29, 1441792, 65508, 30, 1, 65514, 30, 655361, 65508, 31, 1048576, 65514, 31, 655360, 65509, 32, 1441792, 65513, 32, 0, 65510, 33, 1048576, 65511, 33, 1048577, 65512, 33, 655360 )
 }
 __meta__ = {
 "_editor_clip_": 0
 }
 
-[node name="LibraryGridWall" type="GridMap" parent="." index="5"]
+[node name="LibraryGridWall" type="GridMap" parent="." index="6"]
 mesh_library = ExtResource( 2 )
 data = {
-"cells": PoolIntArray( 65506, 7, 0, 65507, 7, 1441793, 65508, 7, 1441793, 65510, 7, 1441793, 65511, 7, 1441793, 65512, 7, 1441792, 65506, 8, 1, 65512, 8, 655361, 65505, 9, 537526272, 65513, 9, 1048576, 65501, 10, 0, 65502, 10, 1441792, 65504, 10, 0, 65514, 10, 1441792, 65501, 11, 1, 65503, 11, 1048581, 65515, 11, 1, 65501, 12, 1048576, 65502, 12, 655360, 65504, 12, 1048576, 65514, 12, 655360, 65505, 13, 1441792, 65513, 13, 0, 65506, 14, 1, 65512, 14, 655361, 65506, 15, 1048576, 65512, 15, 655360, 65507, 16, 1441792, 65511, 16, 0, 65508, 17, 1048576, 65510, 17, 655360 )
+"cells": PoolIntArray( 65506, 7, 0, 65507, 7, 1441793, 65508, 7, 1441793, 65510, 7, -535429119, 65511, 7, -535429119, 65512, 7, -535429120, 65506, 8, -536870911, 65512, 8, 655361, 65505, 9, -536215552, 65513, 9, 1048576, 65501, 10, -536870912, 65502, 10, 1441792, 65504, 10, -536870912, 65514, 10, -535429120, 65501, 11, 1, 65503, 11, 1048581, 65515, 11, 1, 65501, 12, 1048576, 65502, 12, -536215552, 65504, 12, -535822336, 65514, 12, -536215552, 65505, 13, 1441792, 65513, 13, -536870912, 65506, 14, 1, 65512, 14, 655361, 65506, 15, -535822336, 65512, 15, 655360, 65507, 16, 1441792, 65511, 16, -536870912, 65508, 17, 1048576, 65510, 17, 655360 )
 }
 __meta__ = {
 "_editor_clip_": 0
 }
 
-[node name="LibraryFloorGrid" type="GridMap" parent="." index="6"]
+[node name="LibraryFloorGrid" type="GridMap" parent="." index="7"]
 mesh_library = ExtResource( 3 )
 data = {
-"cells": PoolIntArray( 65506, 7, 655360, 65507, 7, 655360, 65508, 7, 655360, 65509, 7, 655360, 65510, 7, 655360, 65511, 7, 655360, 65512, 7, 655360, 65506, 8, 655360, 65507, 8, 655360, 65508, 8, 655360, 65509, 8, 655360, 65510, 8, 655360, 65511, 8, 655360, 65512, 8, 655360, 65505, 9, 655360, 65506, 9, 655360, 65507, 9, 655360, 65508, 9, 655360, 65509, 9, 655360, 65510, 9, 655360, 65511, 9, 655360, 65512, 9, 655360, 65513, 9, 655360, 65501, 10, 0, 65502, 10, 0, 65504, 10, 655360, 65505, 10, 655360, 65506, 10, 655360, 65507, 10, 655360, 65508, 10, 655360, 65509, 10, 655360, 65510, 10, 655360, 65511, 10, 655360, 65512, 10, 655360, 65513, 10, 655360, 65514, 10, 655360, 65501, 11, 0, 65502, 11, 0, 65503, 11, 655360, 65504, 11, 655360, 65505, 11, 655360, 65506, 11, 655360, 65507, 11, 655360, 65508, 11, 655360, 65509, 11, 655360, 65510, 11, 655360, 65511, 11, 655360, 65512, 11, 655360, 65513, 11, 655360, 65514, 11, 655360, 65501, 12, 0, 65502, 12, 0, 65504, 12, 655360, 65505, 12, 655360, 65506, 12, 655360, 65507, 12, 655360, 65508, 12, 655360, 65509, 12, 655360, 65510, 12, 655360, 65511, 12, 655360, 65512, 12, 655360, 65513, 12, 655360, 65514, 12, 655360, 65505, 13, 655360, 65506, 13, 655360, 65507, 13, 655360, 65508, 13, 655360, 65509, 13, 655360, 65510, 13, 655360, 65511, 13, 655360, 65512, 13, 655360, 65513, 13, 655360, 65506, 14, 655360, 65507, 14, 655360, 65508, 14, 655360, 65509, 14, 655360, 65510, 14, 655360, 65511, 14, 655360, 65512, 14, 655360, 65506, 15, 537526272, 65507, 15, 655360, 65508, 15, 655360, 65509, 15, 655360, 65510, 15, 655360, 65511, 15, 655360, 65512, 15, 655360, 65507, 16, 655360, 65508, 16, 655360, 65509, 16, 655360, 65510, 16, 655360, 65511, 16, 655360, 65508, 17, 655360, 65509, 17, 655360, 65510, 17, 655360 )
+"cells": PoolIntArray( 65506, 7, 655360, 65507, 7, 655360, 65508, 7, 655360, 65509, 7, 655360, 65510, 7, 655360, 65511, 7, 655360, 65512, 7, 655360, 65506, 8, 655360, 65507, 8, 655360, 65508, 8, 655360, 65509, 8, 655360, 65510, 8, 655360, 65511, 8, 655360, 65512, 8, 655360, 65505, 9, 655360, 65506, 9, 655360, 65507, 9, 655360, 65508, 9, 655360, 65509, 9, 655360, 65510, 9, 655360, 65511, 9, 655360, 65512, 9, 655360, 65513, 9, 655360, 65501, 10, 0, 65502, 10, 0, 65504, 10, 655360, 65505, 10, 655360, 65506, 10, 655360, 65507, 10, 655360, 65508, 10, 655360, 65509, 10, 655360, 65510, 10, 655360, 65511, 10, 655360, 65512, 10, 655360, 65513, 10, 655360, 65514, 10, 655360, 65501, 11, 0, 65502, 11, 0, 65503, 11, 655360, 65504, 11, 655360, 65505, 11, 655360, 65506, 11, 655360, 65507, 11, 655360, 65508, 11, 655360, 65509, 11, 655360, 65510, 11, 655360, 65511, 11, 655360, 65512, 11, 655360, 65513, 11, 655360, 65514, 11, 655360, 65501, 12, 0, 65502, 12, 0, 65504, 12, 655360, 65505, 12, 655360, 65506, 12, 655360, 65507, 12, 655360, 65508, 12, 655360, 65509, 12, 655360, 65510, 12, 655360, 65511, 12, 655360, 65512, 12, 655360, 65513, 12, 655360, 65514, 12, 655360, 65505, 13, 655360, 65506, 13, 655360, 65507, 13, 655360, 65508, 13, 655360, 65509, 13, 655360, 65510, 13, 655360, 65511, 13, 655360, 65512, 13, 655360, 65513, 13, 655360, 65506, 14, 655360, 65507, 14, 655360, 65508, 14, 655360, 65509, 14, 655360, 65510, 14, 655360, 65511, 14, 655360, 65512, 14, 655360, 65506, 15, 655360, 65507, 15, 655360, 65508, 15, 655360, 65509, 15, 537526272, 65510, 15, 655360, 65511, 15, 655360, 65512, 15, 655360, 65507, 16, 655360, 65508, 16, 655360, 65509, 16, 655360, 65510, 16, 655360, 65511, 16, 655360, 65508, 17, 655360, 65509, 17, 655360, 65510, 17, 655360 )
 }
 __meta__ = {
 "_editor_clip_": 0
 }
 
-[node name="ForbidenLibrary" type="Spatial" parent="." index="7"]
+[node name="ForbidenLibrary" type="Spatial" parent="." index="8"]
 
 [node name="FloorGrid" type="GridMap" parent="ForbidenLibrary" index="0"]
 mesh_library = ExtResource( 3 )
 data = {
-"cells": PoolIntArray( 65507, 0, 655360, 65508, 0, 655360, 65509, 0, 655360, 65510, 0, 655360, 65506, 1, 655360, 65507, 1, 655360, 65508, 1, 537526272, 65509, 1, 655360, 65510, 1, 655360, 65511, 1, 655360, 65506, 2, 655360, 65507, 2, 655360, 65508, 2, 655360, 65509, 2, 655360, 65510, 2, 655360, 65511, 2, 655360, 65507, 3, 655360, 65508, 3, 655360, 65509, 3, 655360, 65510, 3, 655360, 65507, 4, 655360, 65508, 4, 655360, 65509, 4, 655360, 65510, 4, 655360, 65509, 5, 655360, 65509, 6, 655360, 65508, 65534, -1609957376, 65509, 65534, 655360, 65507, 65535, -1609957376, 65508, 65535, 655360, 65509, 65535, 655360, 65510, 65535, 655360 )
+"cells": PoolIntArray( 65507, 0, 655360, 65508, 0, 655360, 65509, 0, 655360, 65510, 0, 655360, 65506, 1, 655360, 65507, 1, 655360, 65508, 1, 537526272, 65509, 1, 655360, 65510, 1, 655360, 65511, 1, 655360, 65506, 2, 655360, 65507, 2, 655360, 65508, 2, 655360, 65509, 2, 655360, 65510, 2, 655360, 65511, 2, 655360, 65507, 3, 655360, 65508, 3, 655360, 65509, 3, 655360, 65510, 3, 655360, 65507, 4, 655360, 65508, 4, 655360, 65509, 4, 655360, 65510, 4, 655360, 65509, 5, 655360, 65509, 6, 655360, 65508, 65534, 655360, 65509, 65534, 655360, 65507, 65535, 655360, 65508, 65535, 655360, 65509, 65535, 655360, 65510, 65535, 655360 )
 }
 __meta__ = {
 "_editor_clip_": 0
@@ -119,7 +136,7 @@ __meta__ = {
 [node name="GridWall" type="GridMap" parent="ForbidenLibrary" index="1"]
 mesh_library = ExtResource( 2 )
 data = {
-"cells": PoolIntArray( 65506, 0, 655361, 65510, 0, 655361, 65506, 1, 0, 65511, 1, 1441792, 65506, 2, 1048576, 65511, 2, -1609957376, 65507, 3, 1, 65510, 3, 655361, 65507, 4, 1048576, 65508, 4, -1609564159, 65510, 4, 655360, 65509, 5, 655363, 65509, 6, 3, 65508, 65534, 536870912, 65509, 65534, 1441792, 65507, 65535, 0, 65510, 65535, 1441792 )
+"cells": PoolIntArray( 65506, 0, 655361, 65510, 0, 655361, 65506, 1, 0, 65511, 1, 1441792, 65506, 2, 1048576, 65511, 2, -1609957376, 65507, 3, 1, 65510, 3, 655361, 65507, 4, 1048576, 65508, 4, 1048577, 65510, 4, 655360, 65509, 5, 655363, 65509, 6, 3, 65508, 65534, 0, 65509, 65534, -1609170944, 65507, 65535, 536870912, 65510, 65535, 538312704 )
 }
 __meta__ = {
 "_editor_clip_": 0,
@@ -200,45 +217,32 @@ transform = Transform( -0.999956, -0.00940719, -3.25841e-07, -0.00940719, 0.9999
 [node name="Column6" parent="ForbidenLibrary" index="8" instance=ExtResource( 13 )]
 transform = Transform( -0.999956, -0.00940719, -3.25841e-07, -0.00940719, 0.999956, 0, 3.25827e-07, 3.06525e-09, -1, -52.258, 0, 0.331842 )
 
-[node name="Doors" type="Spatial" parent="." index="8"]
+[node name="Doors" type="Spatial" parent="." index="9"]
 
 [node name="Door" parent="Doors" index="0" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40.9983, 0, 41.0244 )
-initial_open = false
-is_lock = false
-is_iron = false
 
 [node name="Door2" parent="Doors" index="1" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40.9983, 0, 45.0901 )
-initial_open = false
-is_lock = false
-is_iron = false
 
 [node name="Door3" parent="Doors" index="2" instance=ExtResource( 7 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -64.9045, 0, 23.0082 )
-initial_open = false
-is_lock = false
-is_iron = false
 
 [node name="DarkLibraryDoor" parent="Doors" index="3" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -53.0051, 0, 12.9563 )
-initial_open = false
 is_lock = true
 is_iron = true
 
 [node name="DarkLibraryDoor2" parent="Doors" index="4" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -53.0051, 0, 10.8034 )
-initial_open = false
 is_lock = true
 is_iron = true
 
 [node name="DoorCross" parent="Doors" index="5" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -48.998, 0, 44.7291 )
-initial_open = false
 is_lock = true
-is_iron = false
 
-[node name="Libraries" type="Spatial" parent="." index="9"]
+[node name="Libraries" type="Spatial" parent="." index="10"]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -49.3689, 0, 29.4009 )
 
 [node name="library" parent="Libraries" index="0" instance=ExtResource( 8 )]
@@ -438,7 +442,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.23244, 0, 5.72205e-06 )
 [node name="library12" parent="Libraries" index="65" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.43091, 0, 1.52588e-05 )
 
-[node name="Furniture" type="Spatial" parent="." index="10"]
+[node name="Furniture" type="Spatial" parent="." index="11"]
 
 [node name="Bed" parent="Furniture" index="0" instance=ExtResource( 5 )]
 transform = Transform( 0.993017, 0, 0.117971, 0, 1, 0, -0.117971, 0, 0.993017, -43.1944, 0.363204, 37.4249 )
@@ -446,39 +450,129 @@ transform = Transform( 0.993017, 0, 0.117971, 0, 1, 0, -0.117971, 0, 0.993017, -
 [node name="Bed2" parent="Furniture" index="1" instance=ExtResource( 5 )]
 transform = Transform( -0.130838, 0, -0.991404, 0, 1, 0, 0.991404, 0, -0.130838, -39.4738, 0.363204, 48.7774 )
 
-[node name="Column5" parent="." index="11" instance=ExtResource( 13 )]
+[node name="Bed3" parent="Furniture" index="2" instance=ExtResource( 5 )]
+transform = Transform( -0.999147, 0, 0.0412999, 0, 1, 0, -0.0412999, 0, -0.999147, -69.2759, 0.363204, 24.6538 )
+
+[node name="Bed4" parent="Furniture" index="3" instance=ExtResource( 5 )]
+transform = Transform( -0.999147, 0, 0.0412999, 0, 1, 0, -0.0412999, 0, -0.999147, -69.2759, 0.363204, 24.6538 )
+
+[node name="Column5" parent="." index="12" instance=ExtResource( 13 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -50.0464, -0.0136832, 19.0066 )
 
-[node name="CrossLever" parent="." index="12" instance=ExtResource( 9 )]
-transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65431e-14, -70.016, 1.4, 23.9355 )
+[node name="CrossLever" parent="." index="13" instance=ExtResource( 9 )]
+transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65431e-14, -70.016, 1.4, 22.4795 )
 
-[node name="TrapLeverR" parent="." index="13" instance=ExtResource( 9 )]
+[node name="TrapLeverR" parent="." index="14" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -49.2595, 1.4, 1.95432 )
 
-[node name="TrapLeverL" parent="." index="14" instance=ExtResource( 9 )]
+[node name="TrapLeverL" parent="." index="15" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -58.9196, 1.4, 1.95432 )
 
-[node name="BossLever" parent="." index="15" instance=ExtResource( 9 )]
+[node name="BossLever" parent="." index="16" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, -54.1454, 1.4, -4.03071 )
 
-[node name="ForbidenLibraryLever" parent="." index="16" instance=ExtResource( 9 )]
+[node name="ForbidenLibraryLever" parent="." index="17" instance=ExtResource( 9 )]
 transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65431e-14, -51.9889, 1.4, 55.9714 )
 
-[node name="ForbidenLibraryLever2" parent="." index="17" instance=ExtResource( 9 )]
+[node name="ForbidenLibraryLever2" parent="." index="18" instance=ExtResource( 9 )]
 transform = Transform( -1.62921e-07, -1, 1.62921e-07, 0, -1.62921e-07, -1, 1, -1.62921e-07, 2.65431e-14, -41.99, 1.4, 21.4615 )
 
-[node name="FireballL" parent="." index="18" instance=ExtResource( 11 )]
+[node name="FireballL" parent="." index="19" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -57.2285, 1.40835, -2.00373 )
 shoot_delay = 2.0
 start_delay = 1.0
 speed = 4.0
 active = true
 
-[node name="FireballR" parent="." index="19" instance=ExtResource( 11 )]
+[node name="FireballR" parent="." index="20" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50.7555, 1.40835, -2.00373 )
 shoot_delay = 2.0
 speed = 4.0
 active = true
+
+[node name="library" parent="." index="21" instance=ExtResource( 8 )]
+transform = Transform( -0.14705, 0, -0.989129, 0, 1, 0, 0.989129, 0, -0.14705, -38.2753, 0, 38.6099 )
+
+[node name="table_2" parent="." index="22" instance=ExtResource( 16 )]
+transform = Transform( -0.0816256, 0, -0.996663, 0, 1, 0, 0.996663, 0, -0.0816256, -39.4236, 0, 36.7051 )
+
+[node name="Chair" parent="." index="23" instance=ExtResource( 18 )]
+transform = Transform( 0.0775195, 0, -0.996991, 0, 1, 0, 0.996991, 0, 0.0775195, -39.4366, 0, 37.5451 )
+
+[node name="table_4" parent="." index="24" instance=ExtResource( 16 )]
+transform = Transform( -0.0816256, 0, -0.996663, 0, 1, 0, 0.996663, 0, -0.0816256, -68.5206, 0, 20.6077 )
+
+[node name="Chair6" parent="." index="25" instance=ExtResource( 18 )]
+transform = Transform( 0.0775195, 0, -0.996991, 0, 1, 0, 0.996991, 0, 0.0775195, -68.5335, 0, 21.4477 )
+
+[node name="library2" parent="." index="26" instance=ExtResource( 8 )]
+transform = Transform( -0.984475, 0, 0.175522, 0, 1, 0, -0.175522, 0, -0.984475, -43.026, 0, 49.639 )
+
+[node name="library3" parent="." index="27" instance=ExtResource( 8 )]
+transform = Transform( -0.0153056, 0, 0.999883, 0, 1, 0, -0.999883, 0, -0.0153056, -55.6623, 0, 62.6993 )
+
+[node name="library4" parent="." index="28" instance=ExtResource( 8 )]
+transform = Transform( -0.075048, 0, 0.99718, 0, 1, 0, -0.99718, 0, -0.075048, -55.6623, 0, 61.4338 )
+
+[node name="library5" parent="." index="29" instance=ExtResource( 8 )]
+transform = Transform( -0.079921, 0, -0.996801, 0, 1, 0, 0.996801, 0, -0.079921, -42.2092, 0, 59.3078 )
+
+[node name="library6" parent="." index="30" instance=ExtResource( 8 )]
+transform = Transform( -0.0201925, 0, -0.999796, 0, 1, 0, 0.999796, 0, -0.0201925, -42.3296, 0, 60.5676 )
+
+[node name="table_3" parent="." index="31" instance=ExtResource( 16 )]
+transform = Transform( 0.0796594, 0, -0.996822, 0, 1, 0, 0.996822, 0, 0.0796594, -42.8149, 0, 46.4971 )
+
+[node name="Chair2" parent="." index="32" instance=ExtResource( 18 )]
+transform = Transform( -0.0894158, 0, -0.995994, 0, 1, 0, 0.995994, 0, -0.0894158, -42.6833, 0, 47.271 )
+
+[node name="Chair3" parent="." index="33" instance=ExtResource( 18 )]
+transform = Transform( -0.0894158, 0, -0.995994, 0, 1, 0, 0.995994, 0, -0.0894158, -53.8983, 0, 60.0262 )
+
+[node name="Chair4" parent="." index="34" instance=ExtResource( 18 )]
+transform = Transform( -0.132395, 0, 0.991197, 0, 1, 0, -0.991197, 0, -0.132395, -44.3275, 0, 62.1411 )
+
+[node name="Column" parent="." index="35" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -49.0364, 0, 65.8896 )
+
+[node name="Column2" parent="." index="36" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -49.0364, 0, 60.9365 )
+
+[node name="Column3" parent="." index="37" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -49.0364, 0, 56.4307 )
+
+[node name="Table" parent="." index="38" instance=ExtResource( 17 )]
+transform = Transform( 0.0897112, 0, -0.995968, 0, 1, 0, 0.995968, 0, 0.0897112, -53.9642, 0, 58.6451 )
+
+[node name="Chair5" parent="." index="39" instance=ExtResource( 18 )]
+transform = Transform( 0.190706, 0, 0.981647, 0, 1, 0, -0.981647, 0, 0.190706, -50.3983, 0, 65.9933 )
+
+[node name="Table3" parent="." index="40" instance=ExtResource( 17 )]
+transform = Transform( 0.0125137, 0, 0.999922, 0, 1, 0, -0.999922, 0, 0.0125137, -50.4739, 0, 67.374 )
+
+[node name="Table2" parent="." index="41" instance=ExtResource( 17 )]
+transform = Transform( -0.0546889, 0, -0.998503, 0, 1, 0, 0.998503, 0, -0.0546889, -44.3104, 0, 63.1591 )
+
+[node name="ChestGold" parent="." index="42" instance=ExtResource( 15 )]
+transform = Transform( -0.862823, 0, -0.505507, 0, 1, 0, 0.505507, 0, -0.862823, -46.7924, 0, 67.2145 )
+
+[node name="Skeleton" parent="." index="43" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -54.8521, 0, 60.577 )
+
+[node name="Skeleton2" parent="." index="44" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -49.0324, 0, 62.2921 )
+
+[node name="Skeleton3" parent="." index="45" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -41.3725, 0, 47.2635 )
+
+[node name="SharpeningStone" parent="." index="46" instance=ExtResource( 19 )]
+transform = Transform( 0.651648, 0, -0.758521, 0, 1, 0, 0.758521, 0, 0.651648, -67.157, 0, 20.613 )
+
+[node name="Potion" parent="." index="47" instance=ExtResource( 20 )]
+transform = Transform( 0.934677, 0, 0.355499, 0, 1, 0, -0.355499, 0, 0.934677, -51.254, 0.891737, 67.2397 )
+
+[node name="Player" parent="." index="48" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.0286, 0, 42.8539 )
 [connection signal="triggered" from="CrossLever" to="." method="_on_cross_lever_triggered"]
 [connection signal="triggered" from="TrapLeverR" to="." method="_on_trapleverR_triggered"]
 [connection signal="triggered" from="TrapLeverL" to="." method="_on_trap_leverL_triggered"]

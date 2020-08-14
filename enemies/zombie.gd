@@ -1,5 +1,7 @@
 extends KinematicBody
 
+signal death
+
 const KNOCKBACK_SPEED = 20
 
 var knockback = 0
@@ -17,7 +19,7 @@ var anim_sm: AnimationNodeStateMachinePlayback
 
 var fireball_projectile = preload("res://traps/fireball_projectile.tscn")
 
-export var started: bool = true
+export var started: bool = false
 
 func _ready():
 	anim_sm = anim_tree.get("parameters/playback")
@@ -28,6 +30,9 @@ func _ready():
 	else:
 		$Mesh/Body/ArmL/Staff.visible = false
 		$Mesh/Body/ArmL/Sword.visible = true
+	
+	if started:
+		anim_sm.start("walking")
 
 func start():
 	started = true
@@ -58,10 +63,20 @@ func kill():
 	# qt.connect("timeout", self, "queue_free")
 	qt.wait_time = 2.0
 	qt.start()
+	
+	emit_signal("death")
 
 func _physics_process(delta):
 	if not death:
 		turn_face(GameManager.player, delta)
+		
+		var space_state = get_world().direct_space_state
+		var p_position = GameManager.player.global_transform.origin
+		var e_position = global_transform.origin
+		var r_result = space_state.intersect_ray(e_position, p_position)
+		
+		if r_result.collider.has_method("use_stamina") and not started:
+			start()
 	
 	var direction = Vector3()
 	
