@@ -7,7 +7,7 @@ const KNOCKBACK_SPEED = 20
 var knockback = 0
 var knockback_dir = Vector3()
 
-var hp = 20
+export var hp: int = 20
 var death = false
 
 var can_attack = true

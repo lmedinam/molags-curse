@@ -194,12 +194,11 @@ rings = 2
 radius = 0.35
 height = 0.2
 
-[sub_resource type="CapsuleShape" id=34]
+[sub_resource type="CapsuleShape" id=13]
 radius = 0.35
 height = 3.40298
 
-[sub_resource type="Animation" id=13]
-resource_name = "attacking"
+[sub_resource type="Animation" id=14]
 length = 1.8
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Mesh/Body:rotation_degrees:x")
@@ -370,8 +369,7 @@ tracks/15/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=14]
-resource_name = "die"
+[sub_resource type="Animation" id=15]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Mesh/Body:rotation_degrees:x")
 tracks/0/interp = 1
@@ -733,8 +731,7 @@ tracks/35/keys = {
 "times": PoolRealArray( 0, 0.9 )
 }
 
-[sub_resource type="Animation" id=15]
-resource_name = "idle"
+[sub_resource type="Animation" id=16]
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Mesh/Body:translation:x")
 tracks/0/interp = 1
@@ -1096,8 +1093,7 @@ tracks/35/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=16]
-resource_name = "walking"
+[sub_resource type="Animation" id=17]
 length = 1.6
 loop = true
 tracks/0/type = "bezier"
@@ -1191,42 +1187,40 @@ tracks/8/keys = {
 "times": PoolRealArray(  )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "attacking"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "die"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "walking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-switch_mode = 1
-xfade_time = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 switch_mode = 1
 xfade_time = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 1
 xfade_time = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
+xfade_time = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 switch_mode = 1
 auto_advance = true
 xfade_time = 1.4
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
 xfade_time = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
 switch_mode = 1
 xfade_time = 1.4
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
@@ -1236,19 +1230,21 @@ xfade_time = 1.4
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
-[sub_resource type="AnimationNodeStateMachine" id=32]
-states/attacking/node = SubResource( 17 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachine" id=33]
+states/attacking/node = SubResource( 18 )
 states/attacking/position = Vector2( 496.667, 42.6667 )
-states/die/node = SubResource( 18 )
+states/die/node = SubResource( 19 )
 states/die/position = Vector2( 480.333, 194.667 )
-states/idle/node = SubResource( 19 )
+states/idle/node = SubResource( 20 )
 states/idle/position = Vector2( 160.667, 43.5555 )
-states/walking/node = SubResource( 20 )
+states/walking/node = SubResource( 21 )
 states/walking/position = Vector2( 216.667, 194.667 )
-transitions = [ "idle", "walking", SubResource( 21 ), "walking", "idle", SubResource( 22 ), "idle", "attacking", SubResource( 23 ), "attacking", "idle", SubResource( 24 ), "walking", "attacking", SubResource( 25 ), "attacking", "walking", SubResource( 26 ), "attacking", "die", SubResource( 27 ), "die", "walking", SubResource( 28 ), "die", "idle", SubResource( 29 ), "walking", "die", SubResource( 30 ), "idle", "die", SubResource( 31 ) ]
+transitions = [ "idle", "walking", SubResource( 22 ), "walking", "idle", SubResource( 23 ), "idle", "attacking", SubResource( 24 ), "attacking", "idle", SubResource( 25 ), "walking", "attacking", SubResource( 26 ), "attacking", "walking", SubResource( 27 ), "attacking", "die", SubResource( 28 ), "die", "walking", SubResource( 29 ), "die", "idle", SubResource( 30 ), "walking", "die", SubResource( 31 ), "idle", "die", SubResource( 32 ) ]
 graph_offset = Vector2( -3, -8 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
 
 [node name="Skeleton" type="KinematicBody"]
 script = ExtResource( 3 )
@@ -1325,19 +1321,19 @@ shape = SubResource( 12 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22321, -2.5095 )
 
 [node name="CollisionShape" type="CollisionShape" parent="FarHitArea"]
-shape = SubResource( 34 )
+shape = SubResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/attacking = SubResource( 13 )
-anims/die = SubResource( 14 )
-anims/idle = SubResource( 15 )
-anims/walking = SubResource( 16 )
+anims/attacking = SubResource( 14 )
+anims/die = SubResource( 15 )
+anims/idle = SubResource( 16 )
+anims/walking = SubResource( 17 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 32 )
+tree_root = SubResource( 33 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 33 )
+parameters/playback = SubResource( 34 )
 
 [node name="FiraballSpawn" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16863, -1.15801 )
