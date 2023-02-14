@@ -4,7 +4,7 @@ Molag's Curse
 An adventure and action game where you will need to
 explore and fight agains evil skeletons controlled by Molag.
 
-You can find the game on [itch.io](https://medinam.itch.io/molags-curse).
+You can find the game on [itch.io](https://lmedinam.itch.io/molags-curse).
 
 How to play
 -----------
